@@ -1,0 +1,30 @@
+@import "./../variables";
+
+.artwork-container {
+    text-align: center;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .information {
+        display: flex;
+        flex-direction: row;
+    
+        >div {
+            justify-content: space-around;
+            display: flex;
+            flex-direction: column;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+        .desc {
+            // text-transform: uppercase;
+            color: $text-gray;
+        }
+        .val {
+            font-size: 1.2rem;
+        }
+    }
+}
+

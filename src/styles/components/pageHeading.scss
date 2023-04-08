@@ -1,0 +1,70 @@
+@import "./../variables";
+
+.heading {
+  padding-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: -1;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    color: $primary-green;
+  }
+  .title-background {
+    background-color: rgba(255,255,255, 0.3);
+    width: 100vw;
+    .title {
+      z-index: 100;
+      text-transform: uppercase;
+      font-weight: 800;    
+      h1 {
+        color:white;
+        font-size: 5rem;
+        font-family: "LibreBaskerville" !important;
+        text-transform: lowercase;
+        text-shadow: 2px 2px 0px $text-gray;
+      }
+      hr {
+        width: 50px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: block;
+        border: 2px solid $color-secondary;
+      }
+    }
+  }
+
+
+  .page-image-container {
+    padding-left: 0;
+    background-position: center center;
+    background-size: cover;
+    padding: 150px 0 150px 0;
+    color: #ffffff;
+    width:100vw;
+    background-position: center bottom;
+    height: 29rem;
+    padding: 0;
+    margin-left: -1rem;
+    display: flex;
+    align-items: end;
+  }
+}
+
+@media (max-width: 992px) {
+  .keyvisual .container {
+    top: 0;
+  }
+
+}
