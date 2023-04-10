@@ -27,11 +27,15 @@ $navbar-light-active-color: $primary-green;
 
 .header {
   height: 6rem;
-  margin-left: -1rem;
+  margin-left: -1rem !important;
   #brand {
     width: 30%;
     font-family: "LibreBaskerville", serif;
     font-weight: bold;
+
+    #vb {
+      font-size: 3rem;
+    }
 
     a, a > span {
       text-transform: lowercase !important;
@@ -91,19 +95,23 @@ $navbar-light-active-color: $primary-green;
       color: $primary-green;
     }
   }
+
+  a:hover {
+    color: $primary-red;
+  }
 }
 
 @media (max-width: 992px) {
   // if collapsed
   #basic-navbar-nav {
-    
+    margin-top: -3px;
     z-index: 100;
     background: white;
     width: 100vw;
     margin-left: -15px;
     // margin-top: 1rem;
     border-bottom: 2px solid $primary-green;
-    border-top: 2px solid $primary-yellow;
+    border-top: 2px solid $color-primary;
 
     a {
       height: 3rem;
@@ -119,9 +127,12 @@ $navbar-light-active-color: $primary-green;
 
   .header {
     #site-navbar {
-  
       #navbar-container {
         margin-top: -1rem;
+
+        button {
+          border: none;
+        }
       }
     }
   }

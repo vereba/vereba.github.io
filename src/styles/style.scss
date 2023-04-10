@@ -48,7 +48,7 @@ html {
 
     a {
       text-decoration: none;
-      color:$color-secondary;
+      color:$color-primary;
       text-transform: uppercase;
     }
 
@@ -74,16 +74,6 @@ html {
       margin-bottom: 20px;
     }
 
-    .separator {
-      padding: 0 !important;
-      height: 1rem;
-      background: linear-gradient(90deg, $primary-green, $primary-yellow);
-    }
-
-    .separator.red {
-      @extend .separator;
-      background: linear-gradient(90deg, $primary-yellow, $primary-red);
-    }
 
     .content .subheading,
     .content .accordion-button {
@@ -122,10 +112,6 @@ html {
       font-style: italic;
     }
 
-    .gradient-background {
-      background: linear-gradient(90deg, $primary-yellow, $primary-green);
-    }
-
     .accordion {
       margin-top: 2rem;
       .card-body {
@@ -134,7 +120,7 @@ html {
       }
       .card-header {
         background-color: white;
-        border: 1px solid $primary-yellow;
+        // border: 1px solid $primary-yellow;
         cursor: pointer;
         .card-header {
           border-top: 0;
@@ -142,7 +128,7 @@ html {
           border-right: 0;
         }
         .section {
-          color: $primary-yellow;
+          color: $color-primary;
           h1,
           h2,
           h3,

@@ -21,7 +21,7 @@
   }
   h2 {
     font-family: "LibreBaskerville" !important;
-text-transform: lowercase;
+    text-transform: lowercase;
   }
 
   > .container-fluid {
@@ -59,12 +59,12 @@ text-transform: lowercase;
 
       .btn {
         min-height: 100px;
-        background: $primary-yellow;
+        background: $color-primary;
         width: 100%;
         font-size: 0.9rem;
       }
       .btn.suggested {
-        background: $primary-green;
+        background: $color-primary;
         color: white;
       }
     }
@@ -151,9 +151,6 @@ text-transform: lowercase;
     }
   }
 
-  .violett {
-    color: $primary-violett;
-  }
 
   .notes {
     .keyvisual {
@@ -166,34 +163,12 @@ text-transform: lowercase;
     }
   }
 
-  .outline-quote {
-    @extend .gradient-background;
-    /*background-color:  $background-gray-dark;
-      padding:1rem;*/
-    padding: 0;
-
-    .blockquote {
-      padding: 1rem;
-      margin: 3px;
-      p {
-        font-weight: 400;
-      }
-    }
-  }
-
   .result {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
 }
 
-#method .images {
-  margin-top: 0;
-  margin-bottom: 0;
-  img {
-    margin-left: 0; /* Same padding as col-2 on other side */
-  }
-}
 
 .images {
   margin-top: 1rem;
@@ -228,34 +203,4 @@ text-transform: lowercase;
       text-align: center;
     }
   }
-}
-
-.codeExample {
-  width: 100%;
-  border-radius: 0;
-  border-width: 0;
-  font-family: inherit;
-  font-size: inherit;
-  margin: 0;
-  white-space: pre;
-  word-wrap: normal;
-  line-height: inherit;
-  color: inherit;
-  position: relative;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-font-variant-ligatures: contextual;
-  font-variant-ligatures: contextual;
-  display: inline-block;
-  background: #f5f5f5;
-  padding: 1rem;
-  border-radius: 1px;
-  font-family: monospace;
-  color: black;
-  direction: ltr;
-  font-size: 0.9rem;
-  white-space: pre;
-  word-break: break-all;
-  border-radius: 5px;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }

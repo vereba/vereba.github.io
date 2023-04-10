@@ -4,13 +4,6 @@ import {
     Row,
     Col,
     Container,
-    Tab,
-    Tabs,
-    Button,
-    Form,
-    OverlayTrigger,
-    Alert,
-    Popover,
   } from "react-bootstrap"
 
   import "./../styles/components/pageMenu.scss"
@@ -32,7 +25,7 @@ class PageMenu extends React.Component {
     }
 
     handleItemClick = (key) => {
-        this.props.onItemSelected(key);
+        ;
     };
 
 
@@ -40,9 +33,9 @@ class PageMenu extends React.Component {
         return (
             Object.keys(this.menuItems).map((key) =>
                 <li key={key}
-                    className={this.props.selectedItem == this.menuItems[key]? "selected" : ""}>
+                    className={this.props.selectedItem == key? "selected" : ""}>
                     <span
-                        onClick={() => this.handleItemClick(key)}>
+                        onClick={() => this.props.onItemSelected(key)}>
                         {this.menuItems[key]}
                     </span>
                 </li>
@@ -52,7 +45,7 @@ class PageMenu extends React.Component {
 
     render() {
         return(
-            <Container className = "align-items-center tabs" >
+            <Container className = "page-menu tabs" >
                 <Row>
                 <Col md="12" className = "align-items-center">
                     <ol>

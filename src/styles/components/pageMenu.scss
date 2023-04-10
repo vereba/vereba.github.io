@@ -1,5 +1,5 @@
 
-.align-items-center {
+.page-menu .align-items-center {
     ol {
         list-style: none;
         width: 100%;
@@ -14,13 +14,28 @@
         li {
             cursor: pointer;
             margin-right: 1.2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
 
             span {
-                padding: 0.4rem;
+                padding: 0.7em 0.7em 0.7em;
+                display: inline-block;
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                margin: 1em 1em 1em;
+                background: transparent;
+                text-shadow: none;
+                text-transform: uppercase;
+                font-size: 12px;
+                letter-spacing: 2px;
+                border-bottom: 1px solid transparent;
             }
         }
 
-        .selected span{
+        .selected {
             border-bottom: 1px solid #222;
         }
     }

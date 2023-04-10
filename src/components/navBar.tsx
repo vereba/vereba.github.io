@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { BiRightArrow } from "react-icons/bi"
 import { BsInstagram } from "react-icons/bs"
+import { collections } from "../constants"
 
 import { Navbar, Nav, Container } from "react-bootstrap"
 
@@ -11,7 +12,7 @@ const PageNavbar = ({ pageInfo }) => (
   <Navbar.Brand id="brand" >
   <Link to="/start" className="link-no-style">
           <Nav.Link as="span" eventKey="result">
-          vbartbook
+          <span id="vb">vb</span>artbook
           </Nav.Link>
         </Link>
     </Navbar.Brand>
@@ -33,7 +34,7 @@ const PageNavbar = ({ pageInfo }) => (
         </Link>
         
 
-        <Link to="/artwork" className="link-no-style">
+        <Link to={`/artwork/${Object.keys(collections)[0]}`} className="link-no-style">
           <Nav.Link as="span" eventKey="why">
             Artwork
           </Nav.Link>
