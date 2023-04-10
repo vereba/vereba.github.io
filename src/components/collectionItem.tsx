@@ -1,14 +1,27 @@
-import React from "react"
+import React from 'react';
+import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-export default function CollectionItem({props}) {
+import {
+    Col
+} from "react-bootstrap"
+
+
+export default function CollectionItem({ node } ) {
+    const title = node.frontmatter.title || node.fields.slug
+    let image = getImage(node.frontmatter.image?.childImageSharp?.gatsbyImageData)
+
     return (
-        <div>
-            <GatsbyImage
-              image={props.imageSrc}
-              alt={props.title}
-            />
-            {props.imageSrc}
-            <div>{props.title}</div>
-        </div>
+        <Col key={`col-${node.frontmatter.title}`}>
+            <Link to={`artwork/${node.frontmatter.category}/${node.fields.slug}`}>
+                <div className="collectionItem" key={title}>
+                    <GatsbyImage
+                        image={image}
+                        fluid={image}
+                        alt={title}
+                    />
+                    <div className="title">{title}</div>
+                </div>
+            </Link>
+        </Col >
     )
 }

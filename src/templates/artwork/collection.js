@@ -1,73 +1,84 @@
-import { Link, graphql } from "gatsby"
+import React from 'react';
+import { graphql } from "gatsby"
 import {
-  Container,Row, Col
+  Container, Row
 } from "react-bootstrap"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { navigate } from 'gatsby'
 
 import artworkImage from "../../assets/images/pageHeadings/artwork.jpg";
 import PageMenu from '../../components/pageMenu';
 
-import {collections} from "../../constants"
-import React, { useState } from 'react';
+import { collections } from "../../constants"
+
 import Layout from "../../components/layout"
 import PageHeading from "../../components/pageHeading"
+import CollectionItem from "../../components/CollectionItem"
 
 
-export default function Collection({pageContext, data}) {
-  console.log(pageContext)
+export default function Collection({ pageContext, data }) {
 
-  const { edges: artworks } = data.allMarkdownRemark
+  const imagesPerRow = 3
+
   if (!data) return <h2>No items in this collection yet!</h2>
+    const { edges: artworks } = data.allMarkdownRemark
+    const grouped = artworks
+      .filter(artwork => artwork.node.frontmatter.title.length > 0)
+      .reduce(function (rows, key, index) {
+        return (index % imagesPerRow == 0 ? rows.push([key])
+          : rows[rows.length - 1].push(key)) && rows;
+      }, [])
 
   function handleComponentChange(tab) {
     navigate(`/artwork/${tab}`)
   };
 
+
+
   return (
     <Layout pageInfo={{ pageName: "Artworks" }}>
-    <PageHeading
-      pageTitle={collections[pageContext.category]}
-      pageImage={artworkImage}
-    />
-    <Container fluid >
-      <Container className="align-items-center tabs">
-        <PageMenu
-          menuItems={collections}
-          selectedItem={pageContext.category}
-          onItemSelected={(tab) => handleComponentChange(tab)} />
-        <Row>
-          <Col>
-      <Container className="collection">
-        {artworks
-        .filter(artwork => artwork.node.frontmatter.title.length > 0)
-        .map(({ node }) => {
-          console.log(node)
-          const title = node.frontmatter.title || node.fields.slug
-          let image = getImage(node.frontmatter.image?.childImageSharp?.gatsbyImageData) // .images.sources[0]
-          return (
-            <div className="collectionItem" key={title}>
-            <GatsbyImage
-              image={image}
-              fluid={image}
-              imgStyle={{ objectFit: "cover" }}
-              alt={title}
-            />
-            <div>{title}</div>
-        </div>
-          )
-        })}
-      </Container>
-      </Col>
-            </Row>
-          </Container>
-          <div className="success-line" />
-        </Container>
-        <Container fluid style={{ marginTop: "-2.5rem" }}>
-          <PageHeading pageTitle={"Other recommended XAI methods"} />
-        </Container>
+      <PageHeading
+        pageTitle={collections[pageContext.category]}
+        pageImage={artworkImage}
+        titleInline={false}
+      />
+      <Container fluid >
+        <Container className="align-items-center tabs">
+          <PageMenu
+            menuItems={collections}
+            selectedItem={pageContext.category}
+            onItemSelected={(tab) => handleComponentChange(tab)} />
+          <Container className="collection">
+            {
+              grouped?.map((nodes) => {
 
-      </Layout>
+                console.log("in map")
+                console.log(nodes)
+                const node1 = nodes[0]
+                const node2 = (nodes.length > 1 ) ? nodes[1] : null;
+                const node3 = (nodes.length > 1 ) ? nodes[2] : null;
+                
+                return (
+                  <Row className="collectionRow">
+                    <CollectionItem node={node1.node} />
+                    {node2 ? <CollectionItem node={node2.node}/> : null}
+                    {node3 ? <CollectionItem node={node3.node}/> : null}
+                  </Row>
+
+
+                )
+              })
+            }
+          </Container>
+
+
+        </Container>
+        <div className="success-line" />
+      </Container>
+      <Container fluid style={{ marginTop: "-2.5rem" }}>
+        <PageHeading pageTitle={"Other recommended XAI methods"} />
+      </Container>
+
+    </Layout>
   )
 }
 
@@ -95,7 +106,7 @@ query CollectionQuery($category: String, $skip: Int!, $limit: Int!){
           date
           title
           category
-          image {
+          image { 
             childImageSharp {
                 gatsbyImageData(width: 400)
             }

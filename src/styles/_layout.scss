@@ -29,6 +29,28 @@
     padding: 0 !important;
   }
 
+  .collectionRow {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+
+    .collectionItem {
+      text-align: center;
+      .title {
+        margin-top: 2rem;
+      }
+      .gatsby-image-wrapper {
+        box-shadow: 0 7px 15px -4px #777777;
+        img {
+          max-height: 300px;
+        }
+      }
+
+    }
+
+
+  }
+
 
   .page {
     padding: 0;

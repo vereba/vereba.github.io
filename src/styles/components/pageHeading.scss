@@ -24,27 +24,39 @@
   .title-background {
     background-color: rgba(255,255,255, 0.3);
     width: 100vw;
+    height: 20rem;
+
     .title {
-      z-index: 100;
-      text-transform: uppercase;
-      font-weight: 800;    
       h1 {
         color:white;
-        font-size: 5rem;
-        font-family: "LibreBaskerville" !important;
-        text-transform: lowercase;
-        text-shadow: 2px 2px 0px $text-gray;
       }
-      hr {
-        width: 50px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        display: block;
-        border: 2px solid $color-secondary;
-      }
+    }
     }
   }
 
+  .title-outside, .title {
+    z-index: 100;
+    text-transform: uppercase;
+    font-weight: 800;    
+    padding-left: 15px;
+    padding-right: 15px;
+    h1 {
+      color:$text-gray;
+      font-size: 3rem;
+      //font-family: "LibreBaskerville" !important;
+      font-family: "Montserrat";
+      text-transform: uppercase;
+      word-spacing: 2;
+      text-transform: lowercase;
+      text-shadow: 2px 2px 0px $text-gray;
+    }
+    hr {
+      width: 50px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: block;
+      border: 2px solid $color-secondary;
+    }
 
   .page-image-container {
     padding-left: 0;
@@ -54,7 +66,7 @@
     color: #ffffff;
     width:100vw;
     background-position: center bottom;
-    height: 29rem;
+    // height: 20rem;
     padding: 0;
     margin-left: -1rem;
     display: flex;

@@ -7,6 +7,7 @@ import {
   Container,
 } from "react-bootstrap"
 import { Breadcrumbs } from "../../components/breadcrumbs"
+import {sizes} from "../../constants"
 
 
 import "../../styles/components/artworkDetail.scss"
@@ -16,6 +17,16 @@ export default function ArtworkDetailPage({ data }) {
   const artwork = data.markdownRemark
   const title = artwork.frontmatter.title || artwork.fields.slug
   let image = getImage(artwork.frontmatter.image?.childImageSharp?.gatsbyImageData)
+
+  function convertSize(size){
+    try {
+      return sizes[artwork.frontmatter.size]
+    } catch (error) {
+      console.error(error);
+      return "-"
+    }
+  }
+
   return (
     <Layout pageInfo={{ pageName: `${artwork.frontmatter.category} - ${title}` }}>
       <Container fluid >
@@ -46,16 +57,16 @@ export default function ArtworkDetailPage({ data }) {
 
             <div className="information">
               <div>
-                <span class="desc">Year</span>
-                <span class="val">{artwork.frontmatter.date}</span>
+                <span className="desc">Year</span>
+                <span className="val">{artwork.frontmatter.date}</span>
               </div>
               <div>
-                <span class="desc">Material</span>
-                <span class="val"> {artwork.frontmatter.material}</span>
+                <span className="desc">Material</span>
+                <span className="val"> {artwork.frontmatter.material}</span>
               </div>
               <div>
-                <span class="desc">Size</span>
-                <span class="val">{artwork.frontmatter.size}</span>
+                <span className="desc">Size</span>
+                <span className="val">{convertSize}</span>
               </div>
             </div>
             <div

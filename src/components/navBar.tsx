@@ -8,7 +8,7 @@ import { Navbar, Nav, Container } from "react-bootstrap"
 
 const PageNavbar = ({ pageInfo }) => (
   <Navbar expand="lg" id="site-navbar">
-  <Container class="d-flex justify-content-between" id="navbar-container">
+  <Container className="d-flex justify-content-between" id="navbar-container">
   <Navbar.Brand id="brand" >
   <Link to="/start" className="link-no-style">
           <Nav.Link as="span" eventKey="result">
