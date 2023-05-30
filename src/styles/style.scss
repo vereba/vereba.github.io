@@ -1,6 +1,5 @@
 @import "./variables";
 // @import "viadee";
-
 @import "layout";
 @import "navbar";
 
@@ -21,27 +20,18 @@ html {
     width: 100vw;
     // max-width: 1920px;
 
+    p,
     h1,
     h2,
     h3,
     h4,
     h5,
-    h6 {
-      font-family: "Montserrat", sans-serif;
-    }
-
+    h6,
+    i,
     .italic {
-      font-style: italic;
-    }
-
-    font-family: "Montserrat", sans-serif;
-
-    p {
       font-family: "Open Sans", sans-serif;
     }
-    i {
-      font-family: "Open Sans-Italic", sans-serif;
-    }
+
     b {
       font-family: "Open Sans-SemiBold", sans-serif;
     }

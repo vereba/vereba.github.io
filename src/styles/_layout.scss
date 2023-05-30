@@ -6,9 +6,12 @@
   margin: 0 auto !important;
   padding: 0 !important;
   //to position footer
-  min-height: calc(100vh - 125px);
-
-
+  // min-height: calc(100vh - 125px);
+    p {
+      padding-left: 10px;
+      padding-right: 10px;
+      line-height: 1.7rem;
+    }
 
   .breadcrumbs {
     padding-top:1.5rem;
@@ -29,6 +32,24 @@
     padding: 0 !important;
   }
 
+  hr.title-break-left {
+    display: inline-block;
+    margin: 0 0 0;
+    width: 20rem;
+  }
+
+  #home-image {
+    background-size: cover;
+    //padding: 150px 0 150px 0;
+    color: #ffffff;
+    width:calc(100vw - 15px);
+    background-position: center center;
+    height: calc(100vh - 96px - 60px - 15px);
+    padding: 0;
+    background-repeat: no-repeat;
+    margin-bottom: 0;
+  }
+
   .collectionRow {
     display: flex;
     align-items: center;
@@ -47,8 +68,6 @@
       }
 
     }
-
-
   }
 
 
@@ -218,7 +237,7 @@
     width: 100%;
     max-width: 1920px;
     align-items: center;
-    margin-top: 4rem;
+    //margin-top: 4rem;
 
     span {
       align-self: center;

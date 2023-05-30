@@ -8,7 +8,7 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import SEO from "../components/seo"
-import { BiHeart } from "react-icons/bi"
+import { BsInstagram } from "react-icons/bs"
 
 import { Container, Row, Col } from "react-bootstrap"
 
@@ -32,12 +32,10 @@ const Layout = ({ children }) => (
       <>
         <SEO title={data.site.siteMetadata.title} />
         <Container fluid className="header">
-        <PageNavbar/>
+          <PageNavbar />
         </Container>
 
         <Container fluid className="content">
-          
-          
           <Container fluid>
             <main>{children}</main>
           </Container>
@@ -49,16 +47,9 @@ const Layout = ({ children }) => (
                 <footer>
                   <span>
                     © {new Date().getFullYear()}, {" "}
-                    <a href="https://www.viadee.de/">
-                      viadee Unternehmensberatung AG
-                    </a>
+                    Verena Barth
                   </span>
-                  <Link to="/feedback" className="link-no-style">
-                    Give feedback <BiHeart />
-                  </Link>
-                  <Link to="/faq" className="link-no-style">
-                    FAQ
-                  </Link>
+                  <a href="https://www.instagram.com/vb.artbook/"><BsInstagram /></a>
                 </footer>
               </Col>
             </Row>

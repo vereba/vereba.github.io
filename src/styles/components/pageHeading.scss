@@ -1,6 +1,9 @@
 @import "./../variables";
 
 .heading {
+  .container-fluid {
+    padding:0;
+  }
   padding-bottom: 3rem;
   display: flex;
   justify-content: center;
@@ -38,8 +41,7 @@
     z-index: 100;
     text-transform: uppercase;
     font-weight: 800;    
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px;
     h1 {
       color:$text-gray;
       font-size: 3rem;
@@ -48,7 +50,7 @@
       text-transform: uppercase;
       word-spacing: 2;
       text-transform: lowercase;
-      text-shadow: 2px 2px 0px $text-gray;
+      #text-shadow: 2px 2px 0px $text-gray;
     }
     hr {
       width: 50px;
@@ -58,20 +60,20 @@
       border: 2px solid $color-secondary;
     }
 
-  .page-image-container {
-    padding-left: 0;
-    background-position: center center;
-    background-size: cover;
-    padding: 150px 0 150px 0;
-    color: #ffffff;
-    width:100vw;
-    background-position: center bottom;
-    // height: 20rem;
-    padding: 0;
-    margin-left: -1rem;
-    display: flex;
-    align-items: end;
-  }
+    .page-image-container {
+      padding-left: 0;
+      //background-position: center center;
+      background-size: cover;
+      //padding: 150px 0 150px 0;
+      color: #ffffff;
+      width:100vw;
+      background-position: center bottom;
+      // height: 20rem;
+      padding: 0;
+      margin-left: -1rem;
+      display: flex;
+      align-items: end;
+    }
 }
 
 @media (max-width: 992px) {

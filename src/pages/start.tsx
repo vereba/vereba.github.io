@@ -3,13 +3,20 @@ import { Container } from "react-bootstrap"
 
 import Layout from "../components/layout"
 import PageHeading from "../components/pageHeading"
+import { StaticImage } from "gatsby-plugin-image"
+
+import backgroundImage from "../assets/images/favela_100x70.jpg";
+
 
 const StartPage = () => (
-  <Layout pageInfo={{ pageName: "404: Not found" }}>
-    <PageHeading pageTitle="Not found" />
-    <Container className="page full">
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </Container>
+  <Layout pageInfo={{ pageName: "Home" }} id="home">
+      <div className="page-image-container" id="home-image"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
+    >
+      <p>hi</p>>
+    </div>
   </Layout>
 )
 

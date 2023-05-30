@@ -32,7 +32,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
   // create pages for md files
   const result = await graphql(`
@@ -105,6 +105,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       console.log(`Page with path '${pagePath}' created`)
     })
   }
+
+  createRedirect({
+    fromPath: `/artwork/`,
+    toPath: `/artwork/black-and-white-painting`,
+  })
+
+  
 
 }
 
