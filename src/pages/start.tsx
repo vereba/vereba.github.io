@@ -15,7 +15,6 @@ const StartPage = () => (
         backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <p>hi</p>>
     </div>
   </Layout>
 )

@@ -18,22 +18,28 @@ html {
     margin: 0 auto;
     padding: 0;
     width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
     // max-width: 1920px;
 
+    .content  p,
     p,
     h1,
     h2,
     h3,
     h4,
     h5,
-    h6,
+    h6{
+      font-family: Open Sans, sans-serif;
+    }
+
     i,
     .italic {
-      font-family: "Open Sans", sans-serif;
+      font-family: Open Sans-Italic, sans-serif;
     }
 
     b {
-      font-family: "Open Sans-SemiBold", sans-serif;
+      font-family: Open Sans-SemiBold, sans-serif;
     }
 
     a {
@@ -50,7 +56,7 @@ html {
     .text,
     ul li {
       @extend p;
-      font-family: "Open Sans", sans-serif;
+      font-family: Open Sans, sans-serif;
     }
 
     .fixed-top {
@@ -147,8 +153,8 @@ html {
     .section {
       padding-top: 2rem;
       padding-bottom: 2rem;
-      color: #4a4a4a;
-      font-family: "Open Sans", sans-serif;
+      color: $text-gray;
+      font-family: Open Sans, sans-serif;
 
       h1,
       h2,

@@ -10,10 +10,11 @@ import { StaticQuery, graphql, Link } from "gatsby"
 import SEO from "../components/seo"
 import { BsInstagram } from "react-icons/bs"
 
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col, ThemeProvider } from "react-bootstrap"
 
 import Header from "./header"
 import PageNavbar from "./navBar"
+import theme from "./../theme.js"
 
 
 const Layout = ({ children }) => (
@@ -29,7 +30,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
+      <ThemeProvider theme={theme}>
         <SEO title={data.site.siteMetadata.title} />
         <Container fluid className="header">
           <PageNavbar />
@@ -41,21 +42,23 @@ const Layout = ({ children }) => (
           </Container>
         </Container>
         {
-          <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <Container fluid style={{ paddingLeft: 0, paddingRight: 0, marginTop: "3rem" }}>
             <Row>
               <Col className="footer-col">
                 <footer>
+                  <Container>
                   <span>
                     © {new Date().getFullYear()}, {" "}
                     Verena Barth
                   </span>
                   <a href="https://www.instagram.com/vb.artbook/"><BsInstagram /></a>
+                  </Container>
                 </footer>
               </Col>
             </Row>
           </Container>
         }
-      </>
+      </ThemeProvider>
     )}
   />
 )

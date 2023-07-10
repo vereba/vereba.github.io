@@ -1,8 +1,9 @@
 ---
 title: "Streets of Cologne"
 date: "2013"
-category: "sketches"
+category: 
+- "sketches"
 material: "Roller Pen on Paper"
 size: "A3"
-image: "./../images/blackandwhite/cologne_a3.jpg"
+image: "./../../images/black-and-white/cologne_a3.jpg"
 ---

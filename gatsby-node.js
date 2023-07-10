@@ -56,14 +56,22 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
+  const newsDetailTemplate = path.resolve(`src/templates/artwork/newsDetailPage.js`)
   const artworkDetailTemplate = path.resolve(`src/templates/artwork/artworkDetailPage.js`)
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     const slug = node.fields.slug
-    const path = `artwork/${node.frontmatter.category}${slug}`
+    console.log("Slug: ", slug)
+    var        path = `artwork${slug}`
+    var template = artworkDetailTemplate
+    if (!Object.keys(collections).includes(node.frontmatter.category[0])) {
+      // page is news
+      path = `news${slug}`
+      template = newsDetailTemplate
+    } 
     console.log("Creating page: ", path)
     createPage({
       path: path,
-      component: artworkDetailTemplate,
+      component: template,
       context: {
         slug: slug,
         fullPath: path
@@ -105,11 +113,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       console.log(`Page with path '${pagePath}' created`)
     })
   }
-
+  console.log("Creating redirects")
   createRedirect({
     fromPath: `/artwork/`,
-    toPath: `/artwork/black-and-white-painting`,
+    toPath: `/artwork/black-and-white/`,
+    isPermanent: true,
+    redirectInBrowser: true
   })
+
+  // createRedirect({
+  //   fromPath: `/`,
+  //   toPath: `/start/`,
+  //   isPermanent: true,
+  //   redirectInBrowser: true
+  // })
 
   
 

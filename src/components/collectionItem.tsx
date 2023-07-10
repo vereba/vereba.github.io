@@ -12,13 +12,16 @@ export default function CollectionItem({ node } ) {
 
     return (
         <Col key={`col-${node.frontmatter.title}`}>
-            <Link to={`artwork/${node.frontmatter.category}/${node.fields.slug}`}>
+            <Link to={`/artwork${node.fields.slug}`}>
                 <div className="collectionItem" key={title}>
+                    <div className='image'>
                     <GatsbyImage
                         image={image}
                         fluid={image}
                         alt={title}
                     />
+                    </div>
+
                     <div className="title">{title}</div>
                 </div>
             </Link>

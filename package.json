@@ -1,7 +1,8 @@
 {
-  "name": "vbartbook",
+  "homepage": "http://vereba.github.io",
+  "name": "vb-art",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "vbartbook",
   "author": "Verena Barth",
   "keywords": [
@@ -15,14 +16,22 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@mdx-js/react": "^2.3.0",
+    "@theme-ui/mdx": "^0.16.0",
+    "@theme-ui/preset-funk": "^0.16.0",
+    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "gatsby": "^5.7.0",
     "gatsby-plugin-breadcrumb": "^12.3.2",
     "gatsby-plugin-google-gtag": "^5.7.0",
     "gatsby-plugin-image": "^3.8.0",
+    "gatsby-plugin-manifest": "^5.11.0",
     "gatsby-plugin-sass": "^6.7.0",
     "gatsby-plugin-sharp": "^5.8.1",
     "gatsby-plugin-sitemap": "^6.7.0",
@@ -39,13 +48,16 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.8.0",
     "react-markdown": "^8.0.6",
+    "react-responsive": "^9.0.2",
     "sass": "^1.58.3",
-    "styled-components": "^5.3.9"
+    "sharp": "^0.32.1",
+    "styled-components": "^5.3.11",
   },
   "devDependencies": {
     "@types/node": "^18.14.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "gh-pages": "^5.0.0",
     "typescript": "^4.9.5"
   }
 }

@@ -1,15 +1,16 @@
 @import "./fonts.scss";
 
-$color-primary: #520120; // #20232a; /* TODO remove */
 
-$color-secondary: #706513; // #20232a; /* TODO remove */
 
-$primary-green: #706513; //#7ebca9;
+$primary-green: #818844; //#7ebca9;
 $primary-yellow: #B57114;
 $secondary-green: #08403E;
 $primary-red: #520120;
 $background-gray: #f1f1f1;
 $background-gray-dark: #d8d8d8;
+
+$color-primary: $primary-green; // #20232a; /* TODO remove */
+$color-secondary: #818844; // #20232a; /* TODO remove */
 
 $text-gray: #4a4a4a;
 

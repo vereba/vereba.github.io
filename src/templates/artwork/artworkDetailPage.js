@@ -6,19 +6,20 @@ import Layout from "../../components/layout"
 import {
   Container,
 } from "react-bootstrap"
-import { Breadcrumbs } from "../../components/breadcrumbs"
-import {sizes} from "../../constants"
-
+import { sizes } from "../../constants"
+import { collections } from "../../constants"
 
 import "../../styles/components/artworkDetail.scss"
 
 export default function ArtworkDetailPage({ data }) {
   console.log("ArtworkDetailPage data: ", data)
   const artwork = data.markdownRemark
+  const category = artwork.fields.slug.match(/[^/]+/)?.[0]
+  console.log(category)
   const title = artwork.frontmatter.title || artwork.fields.slug
   let image = getImage(artwork.frontmatter.image?.childImageSharp?.gatsbyImageData)
 
-  function convertSize(size){
+  function convertSize(size) {
     try {
       return sizes[artwork.frontmatter.size]
     } catch (error) {
@@ -33,11 +34,11 @@ export default function ArtworkDetailPage({ data }) {
         <Container className="align-items-center tabs">
           <div className="breadcrumbs">
             <span>
-              <Link to="/artwork" className="link-no-style">Artwork</Link>
+              <Link to={`/artwork/${category}/`} className="link-no-style">Artwork</Link>
             </span>
             <span>></span>
             <span>
-              <Link to={`/artwork/${artwork.frontmatter.category}`} className="link-no-style">{artwork.frontmatter.category}</Link>
+              <Link to={`/artwork/${category}/`} className="link-no-style">{collections[category]}</Link>
             </span>
             <span>></span>
             <span>
@@ -46,7 +47,7 @@ export default function ArtworkDetailPage({ data }) {
           </div>
 
           <div className="artwork-container">
-            <span>{artwork.frontmatter.category}</span>
+            <span id="category">{collections[category]}</span>
             <h1>{title}</h1>
             <GatsbyImage
               image={image}
@@ -66,7 +67,7 @@ export default function ArtworkDetailPage({ data }) {
               </div>
               <div>
                 <span className="desc">Size</span>
-                <span className="val">{convertSize}</span>
+                <span className="val">{convertSize(artwork.frontmatter.size)}</span>
               </div>
             </div>
             <div
@@ -95,7 +96,7 @@ export const pageQuery = graphql`
         size
         image {
           childImageSharp {
-              gatsbyImageData(width: 800)
+              gatsbyImageData(height: 700)
           }
         }
       }

@@ -2,8 +2,9 @@
 
 .heading {
   .container-fluid {
-    padding:0;
+    padding: 0;
   }
+
   padding-bottom: 3rem;
   display: flex;
   justify-content: center;
@@ -24,61 +25,70 @@
   .h6 {
     color: $primary-green;
   }
+
   .title-background {
-    background-color: rgba(255,255,255, 0.3);
+    // background-color: rgba(255, 255, 255, 0.3);
     width: 100vw;
     height: 20rem;
 
     .title {
       h1 {
-        color:white;
+        color: white;
       }
     }
-    }
   }
-
-  .title-outside, .title {
-    z-index: 100;
-    text-transform: uppercase;
-    font-weight: 800;    
-    padding: 15px;
-    h1 {
-      color:$text-gray;
-      font-size: 3rem;
-      //font-family: "LibreBaskerville" !important;
-      font-family: "Montserrat";
-      text-transform: uppercase;
-      word-spacing: 2;
-      text-transform: lowercase;
-      #text-shadow: 2px 2px 0px $text-gray;
-    }
-    hr {
-      width: 50px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      display: block;
-      border: 2px solid $color-secondary;
-    }
-
-    .page-image-container {
-      padding-left: 0;
-      //background-position: center center;
-      background-size: cover;
-      //padding: 150px 0 150px 0;
-      color: #ffffff;
-      width:100vw;
-      background-position: center bottom;
-      // height: 20rem;
-      padding: 0;
-      margin-left: -1rem;
-      display: flex;
-      align-items: end;
-    }
 }
 
+.page-image-container {
+  padding-left: 0;
+  //background-position: center center;
+  background-size: cover;
+  //padding: 150px 0 150px 0;
+  color: #ffffff;
+  width: 100vw;
+  background-position: center bottom;
+  height: 20rem;
+  background-size: cover;
+}
+
+.title-outside,
+.title {
+    margin-top: 2rem;
+  // z-index: 100;
+  // text-transform: uppercase;
+  // font-weight: 800;
+  // padding: 15px;
+  // padding: 0;
+  // margin-left: -1rem;
+  // display: flex;
+  // align-items: end;
+
+  h1 {
+    color: $text-gray;
+    font-size: 3rem;
+    font-family: "LibreBaskerville" !important;
+    // font-family: var(--bs-body-font-family);
+    text-transform: uppercase;
+    word-spacing: 2;
+    text-transform: lowercase;
+    // text-shadow: 2px 2px 0px $text-gray;
+  }
+
+  hr {
+    width: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    border: 2px solid $color-secondary;
+  }
+}
+
+
 @media (max-width: 992px) {
-  .keyvisual .container {
-    top: 0;
+
+  .heading .page-image-container {
+
+    height: 7rem;
   }
 
 }

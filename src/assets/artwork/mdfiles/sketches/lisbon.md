@@ -1,8 +1,9 @@
 ---
 title: "Lisboa"
 date: "2022"
-category: "sketches"
+category: 
+- "sketches"
 material: "Alcohol Marker  on Paper"
 size: "A3"
-image: "./../images/lisbon.png"
+image: "./../../images/sketches/lisbon.png"
 ---
