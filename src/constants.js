@@ -1,4 +1,7 @@
 module.exports = {
+  artworksPerRow: 3,
+  artworkRowsPerPage: 1,
+  newsPerPage: 1,
   collections: {
     "black-and-white": "Black and White Paintings",
     "sketches": "Sketches",

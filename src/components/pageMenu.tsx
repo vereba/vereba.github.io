@@ -24,11 +24,6 @@ class PageMenu extends React.Component {
         console.log(props)
     }
 
-    handleItemClick = (key) => {
-        ;
-    };
-
-
     categoryTabs() {
         return (
             Object.keys(this.menuItems).map((key) =>
