@@ -26,6 +26,43 @@
       margin: 0.4rem
     }
   }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    ul {
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+
+      // text
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      margin: 1em 1em 1em;
+      background: transparent;
+      text-shadow: none;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+      border-bottom: 1px solid transparent;
+    }
+  }
+  [aria-current] {
+    .pagination .li a {
+      font-weight: bold;
+      color: $primary-green !important;
+      text-shadow: 0 0 $text-gray;
+      background-color: transparent !important;
+    }
+  }
+
 
   h2 {
     font-family: "LibreBaskerville" !important;

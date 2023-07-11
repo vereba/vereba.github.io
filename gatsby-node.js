@@ -1,5 +1,5 @@
 const path = require("path")
-const { collections } = require("./src/constants")
+const { collections, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
 
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
@@ -58,6 +58,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
   const newsDetailTemplate = path.resolve(`src/templates/artwork/newsDetailPage.js`)
   const artworkDetailTemplate = path.resolve(`src/templates/artwork/artworkDetailPage.js`)
+
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     const slug = node.fields.slug
     console.log("Slug: ", slug)
@@ -94,8 +95,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     `)
     const numArtworks = collectionResult.data.allMarkdownRemark.totalCount
     console.log("Numer of artworks: ", numArtworks)
-    const artworksPerPage = 6
+    const artworksPerPage = artworkRowsPerPage * artworksPerRow
     const numPages = Math.ceil(numArtworks / artworksPerPage) > 0? Math.ceil(numArtworks / artworksPerPage) : 1;
+    console.log("Artworks per page: ", artworksPerPage, ", number of pages for collection '", key, "': ", numPages)
     Array.from({ length: numPages }).forEach((_, i) => {
       const pagePath = i === 0 ? `artwork/${key}` : `artwork/${key}/${i + 1}`
       createPage({
@@ -121,12 +123,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     redirectInBrowser: true
   })
 
-  // createRedirect({
-  //   fromPath: `/`,
-  //   toPath: `/start/`,
-  //   isPermanent: true,
-  //   redirectInBrowser: true
-  // })
 
   
 
