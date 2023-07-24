@@ -10,7 +10,7 @@ import { StaticImage } from "gatsby-plugin-image";
 const AboutPage = ({ props }) => {
 
   return (
-    <Layout pageInfo={{ pageName: "Further steps" }}>
+    <Layout pageInfo={{ pageName: "About me" }}>
       <PageHeading
         pageTitle={`About me`}
         pageImage={aboutImage}

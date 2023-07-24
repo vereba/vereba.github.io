@@ -7,6 +7,10 @@
     align-items: center;
     flex-direction: column;
 
+    .gatsby-image-wrapper {
+        box-shadow: 0 7px 15px -4px #777777;
+    }
+
     #category {
         text-align: center;
         font-family: var(--bs-body-font-family);

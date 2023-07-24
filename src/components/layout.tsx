@@ -40,7 +40,7 @@ const Layout = ({ children }) => (
           </Container>
         </Container>
         {
-          <Container fluid style={{ paddingLeft: 0, paddingRight: 0, marginTop: "3rem" }}>
+          <Container fluid className="footer-container">
             <Row>
               <Col className="footer-col">
                 <footer>

@@ -26,10 +26,13 @@
       margin: 0.4rem
     }
   }
+
   .pagination {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
+    margin-bottom: 2rem;
+
     ul {
       max-width: 400px;
       display: flex;
@@ -54,6 +57,7 @@
       color: $text-gray;
     }
   }
+
   [aria-current] {
     .pagination .li a {
       font-weight: bold;
@@ -83,36 +87,46 @@
 
   #home-image {
     background-size: cover;
-    //padding: 150px 0 150px 0;
     color: #ffffff;
-    // width: calc(100vw - 15px);
     width: 100vw;
     background-position: center center;
-    // height: calc(100vh - 96px - 60px - 15px);
     height: calc(100vh - 96px - 60px);
     padding: 0;
     background-repeat: no-repeat;
-    margin-bottom: -3rem;
   }
 
-#contactForm {
-  .alert-danger {
-    margin-top: 0.3rem;
+  #contactForm {
+    padding: 15px;
+
+    .alert-danger {
+      margin-top: 0.3rem;
+    }
+
+    button {
+      margin-top: 0.5rem;
+    }
+
+    .formMessage {
+      width: 100%;
+      display: block;
+      color: $primary-green;
+      font-family: "LibreBaskerville" !important;
+      text-transform: lowercase;
+      font-weight: bold;
+    }
   }
-  button {
-    margin-top: 0.5rem;
-  }
-  .formMessage {
+
+  .collectionSelect {
     width: 100%;
-    display: block;
-    color: $primary-green;
-    font-family: "LibreBaskerville" !important;
-    text-transform: lowercase;
-    font-weight: bold;
+    height: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border: 2px solid #818844;
   }
-}
+
   .collectionRow {
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
     padding: 1rem;
 
@@ -167,14 +181,6 @@
     font-size: 0.8rem;
   }
 
-  .methodDetailedBoxes .methodBlock {
-    display: flex;
-    flex-wrap: wrap;
-
-    .text {
-      color: $text-gray;
-    }
-  }
 
   .methodBoxes {
     display: flex;
@@ -342,7 +348,6 @@
     justify-content: space-evenly;
     align-items: center;
 
-    //margin-top: 4rem;
     span {
       font-family: Open Sans, sans-serif;
     }

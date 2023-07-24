@@ -147,11 +147,12 @@ const ContactForm = () => {
         )}
       </Form.Group>
       <Form.Group as={Col} controlId="formGridMessage">
-        <Form.Label>Your message</Form.Label>
+        <Form.Label>Message</Form.Label>
         <Form.Control as="textarea" name="message" rows={3}
           value={values.message}
           onChange={handleChange}
-          required />
+          required
+          placeholder="Your message" />
         {formerrors?.message && (
           <div className="alert alert-danger" role="alert">
             {formerrors.message}
@@ -159,7 +160,7 @@ const ContactForm = () => {
         )}
       </Form.Group>
       <Button type="submit" variant="primary" size="lg">
-        Submit {JSON.stringify(process.env)}
+        Submit
       </Button>
       {
         showMessage && <span className="formMessage">Thank you for your message, we will be in touch in no time!</span>
@@ -179,14 +180,14 @@ const ContactPage = ({ props }) => {
         pageImage={aboutImage}
       />
       <Container fluid >
-        <Container className="content">
+        <Container>
           <Row>
-            <Col className="col-lg-4 col-sm-12">
+            <Col className="col-12 col-lg-4 ">
               <h2>Inqueries, questions, inspiration..?</h2>
               <p>I am happy about your interest in my work and about contacting me!</p>
               <p>I will get back to you as soon as possible.</p>
             </Col>
-            <Col className="col-lg-7 offset-lg-1 col-sm-12">
+            <Col className="col-lg-7 offset-lg-1 col-12">
               <ContactForm />
             </Col>
           </Row>

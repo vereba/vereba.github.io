@@ -127,7 +127,7 @@ $navbar-light-active-color: $primary-green;
     margin-top: -3px;
     z-index: 100;
     background: white;
-    width: 100vw;
+    width: calc(100vw + 2rem) !important;
     margin-left: -15px;
     // margin-top: 1rem;
     border-bottom: 2px solid $primary-green;
@@ -148,8 +148,8 @@ $navbar-light-active-color: $primary-green;
 
   .header {
 
-    margin-right: -1rem !important;
-    margin-left: -1rem !important;
+    //margin-right: -1rem !important;
+    //margin-left: -1rem !important;
     width: calc(100vw + 2rem) !important;
     margin: 0 auto;
     padding: 0;
@@ -157,15 +157,15 @@ $navbar-light-active-color: $primary-green;
 
     #site-navbar {
       #navbar-container {
-        margin-right: -1rem !important;
-        margin-left: -1rem !important;
+        //margin-right: -1rem !important;
+        //margin-left: -1rem !important;
         width: calc(100vw + 2rem) !important;
         margin-top: 0;
         padding-top: 3px;
 
         button {
           border: none;
-          padding-right: 2rem;
+          margin-right: 2rem;
         }
 
         .navbar-collapse {

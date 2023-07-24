@@ -49,13 +49,12 @@ const PageNavbar = ({ pageInfo }) => (
           </Nav.Link>
         </Link>
 
-        
-
+{/*       
         <Link to="/news" className="link-no-style">
           <Nav.Link as="span" eventKey="why">
             News
           </Nav.Link>
-        </Link>
+        </Link> */}
         
         <Link to="/contact" className="link-no-style">
           <Nav.Link as="span" eventKey="why">

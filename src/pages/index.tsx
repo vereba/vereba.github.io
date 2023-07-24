@@ -5,7 +5,7 @@ import { navigate } from "@reach/router"
 
 const IndexPage = () => {
   useEffect(() => {
-    navigate("/start/")
+    navigate("/start/",  {replace: true})
   }, [])
   return null
 }

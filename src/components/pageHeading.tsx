@@ -2,43 +2,40 @@ import React from "react"
 import { Row, Col, Container } from "react-bootstrap"
 import "./../styles/components/pageHeading.scss"
 
-const PageHeading = ({ pageTitle, pageImage, titleInline }) => {
+const PageHeading = ({ pageTitle, pageImage, titleInline, backgroundPosition }) => {
 
-  const color = "red";
-
+  const position = backgroundPosition ?? "center bottom";
   return (
     <div className="heading">
-
-
       <Container fluid>
-      <div className="page-image-container" style={{backgroundImage: `url(${pageImage})`}}>
-        <Container fluid className="title-background">
-          {
-            titleInline ? 
-            <Container>
-            <div className="title">
-            <h1>{pageTitle}</h1>
-            </div>
-          </Container>
-          :
-          null
-          }
+        <div className="page-image-container" style={{ backgroundImage: `url(${pageImage})`, backgroundPosition: position }}>
+          <Container fluid className="title-background">
+            {
+              titleInline ?
+                <Container>
+                  <div className="title">
+                    <h1>{pageTitle}</h1>
+                  </div>
+                </Container>
+                :
+                null
+            }
 
-        </Container>
-      </div>
-      {
-            !titleInline ? 
+          </Container>
+        </div>
+        {
+          !titleInline ?
             <Container className="title-outside">
-            <div className="title">
-            <h1>{pageTitle}</h1>
-            <hr className="title-break-left"/>
-            </div>
-          </Container>
-          :
-          null
-          }
+              <div className="title">
+                <h1>{pageTitle}</h1>
+                <hr className="title-break-left" />
+              </div>
+            </Container>
+            :
+            null
+        }
 
-    </Container>
+      </Container>
     </div>
   )
 
