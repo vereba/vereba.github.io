@@ -5,7 +5,7 @@ import {
 } from "react-bootstrap"
 import { navigate } from 'gatsby'
 
-import imageBw from "../../assets/images/pageHeadings/artwork.jpg";
+import imageBw from "../../assets/artwork/images/black-and-white/coast.jpg";
 import imageSketches from "../../assets/images/pageHeadings/artwork.jpg";
 import imagePostcards from "../../assets/images/pageHeadings/artwork.jpg";
 import imageTravel from "../../assets/images/pageHeadings/nyc2.jpg";
@@ -40,7 +40,7 @@ export default function Collection({ pageContext, data }) {
     console.log("getImageByCategory")
     switch (pageContext.category) {
       case "sketches":
-        image = imageSketches
+        image = imageSketches;
         break;
       case "travel":
         image = imageTravel;
@@ -53,6 +53,17 @@ export default function Collection({ pageContext, data }) {
         break;
     }
     return image
+  }
+
+  function getImagePosition() {
+    let imagePosition = "center bottom";
+    switch (pageContext.category) {
+      case "black-and-white":
+        imagePosition = "center center";
+        break;
+    }
+    console.log("getImagePosition: ", imagePosition)
+    return imagePosition
   }
 
   const grouped = artworks
@@ -76,6 +87,7 @@ export default function Collection({ pageContext, data }) {
       <PageHeading
         pageTitle={collections[pageContext.category]}
         pageImage={getImageByCategory()}
+        backgroundPosition={getImagePosition()}
         titleInline={false}
       />
       <Container fluid >

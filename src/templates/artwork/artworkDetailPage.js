@@ -15,7 +15,6 @@ export default function ArtworkDetailPage({ data }) {
   console.log("ArtworkDetailPage data: ", data)
   const artwork = data.markdownRemark
   const category = artwork.fields.slug.match(/[^/]+/)?.[0]
-  console.log(category)
   const title = artwork.frontmatter.title || artwork.fields.slug
   let image = getImage(artwork.frontmatter.image?.childImageSharp?.gatsbyImageData)
 

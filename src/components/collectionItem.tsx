@@ -6,20 +6,20 @@ import {
 } from "react-bootstrap"
 
 
-export default function CollectionItem({ node } ) {
+export default function CollectionItem({ node }) {
     const title = node.frontmatter.title || node.fields.slug
     let image = getImage(node.frontmatter.image?.childImageSharp?.gatsbyImageData)
 
     return (
-        <Col key={`col-${node.frontmatter.title}`}>
+        <Col key={`col-${node.frontmatter.title}`} className="col-sm-12 col-md-3">
             <Link to={`/artwork${node.fields.slug}`}>
                 <div className="collectionItem" key={title}>
                     <div className='image'>
-                    <GatsbyImage
-                        image={image}
-                        fluid={image}
-                        alt={title}
-                    />
+                        <GatsbyImage
+                            image={image}
+                            fluid={image}
+                            alt={title}
+                        />
                     </div>
 
                     <div className="title">{title}</div>
