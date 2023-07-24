@@ -2,9 +2,9 @@
   margin-top: 11rem;
   //padding-bottom: 6rem;
   margin: 0 auto !important;
-  margin-bottom: 4rem !important;
+  //margin-bottom: 60px !important;
   padding: 0 !important;
-  // min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 96px - 60px);
 
   //to position footer
   // min-height: calc(100vh - 125px);
@@ -32,7 +32,6 @@
     margin-top: 3rem;
     ul {
       max-width: 400px;
-      width: 100%;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -52,6 +51,7 @@
       font-size: 12px;
       letter-spacing: 2px;
       border-bottom: 1px solid transparent;
+      color: $text-gray;
     }
   }
   [aria-current] {
@@ -95,6 +95,22 @@
     margin-bottom: -3rem;
   }
 
+#contactForm {
+  .alert-danger {
+    margin-top: 0.3rem;
+  }
+  button {
+    margin-top: 0.5rem;
+  }
+  .formMessage {
+    width: 100%;
+    display: block;
+    color: $primary-green;
+    font-family: "LibreBaskerville" !important;
+    text-transform: lowercase;
+    font-weight: bold;
+  }
+}
   .collectionRow {
     display: flex;
     align-items: center;
@@ -304,6 +320,10 @@
     text-align: center;
     font-size: 0.8rem;
   }
+}
+
+.footer-container {
+  padding: 0 !important;
 }
 
 .footer-col {

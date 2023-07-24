@@ -117,6 +117,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
   console.log("Creating redirects")
   createRedirect({
+    fromPath: `/`,
+    toPath: `/start/`,
+    isPermanent: true,
+    redirectInBrowser: true
+  })
+
+  createRedirect({
     fromPath: `/artwork/`,
     toPath: `/artwork/black-and-white/`,
     isPermanent: true,

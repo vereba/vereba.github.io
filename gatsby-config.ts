@@ -1,5 +1,11 @@
 import type { GatsbyConfig } from "gatsby";
 
+let env = process.env.NODE_ENV || 'development';
+console.log("Current env: ", env)
+require("dotenv").config({
+  path: `.env.${env}`,
+})
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `vbartbook`,
