@@ -14,7 +14,7 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import PageNavbar from "./navBar"
 
-const Layout = ({ children }) => (
+const Layout = ({ pageInfo, children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -31,7 +31,7 @@ const Layout = ({ children }) => (
         <SEO title={data.site.siteMetadata.title} />
 
         <Container fluid className="header">
-          <PageNavbar />
+          <PageNavbar pageName={pageInfo.pageName}/>
         </Container>
 
         <Container fluid className="content">
@@ -40,7 +40,7 @@ const Layout = ({ children }) => (
           </Container>
         </Container>
         {
-          <Container fluid className="footer-container">
+          <Container fluid>
             <Row>
               <Col className="footer-col">
                 <footer>

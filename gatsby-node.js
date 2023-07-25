@@ -1,5 +1,5 @@
 const path = require("path")
-const { collections, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
+const { collections, defaultCollection, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
 
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
@@ -32,7 +32,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  const { createPage, createRedirect } = actions
+  const { createPage } = actions
 
   // create pages for md files
   const result = await graphql(`
@@ -116,27 +116,24 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           currentPage: i + 1,
         },
       })
+      if( key === defaultCollection) {
+        console.log("Creating /artwork page for default collection: ", defaultCollection)
+        createPage({
+          path: `artwork/`,
+          component: path.resolve("./src/templates/artwork/collection.js"),
+          context: {
+            category: key,
+            limit: artworksPerPage,
+            skip: i * artworksPerPage,
+            category: key,
+            numPages,
+            currentPage: i + 1,
+          },
+        })
+      }
       console.log(`Page with path '${pagePath}' created`)
     })
   }
-  console.log("Creating redirects")
-  createRedirect({
-    fromPath: `/`,
-    toPath: `/start/`,
-    isPermanent: true,
-    redirectInBrowser: true
-  })
-
-  createRedirect({
-    fromPath: `/artwork/`,
-    toPath: `/artwork/black-and-white/`,
-    isPermanent: true,
-    redirectInBrowser: true
-  })
-
-
-
-
 }
 
 

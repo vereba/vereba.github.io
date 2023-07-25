@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, graphql } from "gatsby"
 import {
   Container, Row
 } from "react-bootstrap"
 import { navigate } from 'gatsby'
+
+import PageMenu from '../../components/pageMenu';
+import { collections, artworksPerRow } from "../../constants"
+import Layout from "../../components/layout"
+import PageHeading from "../../components/pageHeading"
+import CollectionItem from "../../components/CollectionItem"
+
 
 import imageBw from "../../assets/artwork/images/black-and-white/coast.jpg";
 import imageSketches from "../../assets/images/pageHeadings/artwork.jpg";
@@ -11,24 +18,14 @@ import imagePostcards from "../../assets/images/pageHeadings/artwork.jpg";
 import imageTravel from "../../assets/images/pageHeadings/nyc2.jpg";
 import imageDigital from "../../assets/images/pageHeadings/artwork.jpg";
 
-import PageMenu from '../../components/pageMenu';
 
-import { collections, artworksPerRow } from "../../constants"
-
-import Layout from "../../components/layout"
-import PageHeading from "../../components/pageHeading"
-import CollectionItem from "../../components/CollectionItem"
 
 
 export default function Collection({ pageContext, data }) {
 
-  console.log(pageContext)
-  console.log(data)
   if (!data) return <h2>No items in this collection yet!</h2>
+
   const { edges: artworks } = data.allMarkdownRemark
-  console.log(artworks)
-
-
   const { currentPage, numPages } = pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
@@ -37,7 +34,6 @@ export default function Collection({ pageContext, data }) {
 
   function getImageByCategory() {
     let image = imageBw;
-    console.log("getImageByCategory")
     switch (pageContext.category) {
       case "sketches":
         image = imageSketches;
@@ -62,7 +58,6 @@ export default function Collection({ pageContext, data }) {
         imagePosition = "center center";
         break;
     }
-    console.log("getImagePosition: ", imagePosition)
     return imagePosition
   }
 
@@ -78,12 +73,11 @@ export default function Collection({ pageContext, data }) {
     }, [])
 
   function handleComponentChange(tab) {
-    console.log("Handle change: ", tab)
     navigate(`/artwork/${tab}`)
   };
 
   return (
-    <Layout pageInfo={{ pageName: "Artworks" }}>
+    <Layout pageInfo={{ pageName: "Artwork" }}>
       <PageHeading
         pageTitle={collections[pageContext.category]}
         pageImage={getImageByCategory()}
@@ -115,43 +109,41 @@ export default function Collection({ pageContext, data }) {
               })
             }
           </Container>
-          <div className="pagination">
-            <ul>
-              {!isFirst && (
-                <Link to={prevPage} rel="prev">
-                  ← Previous Page
-                </Link>
-              )}
-              {Array.from({ length: numPages }, (_, i) => (
-                <li
-                  key={`pagination-number${i + 1}`}
-                  style={{
-                    margin: 0,
-                  }}
-                >
-                  <Link
-                    to={`/artwork/${pageContext.category}/${i === 0 ? '' : i + 1}`}
+          {(!grouped || grouped.length === 0) ? <p className="noPictures">No pictures uploaded (yet)</p> :
+            (<div className="pagination">
+              <ul>
+                {!isFirst && (
+                  <Link to={prevPage} rel="prev">
+                    ← Previous Page
+                  </Link>
+                )}
+                {Array.from({ length: numPages }, (_, i) => (
+                  <li
+                    key={`pagination-number${i + 1}`}
                     style={{
-                      // padding: rhythm(1 / 4),
-                      textDecoration: 'none',
-                      color: i + 1 === currentPage ? '#818844' : '', //primary green
-                      padding: "10px",
-                      border: i + 1 === currentPage ? '1px solid #818844' : '',
-                      //background: i + 1 === currentPage ? '#007acc' : '',
+                      margin: 0,
                     }}
                   >
-                    {i + 1}
+                    <Link
+                      to={`/artwork/${pageContext.category}/${i === 0 ? '' : i + 1}`}
+                      style={{
+                        textDecoration: 'none',
+                        color: i + 1 === currentPage ? '#818844' : '', //primary green
+                        padding: "10px",
+                        border: i + 1 === currentPage ? '1px solid #818844' : '',
+                      }}
+                    >
+                      {i + 1}
+                    </Link>
+                  </li>
+                ))}
+                {!isLast && (
+                  <Link to={nextPage} rel="next">
+                    Next Page →
                   </Link>
-                </li>
-              ))}
-              {!isLast && (
-                <Link to={nextPage} rel="next">
-                  Next Page →
-                </Link>
-              )}
-            </ul>
-          </div>
-
+                )}
+              </ul>
+            </div>)}
         </Container>
       </Container>
     </Layout>

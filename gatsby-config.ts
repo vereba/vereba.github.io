@@ -10,8 +10,8 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `vbartbook`,
     siteUrl: `https://vbartbook.com`,
-    description: "TODO",
-    keywords:[ "art", "gallery", "vbartbook", "artbook"],
+    description: "Small gallery of the German artist Verena Barth",
+    keywords:[ "art", "gallery", "vbartbook", "artbook", "abstract", "city"],
     author: "Verena Barth"
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -62,7 +62,19 @@ const config: GatsbyConfig = {
         icon: 'src/images/logo/logo_green_full.png',
       },
     },
-    "gatsby-transformer-remark",
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 950,
+            },
+          },
+        ],
+      },
+    },
   ]
 };
 

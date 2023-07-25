@@ -34,15 +34,12 @@ const PageMenu = (props) => {
             <Row>
                 <Col md="12" className="align-items-center">
                     {isSmallScreen ? (
-                        <select className="collectionSelect btn" onChange={(event) => handleItemSelected(event.target.value)}>
+                        <select className="collectionSelect form-select btn" onChange={(event) => handleItemSelected(event.target.value)}>
                             {Object.keys(menuItems).map((key) => (
-                                    <option key={key} value={key} selected={props.selectedItem === key} className={props.selectedItem === key ? "selected" : ""}>{menuItems[key]}</option>
-                                ))
-                                }
-                      </select>
-
-                    
-
+                                <option key={key} value={key} selected={props.selectedItem === key} className={props.selectedItem === key ? "selected" : ""}>{menuItems[key]}</option>
+                            ))
+                            }
+                        </select>
                     ) : (
                         <ol>{categoryTabs()}</ol>
                     )}

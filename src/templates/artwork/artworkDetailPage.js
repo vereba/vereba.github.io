@@ -27,7 +27,7 @@ export default function ArtworkDetailPage({ data }) {
   }
 
   return (
-    <Layout pageInfo={{ pageName: `${artwork.frontmatter.category} - ${title}` }}>
+    <Layout pageInfo={{ pageName: `artwork` }}>
       <Container fluid >
         <Container className="align-items-center tabs">
           <div className="breadcrumbs">
