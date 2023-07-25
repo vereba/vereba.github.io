@@ -19,12 +19,11 @@ export default function ArtworkDetailPage({ data }) {
   let image = getImage(artwork.frontmatter.image?.childImageSharp?.gatsbyImageData)
 
   function convertSize(size) {
-    try {
-      return sizes[artwork.frontmatter.size]
-    } catch (error) {
-      console.error(error);
-      return "-"
+    const convertedSize = sizes[artwork.frontmatter.size]
+    if (convertedSize) {
+      return convertedSize
     }
+    return size
   }
 
   return (
@@ -41,7 +40,7 @@ export default function ArtworkDetailPage({ data }) {
             </span>
             <span>></span>
             <span>
-              <Link to={artwork.fields.slug} className="link-no-style">{title}</Link>
+              <Link to={`/artwork${artwork.fields.slug}`} className="link-no-style">{title}</Link>
             </span>
           </div>
 
@@ -83,7 +82,6 @@ export default function ArtworkDetailPage({ data }) {
 export const pageQuery = graphql`
   query ArtworkDetailByPath($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
       fields {
         slug
       }

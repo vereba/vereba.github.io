@@ -167,12 +167,6 @@ query CollectionQuery($category: String,  $skip: Int!, $limit: Int!){
       limit: $limit
       skip: $skip
     ) {
-    nodes {
-      frontmatter {
-        date
-        title
-      }
-    }
     edges {
       node {
         fields {
@@ -182,6 +176,8 @@ query CollectionQuery($category: String,  $skip: Int!, $limit: Int!){
           date
           title
           category
+          material
+          size
           image { 
             childImageSharp {
                 gatsbyImageData(width: 400)

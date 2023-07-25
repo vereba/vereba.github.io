@@ -11,7 +11,7 @@ export default function CollectionItem({ node }) {
     let image = getImage(node.frontmatter.image?.childImageSharp?.gatsbyImageData)
 
     return (
-        <Col key={`col-${node.frontmatter.title}`} className="col-sm-12 col-md-3">
+        <Col key={`col-${node.frontmatter.title}`} className="col-12 col-lg-3">
             <Link to={`/artwork${node.fields.slug}`}>
                 <div className="collectionItem" key={title}>
                     <div className='image'>
