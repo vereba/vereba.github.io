@@ -21,7 +21,7 @@ const AboutPage = ({ props }) => {
             <Col md="5">
               <StaticImage src="../assets/images/me.jpg" alt="Verena Barth" id="me-image" />
             </Col>
-            <Col className="aboutme" md="7">
+            <Col className="aboutme order-sm-first order-md-last " md="7">
               <h2>Verena Barth</h2>
               <p>
                 Verena Barth is a 27-year-old artist currently living in Cologne, Germany.

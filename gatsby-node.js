@@ -13,11 +13,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
     let categories = node.frontmatter.category
-    if(!Array.isArray(categories)){
+    if (!Array.isArray(categories)) {
       categories = [categories]
     }
-    for(let c in node.frontmatter.category){
-      if(!c in collections) {
+    for (let c in node.frontmatter.category) {
+      if (!c in collections) {
         throw new Error(`ValueError: The given category ${node.frontmatter.category} does not exist in the dictionary.`);
       }
     }
@@ -62,22 +62,26 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     const slug = node.fields.slug
     console.log("Slug: ", slug)
-    var        path = `artwork${slug}`
+    var path = `artwork${slug}`
     var template = artworkDetailTemplate
     if (!Object.keys(collections).includes(node.frontmatter.category[0])) {
       // page is news
       path = `news${slug}`
       template = newsDetailTemplate
-    } 
+    }
     console.log("Creating page: ", path)
-    createPage({
-      path: path,
-      component: template,
-      context: {
-        slug: slug,
-        fullPath: path
-      },
-    })
+    // TODO uncomment: currently not creating news
+    if(template != newsDetailTemplate){
+      createPage({
+        path: path,
+        component: template,
+        context: {
+          slug: slug,
+          fullPath: path
+        },
+      })
+    }
+  
   })
 
   // create collections
@@ -96,7 +100,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     const numArtworks = collectionResult.data.allMarkdownRemark.totalCount
     console.log("Numer of artworks: ", numArtworks)
     const artworksPerPage = artworkRowsPerPage * artworksPerRow
-    const numPages = Math.ceil(numArtworks / artworksPerPage) > 0? Math.ceil(numArtworks / artworksPerPage) : 1;
+    const numPages = Math.ceil(numArtworks / artworksPerPage) > 0 ? Math.ceil(numArtworks / artworksPerPage) : 1;
     console.log("Artworks per page: ", artworksPerPage, ", number of pages for collection '", key, "': ", numPages)
     Array.from({ length: numPages }).forEach((_, i) => {
       const pagePath = i === 0 ? `artwork/${key}` : `artwork/${key}/${i + 1}`
@@ -131,7 +135,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   })
 
 
-  
+
 
 }
 

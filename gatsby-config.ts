@@ -22,7 +22,6 @@ const config: GatsbyConfig = {
     // DEV_SSR: true
   },
   plugins: ["gatsby-plugin-sass",
-    "gatsby-plugin-google-gtag",
     "gatsby-plugin-image", 
     "gatsby-plugin-sitemap", 
     "gatsby-plugin-sharp", 
