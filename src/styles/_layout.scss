@@ -9,10 +9,12 @@
   //to position footer
   // min-height: calc(100vh - 125px);
   p {
-    padding-left: 10px;
-    padding-right: 10px;
     line-height: 1.7rem;
     font-family: var(--bs-body-font-family); //"AvenirNext" !important;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .breadcrumbs {
@@ -166,10 +168,23 @@
     }
   }
 
-  #news {
-    .newsBox {}
+  #not-found-page {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    h1, h2 {
+      color: white !important;
+    }
+    h1 {
+      font-size: 13rem;
+    }
+    h2 {
+      font-size: 3.2rem;
+    }
   }
-
 
   .page {
     padding: 0;
