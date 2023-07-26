@@ -9,7 +9,7 @@ import PageMenu from '../../components/pageMenu';
 import { collections, artworksPerRow } from "../../constants"
 import Layout from "../../components/layout"
 import PageHeading from "../../components/pageHeading"
-import CollectionItem from "../../components/CollectionItem"
+import CollectionItem from "../../components/collectionItem"
 
 
 import imageBw from "../../assets/artwork/images/black-and-white/coast.jpg";
