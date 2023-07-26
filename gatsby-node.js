@@ -1,5 +1,5 @@
 const path = require("path")
-const { collections, defaultCollection, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
+const { collections, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
 
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
@@ -71,7 +71,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
     console.log("Creating page: ", path)
     // TODO uncomment: currently not creating news
-    if(template != newsDetailTemplate){
+    if (template != newsDetailTemplate) {
       createPage({
         path: path,
         component: template,
@@ -81,34 +81,24 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         },
       })
     }
-  
+
   })
 
-  // create collections
-  for (const key in collections) {
+  function createCollection(key, numArtworks) {
     console.log("creating collection: ", key)
-    // get collection specific elements to count
-    const collectionResult = await graphql(`
-    {
-      allMarkdownRemark(
-        filter: {frontmatter: {category: {eq: "${key}"}}}) 
-        {
-        totalCount
-      }
-    }
-    `)
-    const numArtworks = collectionResult.data.allMarkdownRemark.totalCount
-    console.log("Numer of artworks: ", numArtworks)
+    console.log("Number of artworks: ", numArtworks)
     const artworksPerPage = artworkRowsPerPage * artworksPerRow
     const numPages = Math.ceil(numArtworks / artworksPerPage) > 0 ? Math.ceil(numArtworks / artworksPerPage) : 1;
     console.log("Artworks per page: ", artworksPerPage, ", number of pages for collection '", key, "': ", numPages)
+
+    // TODO which category
+    // const category = key === "all"?
     Array.from({ length: numPages }).forEach((_, i) => {
       const pagePath = i === 0 ? `artwork/${key}` : `artwork/${key}/${i + 1}`
       createPage({
         path: pagePath,
         component: path.resolve("./src/templates/artwork/collection.js"),
         context: {
-          category: key,
           limit: artworksPerPage,
           skip: i * artworksPerPage,
           category: key,
@@ -116,8 +106,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           currentPage: i + 1,
         },
       })
-      if( key === defaultCollection) {
-        console.log("Creating /artwork page for default collection: ", defaultCollection)
+      console.log(`Page with path '${pagePath}' created`)
+      if (key === "all") {
+        console.log("Creating /artwork page for default collection: ", key)
         createPage({
           path: `artwork/`,
           component: path.resolve("./src/templates/artwork/collection.js"),
@@ -125,15 +116,48 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             category: key,
             limit: artworksPerPage,
             skip: i * artworksPerPage,
-            category: key,
             numPages,
             currentPage: i + 1,
           },
         })
       }
-      console.log(`Page with path '${pagePath}' created`)
     })
   }
+
+
+  // create default collection "all"
+  const allCollectionResult = await graphql(`
+  {
+    allMarkdownRemark(
+      filter: {fileAbsolutePath: {regex: "/(artwork)/"}})
+      {
+      totalCount
+    }
+  }
+  `)
+  const numArtworksTotal = allCollectionResult.data.allMarkdownRemark.totalCount
+  createCollection("all", numArtworksTotal)
+
+  // create collections
+  for (const key in collections) {
+    if (key !== "all") {
+      console.log("Key: ", key)
+      // get collection specific elements to count
+      const collectionResult = await graphql(`
+      {
+        allMarkdownRemark(
+          filter: {frontmatter: {category: {eq: "${key}"}}}) 
+          {
+          totalCount
+        }
+      }
+      `)
+      const numArtworks = collectionResult.data.allMarkdownRemark.totalCount
+      createCollection(key, numArtworks)
+    }
+
+  }
 }
+
 
 

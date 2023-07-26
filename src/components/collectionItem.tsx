@@ -4,9 +4,10 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import {
     Col
 } from "react-bootstrap"
+import { collections } from "../constants"
 
 
-export default function CollectionItem({ node }) {
+export default function CollectionItem({ node, subTitle }) {
     const title = node.frontmatter.title || node.fields.slug
     let image = getImage(node.frontmatter.image?.childImageSharp?.gatsbyImageData)
 
@@ -21,7 +22,7 @@ export default function CollectionItem({ node }) {
                             alt={title}
                         />
                     </div>
-
+                    {subTitle && <div className='subtitle'>{collections[node.frontmatter.category[0]]}</div>}
                     <div className="title">{title}</div>
                 </div>
             </Link>

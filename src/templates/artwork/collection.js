@@ -60,8 +60,9 @@ export default function Collection({ pageContext, data }) {
     }
     return imagePosition
   }
-
+  console.log("Artworks: ", artworks)
   const grouped = artworks
+    .filter(artwork => pageContext.category == "all" ? true : (artwork.node.frontmatter.category.includes(pageContext.category)))
     .filter(artwork => artwork.node.frontmatter.title.length > 0)
     .reduce(function (acc, value, index) {
       const subArrayIndex = Math.floor(index / artworksPerRow);
@@ -71,6 +72,7 @@ export default function Collection({ pageContext, data }) {
       acc[subArrayIndex].push(value);
       return acc;
     }, [])
+  console.log("grouped: ", grouped)
 
   function handleComponentChange(tab) {
     navigate(`/artwork/${tab}`)
@@ -91,23 +93,28 @@ export default function Collection({ pageContext, data }) {
             selectedItem={pageContext.category}
             onItemSelected={(tab) => handleComponentChange(tab)} />
           <Container className="collection">
-            {
-              grouped?.map((nodes) => {
-                console.log(nodes)
-                const node1 = nodes[0]
-                const node2 = (nodes.length > 1) ? nodes[1] : null;
-                const node3 = (nodes.length > 1) ? nodes[2] : null;
-                console.log("Node 1:")
-                console.log(node1)
-                return (
-                  <Row className="collectionRow">
-                    <CollectionItem node={node1.node} />
-                    {node2 ? <CollectionItem node={node2.node} /> : null}
-                    {node3 ? <CollectionItem node={node3.node} /> : null}
-                  </Row>
-                )
-              })
-            }
+            {grouped?.map((nodes, rowIndex) => {
+              console.log(nodes);
+              let numMissing = 4 - nodes.length
+              console.log("numMissing: ", numMissing)
+              return (
+                <Row className="collectionRow" key={rowIndex}>
+                  {nodes.map((node, index) => (
+                    <React.Fragment key={index}>
+                      <CollectionItem node={node.node} subTitle={pageContext.category == "all" ? true : false} />
+
+                    </React.Fragment>
+                  ))
+                  }
+                  {
+                    Array.from({ length: numMissing }).map((_, index) => (
+                      <div key={index} className={`col-${12 / artworksPerRow} col-lg-3 col`} />
+
+                    ))
+                  }
+                </Row>
+              );
+            })}
           </Container>
           {(!grouped || grouped.length === 0) ? <p className="noPictures">No pictures uploaded (yet)</p> :
             (<div className="pagination">
@@ -152,9 +159,9 @@ export default function Collection({ pageContext, data }) {
 
 
 export const pageQuery = graphql`
-query CollectionQuery($category: String,  $skip: Int!, $limit: Int!){
+query CollectionQuery($skip: Int!, $limit: Int!){
   allMarkdownRemark(
-    filter: {frontmatter: {category: {in: [$category]}}}
+    filter: {fileAbsolutePath: {regex: "/(artwork)/"}},
     sort: { frontmatter: { date: DESC }}
       limit: $limit
       skip: $skip

@@ -1,9 +1,9 @@
 module.exports = {
-  artworksPerRow: 3,
-  artworkRowsPerPage: 1,
+  artworksPerRow: 4,
+  artworkRowsPerPage: 2,
   newsPerPage: 1,
-  defaultCollection: "black-and-white",
   collections: {
+    "all": "All images",
     "black-and-white": "Black and White Paintings",
     "sketches": "Sketches",
     "travel": "Travel Artbook",

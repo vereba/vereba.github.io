@@ -45,7 +45,7 @@ export default function ArtworkDetailPage({ data }) {
           </Container>
         <Container className="align-items-center tabs">
           <div className="artwork-container">
-            <span id="category">{collections[category]}</span>
+            <span class="category">{collections[category]}</span>
             <h1>{title}</h1>
             <GatsbyImage
               image={image}

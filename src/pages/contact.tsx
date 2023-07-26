@@ -117,7 +117,7 @@ const ContactForm = () => {
   }
   return (
 
-    <Form id="contactForm" onSubmit={handleFormSubmit}>
+    <Form id="contactForm" className="marginBottom" onSubmit={handleFormSubmit}>
       <Form.Group controlId="formGridName">
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -199,7 +199,7 @@ const ContactPage = ({ props }) => {
         <Container>
           <Row>
             <Col className="col-12 col-lg-4 ">
-              <h2 className="cite-big">Inqueries, questions, inspiration..?</h2>
+              <h2 className="cite-big">Inquiries, questions, inspiration..?</h2>
               <p>I am happy about your interest in my work and about contacting me!</p>
               <p>I will get back to you as soon as possible.</p>
             </Col>
