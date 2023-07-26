@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ pageTitle }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,33 +20,28 @@ function SEO({ description, lang, meta, title }) {
             description
             keywords
             author
+            lang
           }
         }
       }
     `
   )
-
-  const metaDescription = description || site.siteMetadata.description
-
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={site.siteMetadata.title}
+      titleTemplate={`%s | ${pageTitle}`}
       meta={[
         {
           name: `description`,
-          content: metaDescription,
+          content: site.siteMetadata.description,
         },
         {
           property: `og:title`,
-          content: title,
+          content: site.siteMetadata.title,
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: site.siteMetadata.description,
         },
         {
           property: `og:type`,
@@ -62,28 +57,29 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: site.siteMetadata.title,
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: site.siteMetadata.description,
         },
       ]
         .concat(
           site.siteMetadata.keywords.length > 0
             ? {
-                name: `keywords`,
-                content: site.siteMetadata.keywords.join(`, `),
-              }
+              name: `keywords`,
+              content: site.siteMetadata.keywords.join(`, `),
+            }
             : []
         )
-        .concat(meta)}
+        // .concat(site.siteMetadata.meta)
+      }
     />
   )
 }
 
 SEO.defaultProps = {
-  lang: `de`,
+  lang: "en",
   meta: [],
   description: ``,
 }

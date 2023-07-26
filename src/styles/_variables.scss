@@ -1,7 +1,3 @@
-@import "./fonts.scss";
-
-
-
 $primary-green: #818844; //#7ebca9;
 $primary-yellow: #B57114;
 $secondary-green: #08403E;
@@ -25,4 +21,3 @@ $theme-colors: (
 $component-active-bg: $primary-green !default;
 $custom-checkbox-indicator-indeterminate-bg: $component-active-bg !default;
 
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";

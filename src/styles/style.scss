@@ -1,7 +1,12 @@
 @import "./variables";
-// @import "viadee";
 @import "layout";
 @import "navbar";
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// fonts
+@import url('https://fonts.cdnfonts.com/css/libre-baskerville');
+@import url('https://fonts.cdnfonts.com/css/open-sans');
+
 
 /*
     sass --watch scss:css
@@ -20,16 +25,17 @@ html {
     width: 100vw;
     overflow-x: hidden;
     min-height: 100vh;
-    // max-width: 1920px;
 
-    .content  p,
+    .content p,
     p,
     h1,
     h2,
     h3,
     h4,
     h5,
-    h6{
+    h6 {
+      padding-left: 10px;
+      padding-right: 10px;
       font-family: Open Sans, sans-serif;
       color: $text-gray;
     }
@@ -45,9 +51,9 @@ html {
 
     a {
       text-decoration: none;
-      color:$color-primary;
+      color: $color-primary;
       text-transform: uppercase;
-      
+
     }
 
     .link {
@@ -73,33 +79,18 @@ html {
     }
 
 
-    .content .subheading,
-    .content .accordion-button {
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .h1,
-      .h2,
-      .h3,
-      .h4,
-      .h5,
-      .h6 {
-        margin-bottom: 0;
-      }
-    }
-
     .tabs {
       border: none;
+
       .nav {
         display: flex;
         justify-content: center;
         color: $text-gray;
       }
+
       .nav-tabs .nav-link:focus-visible,
-      .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+      .nav-tabs .nav-link:hover,
+      .nav-tabs .nav-link:focus {
         border: none;
         border-bottom: 1px solid $text-gray;
         color: $text-gray !important;
@@ -110,146 +101,5 @@ html {
       font-style: italic;
     }
 
-    .accordion {
-      margin-top: 2rem;
-      .card-body {
-        padding: 2rem;
-        background-color: #f6f6f6;
-      }
-      .card-header {
-        background-color: white;
-        // border: 1px solid $primary-yellow;
-        cursor: pointer;
-        .card-header {
-          border-top: 0;
-          border-left: 0;
-          border-right: 0;
-        }
-        .section {
-          color: $color-primary;
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6,
-          .h1,
-          .h2,
-          .h3,
-          .h4,
-          .h5,
-          .h6 {
-            margin-bottom: 0;
-            font-weight: 400;
-          }
-        }
-      }
-    }
-
-    .section.green {
-      color: $primary-green;
-      padding-bottom: 0;
-      margin-bottom: 0;
-    }
-    .section {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-      color: $text-gray;
-      font-family: Open Sans, sans-serif;
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .h1,
-      .h2,
-      .h3,
-      .h4,
-      .h5,
-      .h6 {
-        margin-bottom: 1rem;
-      }
-
-  
-    }
-
-
-    .section .col-md-1,
-    .references .col-md-1 {
-      display: flex;
-      justify-content: center;
-      font-size: 2rem;
-
-      span {
-        margin-top: -0.5rem;
-      }
-    }
-
-    .section.border {
-      background: linear-gradient(90deg, #dfa93f, #7ebca9);
-      padding: 0.2rem;
-      margin-bottom: 2rem;
-
-      > div {
-        background: white;
-        padding: 1.5rem;
-      }
-      .col-md-1 {
-        span {
-          margin-left: -0.75rem;
-        }
-      }
-    }
-
-    .references {
-      background: $background-gray-dark;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-
-      p {
-        margin-bottom: 0;
-      }
-
-      ol {
-        counter-reset: list;
-        padding-inline-start: 0;
-      }
-      ol > li {
-        list-style: none;
-        display: flex;
-      }
-      ol > li:before {
-        content: "[" counter(list) "] ";
-        font-family: "Oswald", sans-serif;
-        counter-increment: list;
-        padding-right: 1rem;
-        font-size: 0.8rem;
-      }
-    }
-
-
-    .tags-small {
-      span {
-        @extend .btn;
-        background: $primary-green;
-        display: inline-block;
-        border-radius: 2px;
-        text-transform: uppercase;
-        font-size: 9px;
-        padding: 5px 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: relative;
-        top: 0;
-        color: white;
-      }
-    }
-
-    .content.impl {
-      .keyvisual {
-        min-height: 35vh;
-      }
-    }
   }
 }

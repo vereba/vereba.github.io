@@ -34,9 +34,7 @@ $navbar-light-active-color: $primary-green;
     height: inherit;
     display: flex;
     align-items: center;
-
     width: 30%;
-    // font-family: "LibreBaskerville", serif;
     font-weight: bold;
 
     a,
@@ -45,12 +43,6 @@ $navbar-light-active-color: $primary-green;
       color: $color-primary !important;
       font-size: 2.2rem;
       display: flex;
-    }
-
-    .nav-link {}
-
-    .gatsby-image-wrapper-constrained {
-      //margin-top: 3px;
     }
   }
 
@@ -66,9 +58,7 @@ $navbar-light-active-color: $primary-green;
 
 .navbar {
   width: 100vw;
-  // max-width: 1920px;
   line-height: 3.5rem;
-  // margin-top: 131px;
   height: 4rem;
   position: relative;
   display: flex;
@@ -87,28 +77,23 @@ $navbar-light-active-color: $primary-green;
     justify-content: space-between;
   }
 
-  svg {
-    // display: none;
-  }
-
-  [aria-current] {
-    .nav-link {
-      font-weight: bold;
+  [aria-current] .nav-link, 
+  .selected.nav-link
+     {
+      font-weight: 600 !important;
       color: $primary-green !important;
       text-shadow: 0 0 $text-gray;
     }
-  }
 
   .navbar-nav .nav-link {
     text-align: center;
-    font-family: var(--bs-body-font-family);
     text-shadow: none;
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 2px;
   }
 
-  @include media-breakpoint-up(lg) {
+  @media (min-width: 992px) {
     svg {
       display: block;
       color: $primary-green;
@@ -119,6 +104,16 @@ $navbar-light-active-color: $primary-green;
     color: $primary-red;
   }
 }
+
+@media (max-width:481px) {
+  // breadcrumbs
+  .content .breadcrumbs {
+    >span {
+      margin: 0.2rem
+    }
+  }
+}
+
 
 @media (max-width: 992px) {
 
@@ -272,8 +267,6 @@ $navbar-light-active-color: $primary-green;
 
   .navbar-nav {
     .nav-link {
-      font-family: var(--bs-body-font-family);
-      // font-family: "AvenirNext";
       color: $navbar-light-color;
       line-height: 110%;
 
