@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Row, Col, Container, Button, Form, Alert, FormFloating } from "react-bootstrap"
 import Layout from "../components/layout"
 import emailjs from 'emailjs-com'
+import ClipLoader from "react-spinners/ClipLoader";
 
 import PageHeading from "../components/pageHeading"
 import aboutImage from "../assets/images/pageHeadings/about.jpg";
@@ -13,6 +14,7 @@ export interface FormFields {
   message: string;
 }
 
+
 const ContactForm = () => {
   const [values, setValues] = useState<FormFields>({
     name: "",
@@ -20,7 +22,8 @@ const ContactForm = () => {
     message: ""
   });
   const [formerrors, setFormErrors] = useState<FormFields | undefined>();
-  const [showMessage, setShowMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState<string>("");
+  let [loading, setLoading] = useState(false);
 
   const serviceId = process.env.EMAILJS_SERVICE_ID;
   const templateId = process.env.EMAILJS_TEMPLATE_ID;
@@ -84,6 +87,7 @@ const ContactForm = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    setLoading(true);
     if (validate(values)) {
       console.log("Validation successful")
       const templateParams = {
@@ -95,8 +99,10 @@ const ContactForm = () => {
       emailjs.send(serviceId, templateId, templateParams, userId)
         .then(response => {
           console.log("Email sent successfully!", response)
-          setShowMessage(true);
-          sendConfirmationMail(values.name, values.email, values.message);
+          setLoading(false);
+          setShowMessage("Thank you for your message, we will be in touch in no time!");
+          
+          sendConfirmationMail( values.email, values.name, values.message);
           setValues({
             name: "",
             email: "",
@@ -105,9 +111,8 @@ const ContactForm = () => {
         })
         .catch(error => {
           console.error("Error sending email:", error)
-          setShowMessage(false);
+          setShowMessage("Error sending contact form. Please try again later or manually contact me via <a href='mailto:contact@vb-art.com'>contact@vb-art.com</a>");
         });
-
     }
   }
   return (
@@ -159,11 +164,22 @@ const ContactForm = () => {
           </div>
         )}
       </Form.Group>
+      <div className="formButtonRow">
       <Button type="submit" variant="primary" size="lg">
         Submit
       </Button>
+      <ClipLoader
+        color={"#818844"} //primary-green
+        loading={loading}
+        // cssOverride={override}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      </div>
+
       {
-        showMessage && <span className="formMessage">Thank you for your message, we will be in touch in no time!</span>
+        showMessage && <span className="formMessage">{showMessage}</span>
       }
     </Form>
   );
@@ -183,7 +199,7 @@ const ContactPage = ({ props }) => {
         <Container>
           <Row>
             <Col className="col-12 col-lg-4 ">
-              <h2>Inqueries, questions, inspiration..?</h2>
+              <h2 className="cite-big">Inqueries, questions, inspiration..?</h2>
               <p>I am happy about your interest in my work and about contacting me!</p>
               <p>I will get back to you as soon as possible.</p>
             </Col>

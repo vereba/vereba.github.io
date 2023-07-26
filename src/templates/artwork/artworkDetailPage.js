@@ -4,7 +4,8 @@ import { Link } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 import {
-  Container,
+  Col,
+  Container, Row,
 } from "react-bootstrap"
 import { sizes } from "../../constants"
 import { collections } from "../../constants"
@@ -29,8 +30,7 @@ export default function ArtworkDetailPage({ data }) {
   return (
     <Layout pageInfo={{ pageName: `artwork` }}>
       <Container fluid >
-        <Container className="align-items-center tabs">
-          <div className="breadcrumbs">
+      <Container className="breadcrumbs">
             <span>
               <Link to={`/artwork/${category}/`} className="link-no-style">Artwork</Link>
             </span>
@@ -42,8 +42,8 @@ export default function ArtworkDetailPage({ data }) {
             <span>
               <Link to={`/artwork${artwork.fields.slug}`} className="link-no-style">{title}</Link>
             </span>
-          </div>
-
+          </Container>
+        <Container className="align-items-center tabs">
           <div className="artwork-container">
             <span id="category">{collections[category]}</span>
             <h1>{title}</h1>
@@ -53,21 +53,20 @@ export default function ArtworkDetailPage({ data }) {
               imgStyle={{ objectFit: "cover" }}
               alt={title}
             />
-
-            <div className="information">
-              <div>
-                <span className="desc">Year</span>
+            <Row className="information">
+              <Col className="col-12 col-md-3">
+              <span className="desc">Year</span>
                 <span className="val">{artwork.frontmatter.date}</span>
-              </div>
-              <div>
-                <span className="desc">Material</span>
+              </Col>
+              <Col className="col-12 col-md-3">
+              <span className="desc">Material</span>
                 <span className="val"> {artwork.frontmatter.material}</span>
-              </div>
-              <div>
-                <span className="desc">Size</span>
+               </Col>
+              <Col className="col-12 col-md-3">
+              <span className="desc">Size</span>
                 <span className="val">{convertSize(artwork.frontmatter.size)}</span>
-              </div>
-            </div>
+               </Col>
+            </Row>
             <div
               className="artwork-detail-content"
               dangerouslySetInnerHTML={{ __html: artwork.html }}

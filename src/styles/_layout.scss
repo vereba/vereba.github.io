@@ -7,6 +7,7 @@
   .marginBottom {
     margin-bottom: 4rem;
   }
+
   .aboutme {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -15,6 +16,7 @@
   p {
     line-height: 1.7rem;
   }
+
   .noPictures {
     text-align: center;
     padding: 3rem;
@@ -29,13 +31,15 @@
 
 
   .breadcrumbs {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: row;
     font-weight: 600;
     font-size: 0.8rem;
     flex-wrap: wrap;
+
     >span {
       margin: 0.4rem
     }
@@ -83,7 +87,7 @@
 
 
   h2 {
-    font-family: "LibreBaskerville" !important;
+    font-family: "Libre Baskerville" !important;
     text-transform: lowercase;
     font-weight: bold;
   }
@@ -112,23 +116,29 @@
   #contactForm {
     padding: 15px;
 
+    .form-label {
+      margin-top: 0.8rem;
+    }
+
     .alert-danger {
       margin-top: 0.3rem;
     }
 
     button {
       margin-top: 0.5rem;
+      color: white;
+      font-size: 1rem;
     }
 
     .formMessage {
       width: 100%;
       display: block;
       color: $primary-green;
-      font-family: "LibreBaskerville" !important;
+      font-family: "Libre Baskerville" !important;
       font-weight: bold;
       font-style: italic;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
     }
 
     .formButtonRow {
@@ -161,24 +171,29 @@
         font-weight: 600;
         letter-spacing: 1px;
         margin-top: 1.5rem;
+        margin-bottom: 2rem;
       }
 
       .image {
-        height: 300px;
+        // height: 300px;
         display: flex;
         align-items: center;
         justify-content: center;
 
+        .gatsby-image-wrapper {
+          box-shadow: 0 7px 15px -4px #777777;
+          max-height: 100%;
+          max-width: 70%; // 300px;
+
+          img {
+            max-height: 100%;
+            //max-width: 300px;
+          }
+        }
+
       }
     }
 
-    .gatsby-image-wrapper {
-      box-shadow: 0 7px 15px -4px #777777;
-
-      img {
-        max-height: 300px;
-      }
-    }
   }
 
   #not-found-page {
@@ -188,12 +203,16 @@
     height: 100%;
     justify-content: center;
     flex-direction: column;
-    h1, h2 {
+
+    h1,
+    h2 {
       color: white !important;
     }
+
     h1 {
       font-size: 13rem;
     }
+
     h2 {
       font-size: 3.2rem;
     }
@@ -234,8 +253,9 @@
 }
 
 .footer-col {
-  width: 100vw;
-  padding: 0;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  padding: 0 !important;
 
   footer {
     display: flex;
@@ -259,6 +279,22 @@
     span {
       align-self: center;
       text-align: center;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .content .collectionRow .collectionItem .image {
+    height: 300px;
+
+    .gatsby-image-wrapper {
+      // change to min-width in desktop mode
+      max-height: 300px;
+      max-width: unset;
+
+      img {
+        max-height: 300px;
+      }
     }
   }
 }

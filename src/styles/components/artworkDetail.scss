@@ -22,7 +22,7 @@
     h1 {
         color:$text-gray;
         font-size: 3rem;
-        font-family: "LibreBaskerville" !important;
+        font-family: "Libre Baskerville" !important;
         word-spacing: 2;
       }
 
@@ -51,4 +51,14 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .artwork-container .information {
+        text-align: left;
+
+        .val {
+            padding-left: 2rem;
+        }
+    }
+  }
 

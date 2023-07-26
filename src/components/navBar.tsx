@@ -15,8 +15,6 @@ const PageNavbar = ({ pageName }) => (
           <Nav.Link as="span" eventKey="result">
             <StaticImage
               src="../images/logo/logo_green_long.png"
-              // placeholder="blurred"
-              // width={90}
               height={90}
               alt="vb"
               transformOptions={{ fit: "cover", cropFocus: "attention" }} />

@@ -6,30 +6,14 @@
  */
 
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo"
 import { BsInstagram } from "react-icons/bs"
-
 import { Container, Row, Col } from "react-bootstrap"
-
 import PageNavbar from "./navBar"
 
 const Layout = ({ pageInfo, children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-            keywords
-          }
-        }
-      }
-    `}
-    render={data => (
       <>
-        <SEO title={data.site.siteMetadata.title} />
-
+        <SEO pageTitle={pageInfo.pageName}/>
         <Container fluid className="header">
           <PageNavbar pageName={pageInfo.pageName}/>
         </Container>
@@ -57,8 +41,6 @@ const Layout = ({ pageInfo, children }) => (
           </Container>
         }
       </>
-    )}
-  />
 )
 
 export default Layout
