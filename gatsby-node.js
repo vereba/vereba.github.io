@@ -1,7 +1,9 @@
 const path = require("path")
-const { collections, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
-
+const glob = require('glob');
+const fs = require('fs');
 const { createFilePath } = require(`gatsby-source-filesystem`)
+
+const { collections, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
 
 console.log("Allowing collections:")
 console.log(collections)
@@ -104,6 +106,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           category: key,
           numPages,
           currentPage: i + 1,
+          filter: key === "all" ?
+            { fileAbsolutePath: { regex: "/(artwork)/" } } :
+            { frontmatter: { category: { in: [key] } } }
         },
       })
       console.log(`Page with path '${pagePath}' created`)
@@ -118,6 +123,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             skip: i * artworksPerPage,
             numPages,
             currentPage: i + 1,
+            filter: { fileAbsolutePath: { regex: "/(artwork)/" } }
           },
         })
       }
@@ -136,6 +142,27 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
   `)
   const numArtworksTotal = allCollectionResult.data.allMarkdownRemark.totalCount
+  console.log("Check if all MD artwork files are considered.")
+  glob(`./src/assets/artwork/mdfiles/**/*`, (err, files) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    const fileCount = files.reduce((count, file) => {
+      if (fs.statSync(file).isFile()) {
+        return count + 1;
+      }
+      return count;
+    }, 0);
+    if (fileCount === numArtworksTotal) {
+      console.log(`Number of markdown files is correct: ${numArtworksTotal}`);
+    } else {
+      console.error(`Expected ${numArtworksTotal} files, but found ${fileCount} files.`);
+    }
+  });
+
+
   createCollection("all", numArtworksTotal)
 
   // create collections
@@ -158,6 +185,3 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   }
 }
-
-
-

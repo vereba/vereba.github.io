@@ -12,7 +12,8 @@ import PageHeading from "../../components/pageHeading"
 import CollectionItem from "../../components/collectionItem"
 
 
-import imageBw from "../../assets/artwork/images/black-and-white/coast.jpg";
+import imageAll from "../../assets/images/pageHeadings/dog.jpg";
+import imageBw from "../../assets/images/pageHeadings/wide_white_street.jpg";
 import imageSketches from "../../assets/images/pageHeadings/artwork.jpg";
 import imagePostcards from "../../assets/images/pageHeadings/artwork.jpg";
 import imageTravel from "../../assets/images/pageHeadings/nyc2.jpg";
@@ -35,6 +36,9 @@ export default function Collection({ pageContext, data }) {
   function getImageByCategory() {
     let image = imageBw;
     switch (pageContext.category) {
+      case "all":
+        image = imageAll;
+        break;
       case "sketches":
         image = imageSketches;
         break;
@@ -54,6 +58,9 @@ export default function Collection({ pageContext, data }) {
   function getImagePosition() {
     let imagePosition = "center bottom";
     switch (pageContext.category) {
+      case "all":
+        imagePosition = "center center";
+        break;
       case "black-and-white":
         imagePosition = "center center";
         break;
@@ -102,7 +109,6 @@ export default function Collection({ pageContext, data }) {
                   {nodes.map((node, index) => (
                     <React.Fragment key={index}>
                       <CollectionItem node={node.node} subTitle={pageContext.category == "all" ? true : false} />
-
                     </React.Fragment>
                   ))
                   }
@@ -159,9 +165,9 @@ export default function Collection({ pageContext, data }) {
 
 
 export const pageQuery = graphql`
-query CollectionQuery($skip: Int!, $limit: Int!){
+query CollectionQuery($skip: Int!, $limit: Int!, $filter: MarkdownRemarkFilterInput!){
   allMarkdownRemark(
-    filter: {fileAbsolutePath: {regex: "/(artwork)/"}},
+    filter: $filter,
     sort: { frontmatter: { date: DESC }}
       limit: $limit
       skip: $skip
@@ -193,3 +199,4 @@ query CollectionQuery($skip: Int!, $limit: Int!){
   }
 }
 `
+
