@@ -177,9 +177,14 @@ query CollectionQuery($skip: Int!, $limit: Int!){
           category
           material
           size
-          image { 
+          imagePreview { 
             childImageSharp {
                 gatsbyImageData(width: 400)
+            }
+          }
+          image { 
+            childImageSharp {
+                gatsbyImageData(width: 800)
             }
           }
         }

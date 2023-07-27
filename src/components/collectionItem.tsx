@@ -9,7 +9,7 @@ import { collections } from "../constants"
 
 export default function CollectionItem({ node, subTitle }) {
     const title = node.frontmatter.title || node.fields.slug
-    let image = getImage(node.frontmatter.image?.childImageSharp?.gatsbyImageData)
+    let image = getImage(node.frontmatter.imagePreview?.childImageSharp?.gatsbyImageData)
 
     return (
         <Col key={`col-${node.frontmatter.title}`} className="col-12 col-lg-3">

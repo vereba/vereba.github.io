@@ -6,5 +6,6 @@ category:
 - "postcards"
 material: "Roller Pen on Paper"
 size: "A3"
-image: "./../../images/black-and-white/cologne_a3.jpg"
+imagePreview: "./../../images_low_res/sketches/cologne_a3.jpg"
+image: "./../../images_watermarked/sketches/cologne_a3.jpg"
 ---

@@ -5,5 +5,6 @@ category:
 - "sketches"
 material: "Alcohol Marker  on Paper"
 size: "A3"
-image: "./../../images/sketches/lisbon.png"
+imagePreview: "./../../images_low_res/sketches/lisbon.png"
+image: "./../../images_watermarked/sketches/lisbon.png"
 ---

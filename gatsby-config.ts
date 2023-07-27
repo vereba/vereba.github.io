@@ -76,9 +76,16 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/assets/artwork/images/`,
+        path: `${__dirname}/src/assets/artwork/images_watermarked/`,
       },
-      __key: "artwork",
+      __key: "artwork_watermarked",
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/assets/artwork/images_low_res/`,
+      },
+      __key: "artwork_low_res",
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -100,7 +107,7 @@ const config: GatsbyConfig = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 950,
+              maxWidth: 700,
             },
           },
         ],

@@ -5,7 +5,8 @@ category:
 - "sketches"
 material: "Pencil on Paper"
 size: "A4"
-image: "./../../images/sketches/der_kuss.png"
+imagePreview: "./../../images_low_res/sketches/der_kuss.png"
+image: "./../../images_watermarked/sketches/der_kuss.png"
 ---
 
 One of my first color pencil drawings.

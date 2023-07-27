@@ -7,7 +7,8 @@ category:
 - "postcards"
 material: "Permanent Marker on Paper"
 size: "A3"
-image: "./../../images/black-and-white/minimal_favela_1_a3.jpg"
+imagePreview: "./../../images_low_res/black-and-white/minimal_favela_1_a3.jpg"
+image: "./../../images_watermarked/black-and-white/minimal_favela_1_a3.jpg"
 ---
 
 

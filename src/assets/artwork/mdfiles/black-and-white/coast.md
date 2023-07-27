@@ -5,5 +5,6 @@ category:
 - "black-and-white"
 material: "Acryl on Canvas"
 size: "80x60"
-image: "./../../images/black-and-white/coast.jpg"
+imagePreview: "./../../images_low_res/black-and-white/coast.jpg"
+image: "./../../images_watermarked/black-and-white/coast.jpg"
 ---
