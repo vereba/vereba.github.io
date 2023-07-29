@@ -1,6 +1,6 @@
 ---
 title: "Wide White Street"
-date: "2023"
+date: "2015"
 category: 
 - "black-and-white"
 material: "Acryl on Canvas"

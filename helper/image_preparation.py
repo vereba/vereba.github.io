@@ -1,5 +1,6 @@
 import os
 from PIL import Image
+import re
 
 img_ext = ['png', 'jpg']
 
@@ -9,15 +10,20 @@ def scale_images_in_dir(source_dir, result_dir, max_width, suffix, overwrite=Fal
         for file in files:
             if file.lower().endswith(tuple(img_ext)):
                 image_file = os.path.join(root, file)
-                img = Image.open(image_file).convert("RGBA")
-                # Process each image file here
-                print("Processing:", image_file)
-                image_scaled = scale_image_max_width(img, max_width)
-
                 result_path = os.path.join(result_dir, os.path.relpath(
                     image_file, start=source_dir))
-                save_image(image_scaled, result_path,
-                           suffix, overwrite=overwrite)
+
+                # If the output file already exists, delete it before saving the new image
+                if not overwrite and os.path.exists(result_path):
+                    print(f"- Not overwriting existing image '{result_path}'")
+                else:
+                    img = Image.open(image_file).convert("RGBA")
+                    # Process each image file here
+                    print("Processing:", image_file)
+                    image_scaled = scale_image_max_width(img, max_width)
+
+                    save_image(image_scaled, result_path,
+                               suffix)
 
 
 def scale_image_max_width(img, max_width):
@@ -175,26 +181,30 @@ def watermark_images(
         for file in files:
             if file.lower().endswith(tuple(ext)):
                 image_file = os.path.join(root, file)
-                # Process each image file here
-                print("Processing:", image_file)
-                img = Image.open(image_file).convert("RGBA")
-                result_image = merge_images_with_opacity(
-                    img=img,
-                    watermark=watermark,
-                    padding=padding,
-                    position=position,
-                    opacity=opacity,
-                    max_width=result_img_max_width)
 
                 # Get the relative path after the base directory
                 result_path = os.path.join(watermark_dir, os.path.relpath(
                     image_file, start=directory_path))
 
-                save_image(img=result_image, result_path=result_path,
-                           suffix=suffix, overwrite=overwrite)
+                # If the output file already exists, delete it before saving the new image
+                if not overwrite and os.path.exists(result_path):
+                    print(f"- Not overwriting existing image '{result_path}'")
+                else:
+                    # Process each image file here
+                    print("Processing:", image_file)
+                    img = Image.open(image_file).convert("RGBA")
+                    result_image = merge_images_with_opacity(
+                        img=img,
+                        watermark=watermark,
+                        padding=padding,
+                        position=position,
+                        opacity=opacity,
+                        max_width=result_img_max_width)
+                    save_image(img=result_image, result_path=result_path,
+                               suffix=suffix)
 
 
-def save_image(img, result_path, suffix=None, overwrite=False):
+def save_image(img, result_path, suffix=None):
     # Convert the image to RGB mode (remove alpha channel)
     img = remove_alpha_channel(img)
 
@@ -206,11 +216,6 @@ def save_image(img, result_path, suffix=None, overwrite=False):
     if not os.path.exists(parent_directory):
         os.makedirs(parent_directory)
 
-    # If the output file already exists, delete it before saving the new image
-    if not overwrite and os.path.exists(result_path):
-        print(f"- Not overwriting existing image '{result_path}'")
-        return
-
     img.save(result_path)
     print(f"Processed image saved to '{result_path}'")
     print("-" * 50)
@@ -221,4 +226,23 @@ def remove_alpha_channel(img):
         print("- Removing alpha channel")
         return img.convert('RGB')
     return img
-    
+
+
+def check_images_exist(folder):
+    for root, _, files in os.walk(folder):
+        for filename in files:
+            if filename.endswith(".md"):
+                markdown_path = os.path.join(root, filename)
+                with open(markdown_path, "r") as file:
+                    markdown_content = file.read()
+
+                # Use regex to extract image file paths
+                image_paths = re.findall(r'image:\s*"(.*?)"', markdown_content)
+                image_preview_paths = re.findall(
+                    r'imagePreview:\s*"(.*?)"', markdown_content)
+                # Check if the image files exist
+                for image_path in image_paths + image_preview_paths:
+                    full_path = os.path.normpath(
+                        os.path.join(root, image_path))
+                    if not os.path.exists(full_path):
+                        print(f"File not found: {full_path}")

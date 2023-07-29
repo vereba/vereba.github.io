@@ -5,11 +5,26 @@
     margin-top: 1rem;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column;  
 
+    .sliderSubtitle {
+        padding-top: 4rem;
+    }
     .gatsby-image-wrapper {
         box-shadow: 0 7px 15px -4px #777777;
     }
+    .carousel-indicators {
+        bottom: 3rem;
+        button {
+            background-color: #777777;
+        }
+    }
+    .carousel-control-prev {
+        bottom: 5rem;
+      }
+      .carousel-control-next {
+        bottom: 5rem;
+      }
 
     .category {
         text-align: center;
@@ -61,4 +76,19 @@
         }
     }
   }
+
+
+@media (min-width: 662px) {
+    .artwork-container {      
+      /* Style the previous and next buttons */
+      .carousel-control-prev {
+        left: -5rem;
+        filter: invert(100%);
+      }
+      .carousel-control-next {
+        right: -5rem;
+        filter: invert(100%);
+      }
+    }
+}
 

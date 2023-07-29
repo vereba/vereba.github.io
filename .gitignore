@@ -5,3 +5,5 @@ src/gatsby-types.d.ts
 .env.development
 # don't push original images
 src/assets/artwork/images/*
+src/assets/artwork/images_watermarked/*
+src/assets/artwork/images_low_res/*

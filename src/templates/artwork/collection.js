@@ -18,7 +18,7 @@ import imageSketches from "../../assets/images/pageHeadings/artwork.jpg";
 import imagePostcards from "../../assets/images/pageHeadings/artwork.jpg";
 import imageTravel from "../../assets/images/pageHeadings/nyc2.jpg";
 import imageDigital from "../../assets/images/pageHeadings/artwork.jpg";
-
+import imageColorful from "../../assets/images/pageHeadings/favela_glow.jpg";
 
 
 
@@ -45,6 +45,9 @@ export default function Collection({ pageContext, data }) {
       case "travel":
         image = imageTravel;
         break;
+      case "colorful":
+        image = imageColorful;
+        break;
       case "digital":
         image = imageDigital;
         break;
@@ -57,13 +60,8 @@ export default function Collection({ pageContext, data }) {
 
   function getImagePosition() {
     let imagePosition = "center bottom";
-    switch (pageContext.category) {
-      case "all":
-        imagePosition = "center center";
-        break;
-      case "black-and-white":
-        imagePosition = "center center";
-        break;
+    if (Array.from(["all", "black-and-white", "colorful"]).includes(pageContext.category)){
+      imagePosition = "center center";
     }
     return imagePosition
   }
@@ -151,7 +149,7 @@ export default function Collection({ pageContext, data }) {
                   </li>
                 ))}
                 {!isLast && (
-                  <Link to={nextPage} rel="next">
+                  <Link to={`/artwork/${pageContext.category}/${nextPage}`} rel="next">
                     Next Page →
                   </Link>
                 )}

@@ -5,6 +5,6 @@ category:
 - "black-and-white"
 material: "Acryl on Canvas"
 size: "60x80"
-imagePreview: "./../../images_low_res/black-and-white/chinatown.png"
-image: "./../../images_watermarked/black-and-white/chinatown.png"
+imagePreview: "./../../images_low_res/black-and-white/chinatown.jpg"
+image: "./../../images_watermarked/black-and-white/chinatown.jpg"
 ---
