@@ -31,6 +31,7 @@
     "emailjs-com": "^3.2.0",
     "fs": "^0.0.1-security",
     "gatsby": "^5.7.0",
+    "gatsby-image": "^3.11.0",
     "gatsby-omni-font-loader": "^2.0.2",
     "gatsby-plugin-breadcrumb": "^12.3.2",
     "gatsby-plugin-image": "^3.8.0",
