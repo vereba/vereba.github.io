@@ -124,8 +124,8 @@ export default function Collection({ pageContext, data }) {
             (<div className="pagination">
               <ul>
                 {!isFirst && (
-                  <Link to={prevPage} rel="prev">
-                    ← Previous Page
+                  <Link to={`/artwork/${pageContext.category}/${prevPage}`} rel="prev">
+                    ← <span className='d-none d-sm-block d-sm-none d-md-block'>Previous Page</span>
                   </Link>
                 )}
                 {Array.from({ length: numPages }, (_, i) => (
@@ -150,7 +150,7 @@ export default function Collection({ pageContext, data }) {
                 ))}
                 {!isLast && (
                   <Link to={`/artwork/${pageContext.category}/${nextPage}`} rel="next">
-                    Next Page →
+                    <span className='d-none d-sm-block d-sm-none d-md-block'>Next Page</span> →
                   </Link>
                 )}
               </ul>
