@@ -18,6 +18,7 @@ module.exports = {
     "50x70": "50 cm x 70 cm",
     "50x90": "50 cm x 90 cm",
     "60x80": "60 cm x 80 cm",
-    "100x70": "100 cm x 70 cm"
+    "100x70": "100 cm x 70 cm",
+    "80x80": "80 cm x 80 cm"
   }
 }

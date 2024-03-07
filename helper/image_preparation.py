@@ -2,7 +2,7 @@ import os
 from PIL import Image
 import re
 
-img_ext = ['png', 'jpg']
+img_ext = ['png', 'jpg', 'jpeg']
 
 
 def scale_images_in_dir(source_dir, result_dir, max_width, suffix, overwrite=False):
@@ -12,7 +12,7 @@ def scale_images_in_dir(source_dir, result_dir, max_width, suffix, overwrite=Fal
                 image_file = os.path.join(root, file)
                 result_path = os.path.join(result_dir, os.path.relpath(
                     image_file, start=source_dir))
-
+                print(f"Scaling image {result_path}")
                 # If the output file already exists, delete it before saving the new image
                 if not overwrite and os.path.exists(result_path):
                     print(f"- Not overwriting existing image '{result_path}'")
@@ -44,7 +44,7 @@ def scale_image_max_width(img, max_width):
     if original_width > max_width:
         scaling_factor = max_width / original_width
         new_height = int(original_height * scaling_factor)
-        return img.resize((max_width, new_height), Image.ANTIALIAS)
+        return img.resize((max_width, new_height), Image.LANCZOS)
     print(f"- New size: {img.size}")
     return img
 
@@ -168,7 +168,7 @@ def watermark_images(
     new_height = int((float(watermark.size[1]) * float(width_percent)))
     # Resize the second image to the calculated proportional size
     watermark = watermark.resize(
-        (watermark_width, new_height), Image.ANTIALIAS)
+        (watermark_width, new_height), Image.LANCZOS)
 
     print(
         f"Loading images from '{directory_path}' with extensions: {[e for e in ext]}\nSaving them to '{watermark_dir}'")

@@ -1,5 +1,5 @@
 ---
-title: "Traffic Jam"
+title: 'Traffic Jam ("Großstadt Herde")'
 date: "2023"
 category: 
 - "black-and-white"
