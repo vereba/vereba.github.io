@@ -24,7 +24,8 @@ const AboutPage = ({ props }) => {
             <Col className="aboutme order-sm-first order-md-last marginBottom" md="7">
               <h2>Verena Barth</h2>
               <p>
-                Verena Barth is a 27-year-old artist currently living in Cologne, Germany.
+                Verena Barth is a {Math.floor((new Date() - new Date("1995-07-13").getTime()) / 3.15576e+10)
+                }-year-old artist currently living in Cologne, Germany.
                 She has been interested in art for as long as she can remember, but chose the safe career path of Data Science and Artificial Intelligence and is now giving more time to her passions of painting and travelling.
               </p>
               <p>She finds joy in the act of creating and drawing without restraint, using her fingers or any tool that resonates with the moment. This combination of different drawing materials and the interplay of black and white, of light and shadow result in Images in which new details and hidden landscapes emerge with each viewing distance.</p>

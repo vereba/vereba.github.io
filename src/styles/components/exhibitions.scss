@@ -1,0 +1,45 @@
+.paddingAround {
+    padding: 2.5rem;
+    padding-left: 0;
+    padding-right: 5rem;
+}
+
+.exhibition {
+    display: flex;
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h2.year {
+        font-family: "OpenSans", sans-serif !important;
+        font-weight: 400;
+    }
+
+    .lineHeading,
+    .subheading {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin-bottom: 0;
+        }
+
+        p.date {
+            font-size: 0.8rem;
+        }
+    }
+
+}
+
+.exhibitions {
+    >h2 {
+        margin-top: 2rem;
+    }
+
+    hr {
+        border: 1px solid #818844;
+        margin-bottom: 1.5rem !important;
+    }
+
+}

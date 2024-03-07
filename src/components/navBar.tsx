@@ -16,7 +16,7 @@ const PageNavbar = ({ pageName }) => (
             <StaticImage
               src="../images/logo/logo_green_long.png"
               height={90}
-              alt="vb"
+              alt="vb-art"
               transformOptions={{ fit: "cover", cropFocus: "attention" }} />
           </Nav.Link>
         </Link>
@@ -52,12 +52,21 @@ const PageNavbar = ({ pageName }) => (
         </Link> 
         
         */}
+          <Link to="/exhibitions" className="link-no-style">
+            <Nav.Link as="span" eventKey="exhibitions">
+              Exhibitions
+            </Nav.Link>
+          </Link>
+
 
           <Link to="/contact" className="link-no-style">
             <Nav.Link as="span" eventKey="contact">
               Contact
             </Nav.Link>
           </Link>
+
+
+
           <a href="https://www.instagram.com/vb.artbook/"><BsInstagram /></a>
 
         </Nav>

@@ -1,3 +1,5 @@
+@import "fonts";
+
 .content {
   margin-top: 11rem;
   margin: 0 auto !important;
@@ -86,7 +88,7 @@
 
 
   h2 {
-    font-family: "Libre Baskerville" !important;
+    font-family: "LibreBaskerville" !important;
     text-transform: lowercase;
     font-weight: bold;
   }
@@ -140,7 +142,7 @@
       width: 100%;
       display: block;
       color: $primary-green;
-      font-family: "Libre Baskerville" !important;
+      font-family: "LibreBaskerville" !important;
       font-weight: bold;
       font-style: italic;
       margin-bottom: 2rem;
@@ -290,7 +292,7 @@
     align-items: center;
 
     span {
-      font-family: Open Sans, sans-serif;
+      font-family: "OpenSans", sans-serif;
     }
 
     div {
@@ -304,6 +306,7 @@
     }
   }
 }
+
 $imageHeighBigView: 500px;
 
 @media (min-width: 992px) {
