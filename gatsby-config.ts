@@ -6,22 +6,28 @@ require("dotenv").config({
   path: `.env.${env}`,
 });
 
+const siteUrl = `https://vb-art.com`;
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `vb-art`,
-    siteUrl: `https://vb-art.gallery`,
+    siteUrl: siteUrl,
     description: "Small gallery of the German artist Verena Barth",
     keywords: [
       "vb-art",
       "art",
+      "modern art",
+      "artist",
+      "black and white painting",
+      "art",
       "gallery",
       "vbartbook",
       "artbook",
-      "abstract",
+      "abstract art",
       "city",
     ],
     author: "Verena Barth",
     lang: "en",
+    image: "/logo_green_full.png"
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -33,30 +39,11 @@ const config: GatsbyConfig = {
   plugins: [
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
-    "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
     `gatsby-plugin-styled-components`,
     "gatsby-transformer-sharp",
-    {
-      resolve: `gatsby-omni-font-loader`,
-      options: {
-        enableListener: true,
-        preconnect: [
-          `https://fonts.googleapis.com`,
-          `https://fonts.gstatic.com`,
-        ],
-        web: [
-          {
-            name: `Open Sans`,
-            file: `https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap`,
-          },
-          {
-            name: `Libre Baskerville`,
-            file: `https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap`,
-          },
-        ],
-      },
-    },
+    // generates sitemap under /sitemap-index.xml
+    `gatsby-plugin-sitemap`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -113,6 +100,21 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: siteUrl,
+        sitemap: `${siteUrl}/sitemap-index.xml`,
+        env: {
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
+          },
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          }
+        }
+      }
+    }
   ],
 };
 
