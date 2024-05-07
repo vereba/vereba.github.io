@@ -21,8 +21,8 @@ export default function ArtworkDetailPage({ data }) {
   let image = getImage(artwork.frontmatter.image?.childImageSharp?.gatsbyImageData)
   let imageList = null
   if (artwork.frontmatter.otherImages) {
-    console.log("Multiple images defined")
-    console.log(artwork.frontmatter.otherImages)
+    // console.log("Multiple images defined")
+    // console.log(artwork.frontmatter.otherImages)
     imageList = [image]
     artwork.frontmatter.otherImages.forEach((elem, index) => {
       imageList.push(elem.childImageSharp?.gatsbyImageData)
@@ -78,6 +78,13 @@ export default function ArtworkDetailPage({ data }) {
                 alt={title}
               />
             }
+            {artwork.frontmatter.sold ?
+              <Row className="soldRow">
+                <Col className="col-12 col-md-6 offset-md-3">
+                  <span className="sold">{artwork.frontmatter.sold}</span>
+                </Col>
+              </Row> : null
+            }
             <Row className="information">
               <Col className="col-12 col-md-3">
                 <span className="desc">Year</span>
@@ -97,6 +104,7 @@ export default function ArtworkDetailPage({ data }) {
               dangerouslySetInnerHTML={{ __html: artwork.html }}
             />
           </div>
+
         </Container>
       </Container>
     </Layout>
@@ -115,6 +123,7 @@ export const pageQuery = graphql`
         category
         material
         size
+        sold
         image {
           childImageSharp {
               gatsbyImageData(height: 700)

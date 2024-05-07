@@ -13,6 +13,7 @@ export default function CollectionItem({ node, subTitle }) {
 
     return (
         <Col key={`col-${node.frontmatter.title}`} className="col-12 col-lg-3">
+
             <Link to={`/artwork${node.fields.slug}`}>
                 <div className="collectionItem" key={title}>
                     <div className='image'>
@@ -22,8 +23,10 @@ export default function CollectionItem({ node, subTitle }) {
                             alt={title}
                         />
                     </div>
+
                     {subTitle && <div className='subtitle'>{collections[node.frontmatter.category[0]]}</div>}
                     <div className="title">{title}</div>
+                    {node.frontmatter.sold ? <span className="soldButton">{node.frontmatter.sold}</span> : null}
                 </div>
             </Link>
         </Col >

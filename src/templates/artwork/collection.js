@@ -60,12 +60,12 @@ export default function Collection({ pageContext, data }) {
 
   function getImagePosition() {
     let imagePosition = "center bottom";
-    if (Array.from(["all", "black-and-white", "colorful"]).includes(pageContext.category)){
+    if (Array.from(["all", "black-and-white", "colorful"]).includes(pageContext.category)) {
       imagePosition = "center center";
     }
     return imagePosition
   }
-  console.log("Artworks: ", artworks)
+  // console.log("Artworks: ", artworks)
   const grouped = artworks
     .filter(artwork => pageContext.category == "all" ? true : (artwork.node.frontmatter.category.includes(pageContext.category)))
     .filter(artwork => artwork.node.frontmatter.title.length > 0)
@@ -77,7 +77,7 @@ export default function Collection({ pageContext, data }) {
       acc[subArrayIndex].push(value);
       return acc;
     }, [])
-  console.log("grouped: ", grouped)
+  // console.log("grouped: ", grouped)
 
   function handleComponentChange(tab) {
     navigate(`/artwork/${tab}`)
@@ -99,9 +99,8 @@ export default function Collection({ pageContext, data }) {
             onItemSelected={(tab) => handleComponentChange(tab)} />
           <Container className="collection">
             {grouped?.map((nodes, rowIndex) => {
-              console.log(nodes);
               let numMissing = 4 - nodes.length
-              console.log("numMissing: ", numMissing)
+              // console.log("numMissing: ", numMissing)
               return (
                 <Row className="collectionRow" key={rowIndex}>
                   {nodes.map((node, index) => (
@@ -181,6 +180,7 @@ query CollectionQuery($skip: Int!, $limit: Int!, $filter: MarkdownRemarkFilterIn
           category
           material
           size
+          sold
           imagePreview { 
             childImageSharp {
                 gatsbyImageData(width: 400)

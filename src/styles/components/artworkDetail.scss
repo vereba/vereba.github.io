@@ -5,28 +5,34 @@
     margin-top: 1rem;
     display: flex;
     align-items: center;
-    flex-direction: column;  
+    flex-direction: column;
 
     .sliderSubtitle {
         padding-top: 4rem;
     }
+
     .gatsby-image-wrapper {
         box-shadow: 0 7px 15px -4px #777777;
     }
+
     .carousel-indicators {
         bottom: 3rem;
+
         button {
             background-color: #777777;
         }
     }
+
     .carousel-control-prev {
         bottom: 5rem;
-      }
-      .carousel-control-next {
-        bottom: 5rem;
-      }
+    }
 
-    .category {
+    .carousel-control-next {
+        bottom: 5rem;
+    }
+
+    .category,
+    .sold {
         text-align: center;
         text-shadow: none;
         text-transform: uppercase;
@@ -34,12 +40,27 @@
         letter-spacing: 2px;
     }
 
+    .soldRow {
+        display: flex;
+        flex-direction: row;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        align-items: center;
+
+        >div {
+            background-color: $primary-green;
+            padding: 0.4rem;
+            color: white;
+        }
+    }
+
     h1 {
-        color:$text-gray;
+        color: $text-gray;
         font-size: 3rem;
         font-family: "Libre Baskerville" !important;
         word-spacing: 2;
-      }
+    }
 
     .information {
         display: flex;
@@ -48,12 +69,13 @@
         padding-top: 2rem;
         justify-content: space-evenly;
         margin-bottom: 3rem;
-    
+
         >div {
             justify-content: space-around;
             display: flex;
             flex-direction: column;
         }
+
         .desc {
             text-transform: uppercase;
             color: $primary-green;
@@ -61,6 +83,7 @@
             font-weight: 500;
             padding-bottom: 0.5rem;
         }
+
         .val {
             // font-size: 1.2rem;
         }
@@ -75,20 +98,21 @@
             padding-left: 2rem;
         }
     }
-  }
+}
 
 
 @media (min-width: 662px) {
-    .artwork-container {      
-      /* Style the previous and next buttons */
-      .carousel-control-prev {
-        left: -5rem;
-        filter: invert(100%);
-      }
-      .carousel-control-next {
-        right: -5rem;
-        filter: invert(100%);
-      }
+    .artwork-container {
+
+        /* Style the previous and next buttons */
+        .carousel-control-prev {
+            left: -5rem;
+            filter: invert(100%);
+        }
+
+        .carousel-control-next {
+            right: -5rem;
+            filter: invert(100%);
+        }
     }
 }
-

@@ -31,9 +31,9 @@ const ContactForm = () => {
 
   const handleChange = (event) => {
     //this console.log message should be removed once you've tested the event works 
-    console.log(
-      "handleChange -> " + event.target.name + " : " + event.target.value
-    );
+    // console.log(
+    //   "handleChange -> " + event.target.name + " : " + event.target.value
+    // );
     //this is the important bit
     setValues((values) => ({
       ...values,
@@ -42,8 +42,6 @@ const ContactForm = () => {
   };
 
   const validate = (values) => {
-    console.log("Validate the form....");
-
     let errors: any = {};
 
     //name field
@@ -59,7 +57,7 @@ const ContactForm = () => {
     }
 
     setFormErrors(errors);
-    console.log(errors)
+    // console.log(errors)
 
     if (Object.keys(errors).length === 0) {
       return true;
@@ -69,7 +67,7 @@ const ContactForm = () => {
   };
 
   const sendConfirmationMail = (reply_to: string, to_name: string, message: string) => {
-    console.log("In sendConfirmationMail")
+    // console.log("In sendConfirmationMail")
     const templateParams = {
       reply_to: reply_to,
       to_name: to_name,
@@ -77,7 +75,7 @@ const ContactForm = () => {
     };
     emailjs.send(serviceId, process.env.EMAILJS_CONFIRMATION_TEMPLATE_ID, templateParams, userId)
       .then(response => {
-        console.log("Confirmation mail sent successfully!", response)
+        // console.log("Confirmation mail sent successfully!", response)
       })
       .catch(error => {
         console.error("Error sending confirmation email:", error)
@@ -89,7 +87,7 @@ const ContactForm = () => {
 
     setLoading(true);
     if (validate(values)) {
-      console.log("Validation successful")
+      // console.log("Validation successful")
       const templateParams = {
         from_name: values.name,
         from_email: values.email,
@@ -98,11 +96,11 @@ const ContactForm = () => {
 
       emailjs.send(serviceId, templateId, templateParams, userId)
         .then(response => {
-          console.log("Email sent successfully!", response)
+          //console.log("Email sent successfully!", response)
           setLoading(false);
           setShowMessage("Thank you for your message, we will be in touch in no time!");
-          
-          sendConfirmationMail( values.email, values.name, values.message);
+
+          sendConfirmationMail(values.email, values.name, values.message);
           setValues({
             name: "",
             email: "",
@@ -165,17 +163,17 @@ const ContactForm = () => {
         )}
       </Form.Group>
       <div className="formButtonRow">
-      <Button type="submit" variant="primary" size="lg">
-        Submit
-      </Button>
-      <ClipLoader
-        color={"#818844"} //primary-green
-        loading={loading}
-        // cssOverride={override}
-        size={50}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+        <Button type="submit" variant="primary" size="lg">
+          Submit
+        </Button>
+        <ClipLoader
+          color={"#818844"} //primary-green
+          loading={loading}
+          // cssOverride={override}
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       </div>
 
       {
