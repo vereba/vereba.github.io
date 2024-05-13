@@ -12,7 +12,7 @@ const PageMenu = (props) => {
 
     // Handle the item selection
     const handleItemSelected = (key) => {
-        console.log("handleItemSelected: ", key)
+        // console.log("handleItemSelected: ", key)
         props.onItemSelected(key);
     };
 
