@@ -4,7 +4,7 @@ date: "2022"
 category: 
 - "black-and-white"
 material: "Acryl on Canvas"
-size: "100 cm x 70 cm each"
+size: "70 cm x 100 cm each"
 imagePreview: "./../../images_low_res/black-and-white/puddles_and_pavements.png"
 image: "./../../images_watermarked/black-and-white/puddles_and_pavements.png"
 otherImages:
