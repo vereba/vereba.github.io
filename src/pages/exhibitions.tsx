@@ -6,7 +6,7 @@ import PageHeading from "../components/pageHeading"
 
 import "./../styles/components/exhibitions.scss"
 
-import aboutImage from "../assets/images/pageHeadings/nyc.jpg";
+import aboutImage from "../assets/images/pageHeadings/exhibitions.jpg";
 import { StaticImage } from "gatsby-plugin-image";
 
 function Exhibition(year, dateFrom, dateTo, exhibition_name, location, description) {
@@ -29,7 +29,6 @@ function Exhibition(year, dateFrom, dateTo, exhibition_name, location, descripti
 }
 
 const AboutPage = ({ props }) => {
-
     return (
         <Layout pageInfo={{ pageName: "Exhibitions" }}>
             <PageHeading
@@ -50,11 +49,12 @@ const AboutPage = ({ props }) => {
                             <h2>Group Exhibitions</h2>
                             <hr className="title-break-left" />
 
-                            {new Exhibition("2023", "31.08.", "05.10.", "Kunstsommer/Herbst", "Galerie Eyegenart, Köln (Germany)")}
+                            {new Exhibition("2024", "26.09.", "03.11.", "III. Kunstsommer/Herbst", "Galerie Eyegenart, Köln (Germany)")}
+                            {new Exhibition("2023", "31.08.", "05.10.", "II. Kunstsommer/Herbst", "Galerie Eyegenart, Köln (Germany)")}
 
                             <h2>Live Painting</h2>
                             <hr className="title-break-left" />
-
+                            {new Exhibition("2024", "21.09.", "", "Kunscht im Eck", "Dunningen (Germany)")}
                             {new Exhibition("2023", "19.12.", "22.12", "Solstice Festival", "Eagle's Nest Atitlán, San Marcos (Guatemala)")}
                             {new Exhibition("2023", "14.04.", "", "Kulturrummel", "viadee Unternehmensberatung, Köln (Germany)")}
                         </Col>
