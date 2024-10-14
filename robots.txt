@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://vb-art.com/sitemap-index.xml
+Host: https://vb-art.com
