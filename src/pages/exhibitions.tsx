@@ -38,7 +38,7 @@ const AboutPage = ({ props }) => {
             <Container fluid >
                 <Container>
                     <Row>
-                        <Col md="5 marginBottom" className="paddingAround">
+                        <Col md="5" className="paddingAround marginBottom">
                             <StaticImage src="../assets/images/exhibition_me.jpg" alt="Verena Barth" id="me-image" />
                         </Col>
                         <Col className="exhibitions order-sm-first order-md-last marginBottom" md="7">

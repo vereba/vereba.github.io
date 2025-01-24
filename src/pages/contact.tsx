@@ -200,6 +200,7 @@ const ContactPage = ({ props }) => {
               <h2 className="cite-big">Inquiries, questions, inspiration..?</h2>
               <p>I am happy about your interest in my work and about contacting me!</p>
               <p>I will get back to you as soon as possible.</p>
+              <p><i>I am a fan of data minimisation: Your information is only used to send me an e-mail. Your data will not be saved!</i></p>
             </Col>
             <Col className="col-lg-7 offset-lg-1 col-12">
               <ContactForm />

@@ -11,12 +11,12 @@ import Layout from "../../components/layout"
 import PageHeading from "../../components/pageHeading"
 import CollectionItem from "../../components/collectionItem"
 
-
-import imageAll from "../../assets/images/pageHeadings/dog.jpg";
+import imageAll from "../../assets/images/pageHeadings/midnight_city.jpg";
+// import imageAll from "../../assets/images/pageHeadings/dog.jpg";
 import imageBw from "../../assets/images/pageHeadings/wide_white_street.jpg";
 import imageSketches from "../../assets/images/pageHeadings/artwork.jpg";
 import imagePostcards from "../../assets/images/pageHeadings/artwork.jpg";
-import imageTravel from "../../assets/images/pageHeadings/nyc2.jpg";
+import imageTravel from "../../assets/images/pageHeadings/about.jpg"; //formerly nyc2
 import imageDigital from "../../assets/images/pageHeadings/artwork.jpg";
 import imageColorful from "../../assets/images/pageHeadings/favela_glow.jpg";
 

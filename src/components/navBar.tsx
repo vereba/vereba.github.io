@@ -67,7 +67,7 @@ const PageNavbar = ({ pageName }) => (
 
 
 
-          <a href="https://www.instagram.com/vb.artbook/"><BsInstagram /></a>
+          <a href="https://www.instagram.com/vb.art.gallery/"><BsInstagram /></a>
 
         </Nav>
       </Navbar.Collapse>

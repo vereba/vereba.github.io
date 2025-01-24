@@ -58,6 +58,16 @@ html {
 
     }
 
+    .imprint {
+      padding-left: 3rem;
+      h2 {
+        font-size: 1.5rem;
+      }
+      #imprintImage {
+        margin-top: -2rem;
+      }
+    }
+
     .link {
       @extend a;
     }

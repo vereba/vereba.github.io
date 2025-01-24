@@ -10,6 +10,7 @@ import SEO from "../components/seo"
 import { BsInstagram } from "react-icons/bs"
 import { Container, Row, Col } from "react-bootstrap"
 import PageNavbar from "./navBar"
+import { Link } from "gatsby"
 
 const Layout = ({ pageInfo, children }) => (
       <>
@@ -33,7 +34,13 @@ const Layout = ({ pageInfo, children }) => (
                       © {new Date().getFullYear()}, {" "}
                       Verena Barth
                     </span>
-                    <a href="https://www.instagram.com/vb.artbook/"><BsInstagram /></a>
+                    <span style={{display: "flex"}}>
+                    <Link to="/imprint" className="link-no-style">
+                        Imprint
+                    </Link>
+                    <span style={{width: "2rem",display: "block"}}></span>
+                    <a href="https://www.instagram.com/vb.art.gallery/"><BsInstagram /></a>
+                    </span>
                   </Container>
                 </footer>
               </Col>
