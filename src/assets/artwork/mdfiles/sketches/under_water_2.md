@@ -2,7 +2,8 @@
 title: "Under Water II"
 date: "2022"
 category: 
-- "sketches"
+#- "sketches"
+- "other"
 material: "Roller Pen on Paper"
 size: "A3"
 imagePreview: "./../../images_low_res/sketches/fisch2.jpg"

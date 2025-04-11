@@ -2,7 +2,8 @@
 title: "Grand Promenade"
 date: "2022"
 category: 
-- "sketches"
+#- "sketches"
+- "other"
 material: "Alcohol Marker on Paper"
 size: "A3"
 imagePreview: "./../../images_low_res/sketches/grand_promenade.png"
