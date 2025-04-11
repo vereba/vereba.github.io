@@ -190,8 +190,11 @@
     color: white;
     background-color: $primary-green;
     // padding: 0.3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    // padding-left: 1rem;
+    // padding-right: 1rem;
+    position: absolute;
+    left: 20%;
+    width: 60%;
   }
 
   .collectionRow {

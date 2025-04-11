@@ -10,4 +10,5 @@ image: "./../../images_watermarked/black-and-white/puddles_and_pavements.png"
 otherImages:
 - "./../../images_watermarked/black-and-white/puddles_and_pavements_1.png"
 - "./../../images_watermarked/black-and-white/puddles_and_pavements_2.png"
+sold: "Sold"
 ---
