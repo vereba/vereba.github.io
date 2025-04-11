@@ -44,6 +44,7 @@ const config: GatsbyConfig = {
     "gatsby-transformer-sharp",
     // generates sitemap under /sitemap-index.xml
     `gatsby-plugin-sitemap`,
+    `gatsby-transformer-remark`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -66,6 +67,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/assets/artwork/images_watermarked/`,
       },
       __key: "artwork_watermarked",
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/assets/artwork/mockups/`,
+      },
+      __key: "artwork_mockups",
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -98,6 +106,13 @@ const config: GatsbyConfig = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `artworks`,
+        path: `${__dirname}/src/assets/artwork/mdfiles/`,
       },
     },
     {

@@ -117,6 +117,7 @@ export const pageQuery = graphql`
       fields {
         slug
       }
+      html
       frontmatter {
         date
         title
