@@ -19,7 +19,7 @@ const AboutPage = ({ props }) => {
         <Container>
           <Row>
             <Col md="5 marginBottom">
-              <StaticImage src="../assets/images/me.jpg" alt="Verena Barth" id="me-image" />
+              <StaticImage src="../assets/images/me2.jpg" alt="Verena Barth" id="me-image" />
             </Col>
             <Col className="aboutme order-sm-first order-md-last marginBottom" md="7">
               <h2>Verena Barth</h2>
