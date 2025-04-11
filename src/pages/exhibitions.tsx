@@ -42,21 +42,22 @@ const AboutPage = ({ props }) => {
                             <StaticImage src="../assets/images/exhibition_me.jpg" alt="Verena Barth" id="me-image" />
                         </Col>
                         <Col className="exhibitions order-sm-first order-md-last marginBottom" md="7">
-                            <h2>Solo Exhibitions</h2>
+                            <h2>Exhibitions</h2>
                             <hr className="title-break-left" />
-                            {new Exhibition("2024", "16.02.", "24.03.", "Mindful walks - Travel sketches by verena barth", "Kunst- und Kultur Lokal Alte Feuerwache, Köln (Germany)")}
+                            {new Exhibition("2025", "13.04.", "11.05.", "Kunst mischt mit", "Galerie Eyegenart, Köln (Germany)")}
 
-                            <h2>Group Exhibitions</h2>
-                            <hr className="title-break-left" />
+                            {new Exhibition("", "03.04.", "06.04.2025", "Discovery Art Fair Cologne", "XPOST")}
 
                             {new Exhibition("2024", "26.09.", "03.11.", "III. Kunstsommer/Herbst", "Galerie Eyegenart, Köln (Germany)")}
+
+                            {new Exhibition("", "16.02.", "24.03.2024", "Mindful walks - Travel sketches by verena barth (solo)", "Kunst- und Kultur Lokal Alte Feuerwache, Köln (Germany)")}
                             {new Exhibition("2023", "31.08.", "05.10.", "II. Kunstsommer/Herbst", "Galerie Eyegenart, Köln (Germany)")}
 
                             <h2>Live Painting</h2>
                             <hr className="title-break-left" />
                             {new Exhibition("2024", "21.09.", "", "Kunscht im Eck", "Dunningen (Germany)")}
-                            {new Exhibition("2023", "19.12.", "22.12", "Solstice Festival", "Eagle's Nest Atitlán, San Marcos (Guatemala)")}
-                            {new Exhibition("2023", "14.04.", "", "Kulturrummel", "viadee Unternehmensberatung, Köln (Germany)")}
+                            {new Exhibition("2023", "19.12.", "22.12.", "Solstice Festival", "Eagle's Nest Atitlán, San Marcos (Guatemala)")}
+                            {new Exhibition("", "14.04.2023", "", "Kulturrummel", "viadee Unternehmensberatung, Köln (Germany)")}
                         </Col>
                     </Row>
                 </Container>
