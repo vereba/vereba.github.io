@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkvb_art=self.webpackChunkvb_art||[]).push([[507],{2495:function(e,a,t){t.r(a),t.d(a,{default:function(){return m}});var r=t(7294),n=t(2549),c=t.p+"static/myrtle_av-948d563d8e83834ae7eb37e600048608.jpg";var m=()=>r.createElement(n.Z,{pageInfo:{pageName:"Home"},id:"home"},r.createElement("div",{className:"page-image-container",id:"home-image",style:{backgroundImage:"url("+c+")"}}))}}]);
+//# sourceMappingURL=component---src-pages-start-tsx-fcf534a6c10935931ed4.js.map

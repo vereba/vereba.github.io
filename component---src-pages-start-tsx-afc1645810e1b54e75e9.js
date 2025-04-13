@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkvb_art=self.webpackChunkvb_art||[]).push([[507],{1787:function(e,a,t){t.r(a);var n=t(7294),c=t(2549),i=t(1577);a.default=()=>n.createElement(c.Z,{pageInfo:{pageName:"Home"},id:"home"},n.createElement("div",{className:"page-image-container",id:"home-image",style:{backgroundImage:"url("+i.Z+")"}}))},1577:function(e,a,t){a.Z=t.p+"static/favela_100x70-6776a08016317f8739b508d6f9056855.jpg"}}]);
+//# sourceMappingURL=component---src-pages-start-tsx-afc1645810e1b54e75e9.js.map
