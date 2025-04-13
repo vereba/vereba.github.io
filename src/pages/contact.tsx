@@ -115,7 +115,7 @@ const ContactForm = () => {
   }
   return (
 
-    <Form id="contactForm" className="marginBottom" onSubmit={handleFormSubmit}>
+    <Form id="contactForm" onSubmit={handleFormSubmit}>
       <Form.Group controlId="formGridName">
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -193,22 +193,27 @@ const ContactPage = ({ props }) => {
         pageTitle={`Contact`}
         pageImage={aboutImage}
       />
-      <Container fluid >
+      <Container fluid className="marginBottom">
         <Container>
           <Row>
-            <Col className="col-12 col-lg-4 ">
+            <Col className="col-12 ">
+              {/* <Col className="col-12 col-lg-4 "> */}
               <h2 className="cite-big">Inquiries, questions, inspiration..?</h2>
               <p>I am happy about your interest in my work and about contacting me!</p>
+
+              <p>My email adress is <br></br>
+                <b>contact@vb-art.com</b></p>
+
               <p>I will get back to you as soon as possible.</p>
-              <p><i>I am a fan of data minimisation: Your information is only used to send me an e-mail. Your data will not be saved!</i></p>
+              {/* <p><i>I am a fan of data minimisation: Your information is only used to send me an e-mail. Your data will not be saved!</i></p>*/}
             </Col>
-            <Col className="col-lg-7 offset-lg-1 col-12">
+            {/* <Col className="col-lg-7 offset-lg-1 col-12">
               <ContactForm />
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </Container>
-    </Layout>
+    </Layout >
   )
 };
 
