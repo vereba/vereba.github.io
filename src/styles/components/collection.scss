@@ -1,0 +1,200 @@
+@import "./../variables";
+
+/* ---------- Page header ---------- */
+
+.page-header {
+    max-width: 1400px;
+    margin: 2.5rem auto 0;
+    padding: 0 48px;
+
+    .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        color: $text-muted;
+        margin-bottom: 6px;
+    }
+
+    .page-title {
+        color: $text-primary;
+        font-family: "Libre Baskerville" !important;
+        font-weight: 500;
+        font-size: 2.1rem;
+        text-transform: lowercase;
+        word-spacing: 2;
+        margin: 0 0 20px;
+    }
+}
+
+/* ---------- Category tabs ---------- */
+
+.category-tabs {
+    display: flex;
+    gap: 36px;
+    border-bottom: 1px solid $border-light;
+    padding-bottom: 14px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+
+    a {
+        white-space: nowrap;
+        font-size: 13px;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        color: $text-secondary;
+        font-weight: 500;
+        padding-bottom: 14px;
+        margin-bottom: -15px;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            color: $text-primary;
+            text-decoration: none;
+        }
+
+        .count {
+            color: $text-muted;
+            font-size: 12px;
+            font-weight: 400;
+        }
+    }
+
+    a.active {
+        color: $text-primary;
+        border-bottom-color: $primary-green;
+    }
+}
+
+/* ---------- Masonry grid ----------
+   Columns are built in JS (see collection.js), which greedily assigns each
+   artwork to the currently-shortest column using its real aspect ratio, so
+   the grid's bottom edge stays roughly level instead of the ragged edges
+   plain CSS multi-column layout would leave. */
+
+.artwork-masonry {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 48px 60px;
+    display: flex;
+    gap: 1rem;
+}
+
+.artwork-masonry-column {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.artwork-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+/* Each image keeps its natural width/height ratio; the card's height is
+   whatever the image needs, so nothing is cropped or padded with mat space. */
+.artwork-thumb {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid $border-light;
+    transition: border-color 0.25s ease;
+
+    .gatsby-image-wrapper {
+        width: 100% !important;
+        display: block;
+        box-shadow: none;
+    }
+}
+
+.artwork-card:hover .artwork-thumb {
+    border-color: $primary-green;
+}
+
+.status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $white;
+    background: $sold-color;
+    padding: 4px 9px;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.artwork-caption {
+    // margin-top: 12px;
+
+    .title {
+        font-size: 13px;
+        letter-spacing: 0.03em;
+        color: $text-primary;
+        transition: color 0.2s ease;
+    }
+}
+
+.artwork-card:hover .artwork-caption .title {
+    color: $primary-green;
+}
+
+/* ---------- Pagination ---------- */
+
+.content .pagination {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 48px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-size: 13px;
+
+    a {
+        color: $text-secondary;
+        text-decoration: none;
+        margin: 0;
+        text-transform: none;
+        letter-spacing: normal;
+        border-bottom: none;
+
+        &.current {
+            color: $text-primary;
+            border: 1px solid $border-light;
+            border-radius: 4px;
+            padding: 2px 9px;
+        }
+    }
+}
+
+/* ---------- Responsive ----------
+   Column count itself is set in JS (collection.js), matching these same
+   640px/900px breakpoints, so the masonry distribution stays in sync with
+   the number of columns actually rendered. */
+
+@media (max-width: 640px) {
+
+    .page-header,
+    .artwork-masonry,
+    .content .pagination {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .category-tabs {
+        gap: 20px;
+        /* horizontal scroll fallback on narrow screens instead of wrapping oddly */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+    }
+}
