@@ -18,7 +18,9 @@
     "clean": "gatsby clean",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public -f -b deployment",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\" \"gatsby-node.js\" \"gatsby-browser.js\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\" \"gatsby-node.js\" \"gatsby-browser.js\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
