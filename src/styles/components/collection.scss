@@ -27,6 +27,10 @@
 
 /* ---------- Category tabs ---------- */
 
+.category-tabs-wrap {
+    position: relative;
+}
+
 .category-tabs {
     display: flex;
     gap: 36px;
@@ -51,10 +55,22 @@
             text-decoration: none;
         }
 
+        // Desktop keeps the plain "(46)" parenthetical look via pseudo-content,
+        // so the count markup itself can be a plain number (see pageMenu.tsx)
+        // and still render identically here while mobile restyles it as a
+        // badge below without touching the JSX per breakpoint.
         .count {
             color: $text-muted;
             font-size: 12px;
             font-weight: 400;
+
+            &::before {
+                content: "(";
+            }
+
+            &::after {
+                content: ")";
+            }
         }
     }
 
@@ -62,6 +78,13 @@
         color: $text-primary;
         border-bottom-color: $primary-green;
     }
+}
+
+// Swipe hint bubble, mobile-only (see @media block below for visibility +
+// positioning); markup is only rendered by pageMenu.tsx until the row is
+// scrolled or a tab is tapped once, then it's remembered as dismissed.
+.category-tabs-hint {
+    display: none;
 }
 
 /* ---------- Masonry grid ----------
@@ -190,11 +213,91 @@
         padding-right: 20px;
     }
 
+    // Tighten the dead space between the sticky logo/hamburger row and the
+    // page content (see the matching .header height reduction in
+    // _navbar.scss's own max-width: 640px block).
+    .page-header {
+        margin-top: 1rem;
+    }
+
+    // Pill/chip category nav: a single non-wrapping row that scrolls
+    // horizontally instead of the desktop's wrapping underline-tab layout.
     .category-tabs {
-        gap: 20px;
-        /* horizontal scroll fallback on narrow screens instead of wrapping oddly */
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        border-bottom: none;
+        padding-bottom: 4px;
+        margin-bottom: 20px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
 
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        a {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            margin-bottom: 0;
+            border: 1px solid $border-light;
+            border-radius: 999px;
+            background: $white;
+
+            .count {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.06);
+                color: $text-muted;
+                font-size: 11px;
+                padding: 1px 7px;
+                border-radius: 999px;
+
+                &::before,
+                &::after {
+                    content: none;
+                }
+            }
+        }
+
+        a.active {
+            background: $primary-green;
+            border-color: $primary-green;
+            color: $white;
+
+            .count {
+                background: rgba(255, 255, 255, 0.25);
+                color: $white;
+            }
+        }
+    }
+
+    // First-visit affordance hinting the row scrolls further; pinned to the
+    // right edge over a fade so it reads as "more content this way" rather
+    // than blocking any tab underneath it.
+    .category-tabs-hint {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 4px;
+        padding: 0 10px 0 24px;
+        font-size: 11px;
+        color: $text-muted;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), $white 40%);
+        pointer-events: none;
+    }
+
+    .artwork-masonry,
+    .artwork-masonry-column {
+        gap: 0.5rem;
     }
 }
