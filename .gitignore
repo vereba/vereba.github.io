@@ -10,4 +10,5 @@ src/gatsby-types.d.ts
 src/assets/artwork/images/*
 src/assets/artwork/images_watermarked/*
 src/assets/artwork/images_low_res/*
+src/assets/artwork/mockups/*
 __pycache__
