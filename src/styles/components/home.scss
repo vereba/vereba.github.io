@@ -57,6 +57,7 @@
     .intro-hero {
         position: relative;
         background: #000;
+        margin-top: 3rem;
 
         &::before {
             content: "";
@@ -64,7 +65,7 @@
             inset: 0;
             max-width: 1200px;
             margin: 0 auto;
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("../../assets/images/gertrud2.jpg");
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("../../assets/images/gertrud_desktop.jpg");
             background-size: cover;
             background-position: center top;
         }
@@ -73,6 +74,10 @@
             position: relative;
             z-index: 1;
             height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
     }
 
@@ -144,6 +149,10 @@
             // height: 360px;
             border-radius: 4px;
             flex-shrink: 0;
+        }
+
+        .about-image-mobile {
+            display: none;
         }
     }
 
@@ -385,6 +394,28 @@
         color: $brand-dark;
         margin: 0 0 10px;
         border-bottom: 1px solid #e5e4dc;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: none;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        padding: 0 0 10px;
+        cursor: default;
+        text-align: left;
+
+        // The collapse/expand toggle is a mobile-only behavior (see the
+        // max-width: 640px block below); on larger screens the arrow stays
+        // hidden and entries are always shown, matching the original
+        // always-expanded layout.
+        svg {
+            display: none;
+            font-size: 0.9rem;
+            color: $text-muted;
+            flex-shrink: 0;
+        }
     }
 
     .exhibit-entry {
@@ -419,6 +450,9 @@
     #contact {
         position: relative;
         max-width: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         .form-label {
             font-weight: bold;
@@ -453,19 +487,27 @@
         .white-box {
             max-width: 800px;
             margin: 0 auto;
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
-            padding: 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+            padding: 3rem;
+            width: 600px;
 
             >p,
             h2 {
-                color: black;
+                color: white;
+            }
+
+            .btn {
+                font-size: 1rem;
+                color: white;
             }
         }
 
 
+        // Top padding is breathing room between the last field and the
+        // button; no bottom padding, so the button's own edge (not an extra
+        // stacked gap) is what the .white-box's 2rem padding measures to.
         .formButtonRow {
             padding-top: 2rem;
-            padding-bottom: 2rem;
         }
 
         >div,
@@ -476,15 +518,17 @@
     }
 
     .contact-box {
-        max-width: 560px;
-        margin: 0 auto;
         text-align: left;
 
         p {
-            font-size: 15px;
-            color: black;
+            font-size: 1rem;
+            color: white;
             margin: 0 0 20px;
             text-align: center;
+        }
+
+        .form-label {
+            color: white;
         }
     }
 
@@ -515,10 +559,15 @@
             padding-right: 20px;
         }
 
+        .intro-hero>.intro {
+            height: auto;
+        }
+
+
         // Hero background image is dropped on small screens; restore the
         // intro's normal (dark-on-light) text colors that the image's
         // dark overlay was compensating for.
-        .intro-hero,
+        // .intro-hero,
         #contact {
             background: none;
             height: 100%;
@@ -538,9 +587,25 @@
             }
         }
 
-        .about-layout>.gatsby-image-wrapper {
-            width: 100%;
-            height: 260px;
+        .form-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            color: $primary-green;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .about-layout {
+            .about-image-desktop {
+                display: none;
+            }
+
+            .about-image-mobile {
+                display: block;
+                width: 100%;
+                height: 260px;
+            }
         }
 
         .artwork-showcase {
@@ -571,13 +636,37 @@
             padding: 0 32px;
 
             .carousel-slide {
-                height: 300px;
+                height: auto;
+                aspect-ratio: var(--active-aspect-ratio, 1);
+
+                img {
+                    padding-top: 0;
+                }
             }
 
             .carousel-control-prev,
             .carousel-control-next {
                 width: 32px;
             }
+        }
+
+        // Collapse/expand accordion for exhibitions & live painting is
+        // mobile-only; above this breakpoint entries stay always-expanded
+        // (see the base .year-label/.year-entries rules).
+        .year-label {
+            cursor: pointer;
+
+            svg {
+                display: block;
+            }
+        }
+
+        .year-entries {
+            display: none;
+        }
+
+        .year-group.is-open .year-entries {
+            display: block;
         }
     }
 }

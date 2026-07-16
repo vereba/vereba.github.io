@@ -20,21 +20,46 @@ import ContactForm from "../components/contactForm"
 
 
 function ExhibitionColumn({ title, groups }: { title: string; groups: any[] }) {
+  const [expanded, setExpanded] = useState<Set<string>>(new Set())
+
+  const toggle = (key: string) => {
+    setExpanded((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  }
+
   return (
     <div className="exhibitions-col">
       <h3 className="subhead">{title}</h3>
-      {groups.map((group) => (
-        <div className="year-group" key={group.year}>
-          <p className="year-label">{group.year}</p>
-          {group.entries.map((entry: any) => (
-            <div className="exhibit-entry" key={entry.name}>
-              <p className="name">{entry.name}</p>
-              <p className="place">{entry.place}</p>
-              <p className="date">{entry.date}</p>
+      {groups.map((group) => {
+        const key = `${title}-${group.year}`
+        const isOpen = expanded.has(key)
+        return (
+          <div className={`year-group${isOpen ? " is-open" : ""}`} key={group.year}>
+            <button
+              type="button"
+              className="year-label"
+              onClick={() => toggle(key)}
+              aria-expanded={isOpen}
+            >
+              {group.year}
+              {isOpen ? <BsChevronUp /> : <BsChevronDown />}
+            </button>
+            <div className="year-entries">
+              {group.entries.map((entry: any) => (
+                <div className="exhibit-entry" key={entry.name}>
+                  <p className="name">{entry.name}</p>
+                  <p className="place">{entry.place}</p>
+                  <p className="date">{entry.date}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      ))}
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -93,7 +118,16 @@ export default function Home({ data }: { data: any }) {
       <section id="about">
         <div className="section-eyebrow">About</div>
         <div className="about-layout">
-          <StaticImage src="../assets/images/exhibition_me.jpg" alt="Verena Barth" />
+          <StaticImage
+            src="../assets/images/about_me_desktop.jpg"
+            alt="Verena Barth"
+            className="about-image-desktop"
+          />
+          <StaticImage
+            src="../assets/images/about_me_mobile.jpg"
+            alt="Verena Barth"
+            className="about-image-mobile"
+          />
           <div className="about-text">
             <h3>Verena Barth</h3>
             <p>
@@ -169,7 +203,15 @@ export default function Home({ data }: { data: any }) {
             </button>
           </div>
 
-          <div className="artwork-carousel-wrap" style={{ width: carouselWrapWidth }}>
+          <div
+            className="artwork-carousel-wrap"
+            style={
+              {
+                width: carouselWrapWidth,
+                "--active-aspect-ratio": activeAspectRatio,
+              } as React.CSSProperties
+            }
+          >
             <Carousel
               className="artwork-carousel"
               activeIndex={activeIndex}

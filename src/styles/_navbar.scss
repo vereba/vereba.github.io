@@ -129,16 +129,36 @@ $navbar-light-active-color: $primary-green;
 
 @media (max-width: 992px) {
 
-  // if collapsed
+  // Containing block for #basic-navbar-nav below, so the dropdown docks to
+  // this container's right edge instead of the viewport.
+  #navbar-container {
+    position: relative;
+    border-bottom: 2px solid $primary-green;
+  }
+
+  // Collapsed dropdown: a compact panel docked to the right edge, sized to
+  // its own content rather than stretched across the viewport.
   #basic-navbar-nav {
+    position: absolute;
+    top: 105%;
+    right: 0;
+    left: auto;
+    width: auto;
+    min-width: 220px;
+    max-width: calc(100vw - 24px);
     margin-top: -3px;
     z-index: 100;
     background: white;
-    width: calc(100vw + 2rem) !important;
-    margin-left: -15px;
-    // margin-top: 1rem;
     border-bottom: 2px solid $primary-green;
-    border-top: 2px solid $color-primary;
+    // border-top: 2px solid $color-primary;
+    border-left: 1px solid $border-light;
+    border-right: 1px solid $border-light;
+
+    .navbar-nav {
+      align-items: flex-end;
+      width: auto;
+      padding: 0.5rem 1.5rem;
+    }
 
     a {
       height: 3rem;
@@ -153,25 +173,14 @@ $navbar-light-active-color: $primary-green;
   }
 
   .header {
-    width: calc(100vw + 2rem) !important;
-    margin: 0 auto;
-    padding: 0;
-    //margin-left: -1rem;
-
     #site-navbar {
       #navbar-container {
-        width: calc(100vw + 2rem) !important;
         margin-top: 0;
         padding-top: 3px;
 
         button {
           border: none;
           margin-right: 2rem;
-        }
-
-        .navbar-collapse {
-          padding-left: 2rem;
-          padding-right: 2rem;
         }
 
         #brand {
@@ -187,6 +196,40 @@ $navbar-light-active-color: $primary-green;
     }
   }
 
+}
+
+// Collapse the logo/hamburger row itself down on small phones, so pages
+// with a header right below it (e.g. the artwork category tabs) don't have
+// extra dead space between the sticky bar and their content.
+@media (max-width: 640px) {
+  .header {
+    height: 3rem;
+
+    .navbar {
+      border-bottom: none;
+    }
+
+    #site-navbar {
+      line-height: 4rem;
+
+      // The wrapper div itself reserves vertical space via an internal
+      // aspect-ratio placeholder independent of the real <img>, so it has
+      // to be constrained (with overflow:hidden) alongside the image
+      // itself, or the placeholder keeps the row at its original height.
+      #navbar-container #brand .gatsby-image-wrapper {
+        height: 56px;
+        overflow: hidden;
+
+        [data-main-image] {
+          height: 56px;
+        }
+      }
+    }
+  }
+
+  .content {
+    margin: 4rem 0 0 0 !important;
+  }
 }
 
 // Navbar nav
