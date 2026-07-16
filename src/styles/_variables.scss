@@ -6,16 +6,33 @@ $background-gray: #f1f1f1;
 $background-gray-dark: #d8d8d8;
 
 $color-primary: $primary-green; // #20232a; /* TODO remove */
-$color-secondary: #818844; // #20232a; /* TODO remove */
+$color-secondary: $primary-green; // #20232a; /* TODO remove */
 
 $text-gray: #4a4a4a;
+$danger: #962B09;
 
+// Minimal/light palette shared by the newer artwork detail, gallery, and
+// one-pager templates — centralized here so it's defined once instead of
+// being re-declared (sometimes as a plain local $var, sometimes as a raw
+// hex literal) in every component stylesheet that uses it.
+$white: #ffffff;
+$text-primary: #1a1a1a;
+$text-secondary: #6b6b66;
+$text-muted: #9a9a94;
+$border-light: #e5e4dc;
+$brand-dark: #4d4e2c;
+$sold-color: #a3402c;
+$success-bg: #eaf3de;
+$success-text: #3b6d11;
+$surface-muted: #f6f5f0;
+$hover-bg: #faf9f5;
+$carousel-dot-gray: #777777;
 
 // change the theme
 $theme-colors: (
   "primary": $color-primary,
   "secondary": $color-secondary,
-  "danger": #962B09,
+  "danger": $danger,
 );
 
 $component-active-bg: $primary-green !default;
