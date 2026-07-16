@@ -150,7 +150,7 @@ export default function ArtworkDetailPage({ data }) {
                     <span aria-hidden="true">🛡</span> Certificate of authenticity included
                   </div>
                   <div className="note">
-                    <span aria-hidden="true">📦</span> Insured shipping, ships in 3–5 days
+                    <span aria-hidden="true">📦</span> Insured shipping, ships in 10-14 days
                   </div>
                 </div>
               </Col>
