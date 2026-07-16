@@ -1,12 +1,16 @@
 const path = require("path")
-const glob = require('glob');
-const fs = require('fs');
+const glob = require("glob")
+const fs = require("fs")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-const { collections, artworksPerRow, artworkRowsPerPage, newsPerPage } = require("./src/constants")
-
-console.log("Allowing collections:")
-console.log(collections)
+const {
+  collections,
+  artworksPerRow,
+  artworkRowsPerPage,
+  newsPerPage,
+  activatePagination,
+  ARTWORK_PATH_REGEX,
+} = require("./src/constants")
 
 // create slugs for MD files
 
@@ -14,15 +18,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
-    let categories = node.frontmatter.category
-    if (!Array.isArray(categories)) {
-      categories = [categories]
-    }
-    for (let c in node.frontmatter.category) {
-      if (!c in collections) {
-        throw new Error(`ValueError: The given category ${node.frontmatter.category} does not exist in the dictionary.`);
-      }
-    }
     createNodeField({
       node,
       name: `slug`,
@@ -31,21 +26,20 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
-
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
   // create pages for md files
   const result = await graphql(`
     {
-        allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+      allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
         edges {
           node {
             fields {
-                slug
+              slug
             }
             frontmatter {
+              title
               category
             }
           }
@@ -61,40 +55,87 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const newsDetailTemplate = path.resolve(`src/templates/artwork/newsDetailPage.js`)
   const artworkDetailTemplate = path.resolve(`src/templates/artwork/artworkDetailPage.js`)
 
+  // Group artwork slugs by their frontmatter category (not the folder the MD
+  // file happens to live in — those can diverge), in the same DESC-by-date
+  // order used to build the collection grids, so prev/next navigation on the
+  // detail page matches gallery browsing order. A piece can list more than
+  // one category (e.g. a sketch that's also sold as a postcard), so it's
+  // grouped under every category it declares, not just the first.
+  const categoryGroups = {}
+  let allCount = 0
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const hasTitle = node.frontmatter.title && node.frontmatter.title.length > 0
+    if (!hasTitle) {
+      return
+    }
+    const nodeCategories = (
+      Array.isArray(node.frontmatter.category)
+        ? node.frontmatter.category
+        : [node.frontmatter.category]
+    ).filter((category) => Object.keys(collections).includes(category))
+    if (nodeCategories.length === 0) {
+      return
+    }
+    allCount += 1
+    nodeCategories.forEach((category) => {
+      if (!categoryGroups[category]) {
+        categoryGroups[category] = []
+      }
+      categoryGroups[category].push(node.fields.slug)
+    })
+  })
+
+  // Counts shown in the category tabs on the gallery pages, kept in sync
+  // with the same title-filtered set actually rendered in each grid. "all"
+  // is the unique file count, not a sum, so multi-category pieces aren't
+  // double-counted.
+  const categoryCounts = { all: allCount }
+  Object.keys(collections).forEach((key) => {
+    if (key === "all") return
+    categoryCounts[key] = (categoryGroups[key] || []).length
+  })
+
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     const slug = node.fields.slug
-    console.log("Slug: ", slug)
-    var path = `artwork${slug}`
-    var template = artworkDetailTemplate
+    let pagePath = `artwork${slug}`
+    let template = artworkDetailTemplate
     if (!Object.keys(collections).includes(node.frontmatter.category[0])) {
       // page is news
-      path = `news${slug}`
+      pagePath = `news${slug}`
       template = newsDetailTemplate
     }
-    console.log("Creating page: ", path)
     // TODO uncomment: currently not creating news
-    if (template != newsDetailTemplate) {
+    if (template !== newsDetailTemplate) {
+      const category = node.frontmatter.category?.[0]
+      const siblings = categoryGroups[category] || []
+      const index = siblings.indexOf(slug)
+      const prevSlug = index > 0 ? siblings[index - 1] : null
+      const nextSlug = index >= 0 && index < siblings.length - 1 ? siblings[index + 1] : null
       createPage({
-        path: path,
+        path: pagePath,
         component: template,
         context: {
           slug: slug,
-          fullPath: path
+          fullPath: pagePath,
+          prevSlug: prevSlug,
+          nextSlug: nextSlug,
         },
       })
     }
-
   })
 
   function createCollection(key, numArtworks) {
-    console.log("creating collection: ", key)
-    console.log("Number of artworks: ", numArtworks)
-    const artworksPerPage = artworkRowsPerPage * artworksPerRow
-    const numPages = Math.ceil(numArtworks / artworksPerPage) > 0 ? Math.ceil(numArtworks / artworksPerPage) : 1;
-    console.log("Artworks per page: ", artworksPerPage, ", number of pages for collection '", key, "': ", numPages)
+    const paginate = activatePagination
+    const artworksPerPage = paginate
+      ? artworkRowsPerPage * artworksPerRow
+      : Math.max(numArtworks, 1)
+    const numPages = paginate
+      ? Math.ceil(numArtworks / artworksPerPage) > 0
+        ? Math.ceil(numArtworks / artworksPerPage)
+        : 1
+      : 1
+    reporter.info(`Creating collection '${key}': ${numArtworks} artwork(s), ${numPages} page(s)`)
 
-    // TODO which category
-    // const category = key === "all"?
     Array.from({ length: numPages }).forEach((_, i) => {
       const pagePath = i === 0 ? `artwork/${key}` : `artwork/${key}/${i + 1}`
       createPage({
@@ -106,14 +147,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           category: key,
           numPages,
           currentPage: i + 1,
-          filter: key === "all" ?
-            { fileAbsolutePath: { regex: "/(artwork)/" } } :
-            { frontmatter: { category: { in: [key] } } }
+          categoryCounts,
+          filter:
+            key === "all"
+              ? { fileAbsolutePath: { regex: ARTWORK_PATH_REGEX } }
+              : { frontmatter: { category: { in: [key] } } },
         },
       })
-      console.log(`Page with path '${pagePath}' created`)
       if (key === "all") {
-        console.log("Creating /artwork page for default collection: ", key)
         createPage({
           path: `artwork/`,
           component: path.resolve("./src/templates/artwork/collection.js"),
@@ -123,52 +164,47 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             skip: i * artworksPerPage,
             numPages,
             currentPage: i + 1,
-            filter: { fileAbsolutePath: { regex: "/(artwork)/" } }
+            categoryCounts,
+            filter: { fileAbsolutePath: { regex: ARTWORK_PATH_REGEX } },
           },
         })
       }
     })
   }
 
-
   // create default collection "all"
   const allCollectionResult = await graphql(`
   {
     allMarkdownRemark(
-      filter: {fileAbsolutePath: {regex: "/(artwork)/"}})
+      filter: {fileAbsolutePath: {regex: "${ARTWORK_PATH_REGEX}"}})
       {
       totalCount
     }
   }
   `)
   const numArtworksTotal = allCollectionResult.data.allMarkdownRemark.totalCount
-  console.log("Check if all MD artwork files are considered.")
   glob(`./src/assets/artwork/mdfiles/**/*`, (err, files) => {
     if (err) {
-      console.error(err);
-      return;
+      reporter.error("Error while globbing artwork markdown files", err)
+      return
     }
 
     const fileCount = files.reduce((count, file) => {
       if (fs.statSync(file).isFile()) {
-        return count + 1;
+        return count + 1
       }
-      return count;
-    }, 0);
-    if (fileCount === numArtworksTotal) {
-      console.log(`Number of markdown files is correct: ${numArtworksTotal}`);
-    } else {
-      console.error(`Expected ${numArtworksTotal} files, but found ${fileCount} files.`);
+      return count
+    }, 0)
+    if (fileCount !== numArtworksTotal) {
+      reporter.warn(`Expected ${numArtworksTotal} artwork markdown files, but found ${fileCount}.`)
     }
-  });
-
+  })
 
   createCollection("all", numArtworksTotal)
 
   // create collections
   for (const key in collections) {
     if (key !== "all") {
-      console.log("Key: ", key)
       // get collection specific elements to count
       const collectionResult = await graphql(`
       {
@@ -182,6 +218,5 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       const numArtworks = collectionResult.data.allMarkdownRemark.totalCount
       createCollection(key, numArtworks)
     }
-
   }
 }
