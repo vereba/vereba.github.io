@@ -67,11 +67,12 @@ const ContactForm = ({ artworkTitle }: ContactFormProps) => {
     return Object.keys(errors).length === 0;
   };
 
-  const sendConfirmationMail = (reply_to: string, to_name: string, artwork: string, message: string) => {
+  const sendConfirmationMail = (reply_to: string, to_name: string, artwork: string, subject: string, message: string) => {
     const templateParams = {
       reply_to: reply_to,
       to_name: to_name,
       artwork: artwork,
+      subject: subject,
       message: message,
     }
     emailjs
@@ -110,7 +111,7 @@ const ContactForm = ({ artworkTitle }: ContactFormProps) => {
       .then(() => {
         setLoading(false);
         setShowMessage("Thank you for your message, I will get back to you as soon as possible!");
-        sendConfirmationMail(values.email, values.name, values.artwork, values.message)
+        sendConfirmationMail(values.email, values.name, values.artwork, values.subject, values.message)
         setValues({
           subject: artworkTitle ? `Inquiry about "${artworkTitle}"` : "",
           name: "",
