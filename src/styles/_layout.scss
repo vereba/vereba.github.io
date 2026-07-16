@@ -10,11 +10,6 @@
     margin-bottom: 4rem;
   }
 
-  .aboutme {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
   p {
     line-height: 1.7rem;
   }
@@ -23,13 +18,6 @@
     text-align: center;
     padding: 3rem;
   }
-
-  .cite-big {
-    margin-bottom: 2rem;
-    font-size: 1.7rem;
-    color: $primary-green;
-  }
-
 
   .breadcrumbs {
     border-bottom: 2px solid $background-gray;
@@ -44,6 +32,10 @@
     >span {
       margin: 0.4rem
     }
+  }
+
+  .btn {
+    font-size: 0.8rem;
   }
 
   .pagination {
@@ -150,7 +142,7 @@
       color: $primary-green;
       font-family: "LibreBaskerville" !important;
       font-weight: bold;
-      font-style: italic;
+      // font-style: italic;
       margin-bottom: 2rem;
       margin-top: 2rem;
     }
@@ -200,23 +192,6 @@
   }
 }
 
-
-.images {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-
-  img {
-    width: 80%;
-    /* Same padding as col-2 on other side */
-    margin-left: 10%;
-  }
-
-  .img-desc {
-    color: $text-gray;
-    text-align: center;
-    font-size: 0.8rem;
-  }
-}
 
 .footer-container {
   padding: 0 !important;

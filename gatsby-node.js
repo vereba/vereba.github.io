@@ -52,7 +52,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
-  const newsDetailTemplate = path.resolve(`src/templates/artwork/newsDetailPage.js`)
   const artworkDetailTemplate = path.resolve(`src/templates/artwork/artworkDetailPage.js`)
 
   // Group artwork slugs by their frontmatter category (not the folder the MD
@@ -96,32 +95,28 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   })
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const category = node.frontmatter.category?.[0]
+    if (!Object.keys(collections).includes(category)) {
+      // No template renders non-artwork content (legacy "news" pages are
+      // gone), so nodes outside the known categories are skipped.
+      return
+    }
     const slug = node.fields.slug
-    let pagePath = `artwork${slug}`
-    let template = artworkDetailTemplate
-    if (!Object.keys(collections).includes(node.frontmatter.category[0])) {
-      // page is news
-      pagePath = `news${slug}`
-      template = newsDetailTemplate
-    }
-    // TODO uncomment: currently not creating news
-    if (template !== newsDetailTemplate) {
-      const category = node.frontmatter.category?.[0]
-      const siblings = categoryGroups[category] || []
-      const index = siblings.indexOf(slug)
-      const prevSlug = index > 0 ? siblings[index - 1] : null
-      const nextSlug = index >= 0 && index < siblings.length - 1 ? siblings[index + 1] : null
-      createPage({
-        path: pagePath,
-        component: template,
-        context: {
-          slug: slug,
-          fullPath: pagePath,
-          prevSlug: prevSlug,
-          nextSlug: nextSlug,
-        },
-      })
-    }
+    const pagePath = `artwork${slug}`
+    const siblings = categoryGroups[category] || []
+    const index = siblings.indexOf(slug)
+    const prevSlug = index > 0 ? siblings[index - 1] : null
+    const nextSlug = index >= 0 && index < siblings.length - 1 ? siblings[index + 1] : null
+    createPage({
+      path: pagePath,
+      component: artworkDetailTemplate,
+      context: {
+        slug: slug,
+        fullPath: pagePath,
+        prevSlug: prevSlug,
+        nextSlug: nextSlug,
+      },
+    })
   })
 
   function createCollection(key, numArtworks) {
