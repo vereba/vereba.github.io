@@ -4,40 +4,45 @@ import Layout from "../components/layout"
 
 import PageHeading from "../components/pageHeading"
 
-import aboutImage from "../assets/images/pageHeadings/on_wood_cut.jpg";
-import { StaticImage } from "gatsby-plugin-image";
+import aboutImage from "../assets/images/myrtle_av.jpg"
+import { StaticImage } from "gatsby-plugin-image"
+import { CONTACT_EMAIL } from "../constants"
 
 const AboutPage = ({ props }) => {
-
   return (
     <Layout pageInfo={{ pageName: "About me" }}>
-      <PageHeading
-        pageTitle={`Imprint`}
-        pageImage={aboutImage}
-      />
-      <Container fluid >
+      <PageHeading pageTitle={`Imprint`} pageImage={aboutImage} />
+      <Container fluid>
         <Container>
           <Row>
-          <Col className="imprint order-sm-first order-md-last marginBottom" md="7">
-
+            <Col className="imprint order-sm-first order-md-last marginBottom" md="7">
               <h2>Contact</h2>
               <p>
-            <b>Verena Barth</b><br/>
-              vb-art<br />
-              Lessingstraße 27<br />
-              50825 Köln</p>
-              <p>Phone on request<br />
-              E-Mail: contact@vb-art.com</p>
+                <b>Verena Barth</b>
+                <br />
+                vb-art
+                <br />
+                Lessingstraße 27
+                <br />
+                50825 Köln
+              </p>
+              <p>
+                Phone on request
+                <br />
+                E-Mail: {CONTACT_EMAIL}
+              </p>
 
-
-            <h2>Responsible for the content</h2>
-            <p>Verena Barth<br />
-              Lessingstraße 27<br />
-              50825 Köln</p>
-
+              <h2>Responsible for the content</h2>
+              <p>
+                Verena Barth
+                <br />
+                Lessingstraße 27
+                <br />
+                50825 Köln
+              </p>
             </Col>
             <Col md="3" className="marginBottom d-xs-none" id="imprintImage">
-            <StaticImage src="../assets/images/minimal_favela_1_a3.jpg" alt="Verena Barth" />
+              <StaticImage src="../assets/images/minimal_favela_1_a3.jpg" alt="Verena Barth" />
             </Col>
           </Row>
         </Container>
