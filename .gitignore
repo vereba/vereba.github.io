@@ -12,3 +12,9 @@ src/assets/artwork/images_watermarked/*
 src/assets/artwork/images_low_res/*
 src/assets/artwork/mockups/*
 __pycache__
+
+# local image-prep scratch (not part of the deployed site)
+helper/
+src/other/
+to_convert/
+converted/
