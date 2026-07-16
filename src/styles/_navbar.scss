@@ -23,6 +23,14 @@ $navbar-light-active-color: $primary-green;
 
 
 .header {
+  // Sticky lives on this wrapper rather than #site-navbar: the nav's own box
+  // is exactly as tall as its content, so it has no slack within a
+  // same-height parent to "stick" with — .header sits in the taller,
+  // scrollable page flow, so it has room to pin at the top.
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: $white;
   height: 6rem;
   // margin-left: -1rem !important;
   padding: 0 !important;
@@ -61,7 +69,10 @@ $navbar-light-active-color: $primary-green;
   width: 100vw;
   line-height: 3.5rem;
   height: 4rem;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: $white;
   display: flex;
   flex-wrap: wrap; // allow us to do the line break for collapsing content
   align-items: center;
@@ -78,20 +89,19 @@ $navbar-light-active-color: $primary-green;
     justify-content: space-between;
   }
 
-  [aria-current] .nav-link, 
-  .selected.nav-link
-     {
-      font-weight: 600 !important;
-      color: $primary-green !important;
-      text-shadow: 0 0 $text-gray;
-    }
+  [aria-current] .nav-link,
+  .selected.nav-link {
+    font-weight: 600 !important;
+    color: $primary-green !important;
+    text-shadow: none;
+  }
 
   .navbar-nav .nav-link {
     text-align: center;
     text-shadow: none;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 2px;
+    text-transform: none;
+    font-size: 13px;
+    letter-spacing: 0.04em;
   }
 
   @media (min-width: 992px) {
@@ -102,11 +112,12 @@ $navbar-light-active-color: $primary-green;
   }
 
   a:hover {
-    color: $primary-red;
+    color: $primary-green;
   }
 }
 
 @media (max-width:481px) {
+
   // breadcrumbs
   .content .breadcrumbs {
     >span {
@@ -117,6 +128,7 @@ $navbar-light-active-color: $primary-green;
 
 
 @media (max-width: 992px) {
+
   // if collapsed
   #basic-navbar-nav {
     margin-top: -3px;
@@ -186,7 +198,7 @@ $navbar-light-active-color: $primary-green;
   list-style: none;
   align-items: center;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
@@ -221,6 +233,7 @@ $navbar-light-active-color: $primary-green;
   // For always expanded or extra full navbars, ensure content aligns itself
   // properly vertically. Can be easily overridden with flex utilities.
   align-items: center;
+
 }
 
 // Button for toggling the navbar when in its collapsed state
@@ -263,6 +276,7 @@ $navbar-light-active-color: $primary-green;
     .nav-link {
       color: $navbar-light-color;
       line-height: 110%;
+      text-transform: uppercase;
 
       &.disabled {
         color: $navbar-light-disabled-color;
@@ -303,7 +317,9 @@ html.slideout-open span.navbar-toggler-icon {
 }
 
 .navbar {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  // Thin hairline border instead of a drop shadow, matching the home header.
+  box-shadow: none;
+  border-bottom: 1px solid $border-light;
   max-width: 1920px;
   margin: 0 auto;
   transition: height 0.3s ease-in-out 0s;
@@ -323,13 +339,13 @@ html.slideout-open span.navbar-toggler-icon {
 
 .navbar-expand-lg .navbar-nav .nav-link {
   padding: 0;
-  font-size: 15.5px;
+  font-size: 13px;
   font-weight: 400;
   text-transform: uppercase;
-  color: $text-gray;
-  letter-spacing: 1px;
-  margin-left: 15px;
-  margin-right: 15px;
+  color: $text-primary;
+  letter-spacing: 0.04em;
+  margin-left: 28px;
+  margin-right: 0;
   transition: all 0.2s ease-in-out 0s;
 }
 

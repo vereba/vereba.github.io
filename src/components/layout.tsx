@@ -11,43 +11,43 @@ import { BsInstagram } from "react-icons/bs"
 import { Container, Row, Col } from "react-bootstrap"
 import PageNavbar from "./navBar"
 import { Link } from "gatsby"
+import { INSTAGRAM_URL } from "../constants"
 
 const Layout = ({ pageInfo, children }) => (
-      <>
-        <SEO pageTitle={pageInfo.pageName}/>
-        <Container fluid className="header">
-          <PageNavbar pageName={pageInfo.pageName}/>
-        </Container>
+  <>
+    <SEO pageTitle={pageInfo.pageName} />
+    <Container fluid className="header">
+      <PageNavbar pageName={pageInfo.pageName} />
+    </Container>
 
-        <Container fluid className="content">
-          <Container fluid>
-            <main>{children}</main>
-          </Container>
-        </Container>
-        {
-          <Container fluid>
-            <Row>
-              <Col className="footer-col">
-                <footer>
-                  <Container>
-                    <span>
-                      © {new Date().getFullYear()}, {" "}
-                      Verena Barth
-                    </span>
-                    <span style={{display: "flex"}}>
-                    <Link to="/imprint" className="link-no-style">
-                        Imprint
-                    </Link>
-                    <span style={{width: "2rem",display: "block"}}></span>
-                    <a href="https://www.instagram.com/vb.art.gallery/"><BsInstagram /></a>
-                    </span>
-                  </Container>
-                </footer>
-              </Col>
-            </Row>
-          </Container>
-        }
-      </>
+    <Container fluid className="content">
+      <Container fluid>
+        <main>{children}</main>
+      </Container>
+    </Container>
+    {
+      <Container fluid>
+        <Row>
+          <Col className="footer-col">
+            <footer>
+              <Container>
+                <span>© {new Date().getFullYear()}, Verena Barth</span>
+                <span style={{ display: "flex" }}>
+                  <Link to="/imprint" className="link-no-style">
+                    Imprint
+                  </Link>
+                  <span style={{ width: "2rem", display: "block" }}></span>
+                  <a href={INSTAGRAM_URL}>
+                    <BsInstagram />
+                  </a>
+                </span>
+              </Container>
+            </footer>
+          </Col>
+        </Row>
+      </Container>
+    }
+  </>
 )
 
 export default Layout
