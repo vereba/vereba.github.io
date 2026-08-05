@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { BsZoomIn } from "react-icons/bs"
 
 // Technique adapted from https://stackoverflow.com/a/76800039
 // (Roko C. Buljan, CC BY-SA 4.0): a `position: fixed` lens moved with the
 // `translate` CSS property, with `background-position` sampling the
 // full-resolution image at 1:1 (no explicit background-size / zoom factor).
-const RADIUS = 90
+const RADIUS = 130
 
 type ImageMagnifierProps = {
   image: IGatsbyImageData
@@ -64,6 +65,7 @@ export default function ImageMagnifier({ image, zoomSrc, alt, imgStyle }: ImageM
       onPointerDown={handlePointerMove}
     >
       <GatsbyImage image={image} alt={alt} imgStyle={imgStyle} />
+      {zoomSrc && <BsZoomIn className="magnifier-zoom-icon" aria-hidden="true" />}
       {zoomSrc && <div className="magnifier-v2-lens" style={magnifierStyle} />}
     </div>
   )

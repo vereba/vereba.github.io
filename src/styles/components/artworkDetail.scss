@@ -1,12 +1,22 @@
 @import "./../variables";
 
 .artwork-container {
-    margin-top: 1rem;
+    margin-top: 2rem;
 
+    // Grid (not flex) so the three blocks below can be freely reordered per
+    // breakpoint via grid-template-areas: stacked layouts (small screens, or
+    // a wide image that forces a wrap) show header -> media -> details in
+    // that order; the >=992px rule further down re-arranges them into the
+    // usual image-left / info-right layout.
     .artwork-detail-layout {
-        display: flex;
-        flex-wrap: wrap;
-        row-gap: 2rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "media"
+            "details";
+        row-gap: 1.5rem;
+        justify-items: center;
     }
 
     .sliderSubtitle {
@@ -25,26 +35,7 @@
         box-shadow: none;
     }
 
-    .magnifier-lens {
-        display: none;
-        position: absolute;
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        border: 2px solid $white;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-        background-repeat: no-repeat;
-        background-color: $background-gray;
-        pointer-events: none;
-        z-index: 5;
-
-        @media (hover: none),
-        (pointer: coarse) {
-            display: none !important;
-        }
-    }
-
-    // Radius (90px) must match RADIUS in imageMagnifier.tsx.
+    // Radius (130px) must match RADIUS in imageMagnifier.tsx.
     .image-magnifier {
         position: relative;
 
@@ -57,9 +48,9 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 180px;
-        height: 180px;
-        margin: -90px;
+        width: 260px;
+        height: 260px;
+        margin: -130px;
         border-radius: 50%;
         background-repeat: no-repeat;
         border: 2px solid $white;
@@ -75,7 +66,33 @@
         }
     }
 
-    .image-magnifier:hover .magnifier-lens {
+    .image-magnifier:hover .magnifier-v2-lens {
+        opacity: 1;
+    }
+
+    .magnifier-zoom-icon {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        box-sizing: content-box;
+        border-radius: 50%;
+        background: white;
+        color: $text-primary;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        pointer-events: none;
+        z-index: 4;
+
+        @media (hover: none),
+        (pointer: coarse) {
+            display: none;
+        }
+    }
+
+    .image-magnifier:hover .magnifier-zoom-icon {
         opacity: 1;
     }
 
@@ -115,7 +132,20 @@
         max-width: 480px;
     }
 
-    .artwork-info {
+    .artwork-media {
+        grid-area: media;
+        // Shrinks to the actual rendered image width (portrait images no
+        // longer leave a wide empty column that pushes the info blocks away)
+        // instead of always claiming a fixed 65% regardless of the image's
+        // own aspect ratio.
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .artwork-header {
+        grid-area: header;
+        width: 100%;
+        max-width: 400px;
         text-align: left;
 
         .category {
@@ -168,10 +198,16 @@
             background-color: $background-gray-dark;
             color: $text-gray;
         }
+    }
+
+    .artwork-details {
+        grid-area: details;
+        width: 100%;
+        max-width: 400px;
+        text-align: left;
 
         .price {
-            font-size: 1.6rem;
-            font-weight: 500;
+            font-size: 0.9rem;
             color: $text-primary;
             margin-bottom: 20px;
         }
@@ -260,18 +296,47 @@
 }
 
 @media (max-width: 991px) {
-    .artwork-container .artwork-info {
-        margin-top: 1.5rem;
-        text-align: center;
-
-        .actions {
-            justify-content: center;
+    .artwork-container {
+        .artwork-header,
+        .artwork-details {
+            text-align: center;
         }
 
-        .meta-row {
-            max-width: 320px;
-            margin: 0 auto;
+        .artwork-details {
+            .actions {
+                justify-content: center;
+            }
+
+            .meta-row {
+                max-width: 320px;
+                margin: 0 auto;
+            }
         }
+    }
+}
+
+// Above this breakpoint the picture sits to the left with the header block
+// on top-right and the details block directly beneath it — same visual
+// column as before, just expressed as two grid areas so the <992px rule
+// above can freely re-stack them into header -> media -> details instead.
+@media (min-width: 992px) {
+    .artwork-container .artwork-detail-layout {
+        grid-template-columns: fit-content(100%) 400px;
+        // auto (not auto auto): .artwork-media spans both rows, and without
+        // an explicit track for the leftover height it needs, browsers
+        // distribute that extra height across both auto rows - inflating
+        // the header row well past its own content. The 1fr row is what
+        // absorbs the rest of media's height instead, so header stays at
+        // its own minimum height and details sits right under it.
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "media header"
+            "media details";
+        column-gap: 3rem;
+        row-gap: 0;
+        justify-content: center;
+        justify-items: stretch;
+        align-content: start;
     }
 }
 

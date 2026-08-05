@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import { Link } from "gatsby"
-import { getImage } from "gatsby-plugin-image"
+import { getImage, getSrc } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 import ImageMagnifier from "../../components/imageMagnifier"
 import ContactForm from "../../components/contactForm"
-import { Button, Col, Container, Row } from "react-bootstrap"
+import { Button, Container } from "react-bootstrap"
 import Carousel from "react-bootstrap/Carousel"
 import { sizes } from "../../constants"
 import { collections } from "../../constants"
@@ -21,14 +21,14 @@ export default function ArtworkDetailPage({ data }) {
   const isSold = Boolean(artwork.frontmatter.sold)
   const [showInquireForm, setShowInquireForm] = useState(false)
   let image = getImage(artwork.frontmatter.image?.childImageSharp?.gatsbyImageData)
-  const imageZoomSrc = artwork.frontmatter.image?.childImageSharp?.original?.src
+  const imageZoomSrc = getSrc(artwork.frontmatter.image?.childImageSharp?.zoomImageData)
   let imageList = null
   if (artwork.frontmatter.otherImages) {
     imageList = [{ image, zoomSrc: imageZoomSrc }]
     artwork.frontmatter.otherImages.forEach((elem, index) => {
       imageList.push({
         image: elem.childImageSharp?.gatsbyImageData,
-        zoomSrc: elem.childImageSharp?.original?.src,
+        zoomSrc: getSrc(elem.childImageSharp?.zoomImageData),
       })
     })
   }
@@ -41,10 +41,6 @@ export default function ArtworkDetailPage({ data }) {
     return size
   }
 
-  function handleAddToCart() {
-    // TODO: wire up cart/checkout provider
-    console.log("TODO: add to cart ->", title)
-  }
 
   return (
     <Layout pageInfo={{ pageName: `artwork` }}>
@@ -66,8 +62,17 @@ export default function ArtworkDetailPage({ data }) {
         </Container>
         <Container className="tabs">
           <div className="artwork-container">
-            <Row className="artwork-detail-layout">
-              <Col className="col-12 col-lg-7 artwork-media">
+            <div className="artwork-detail-layout">
+              <div className="artwork-header">
+                <span className="category">{collections[category]}</span>
+                <h1>{title}</h1>
+
+                <span className={`badge ${isSold ? "badge-sold" : "badge-available"}`}>
+                  {!isSold && <span className="dot"></span>}
+                  {isSold ? artwork.frontmatter.sold : "Available"}
+                </span>
+              </div>
+              <div className="artwork-media">
                 <div className="artwork-image-wrap">
                   {imageList ? (
                     <Carousel className="d-block" interval={10000}>
@@ -97,23 +102,12 @@ export default function ArtworkDetailPage({ data }) {
                 <div className="image-meta-row">
                   <span>© Verena Barth, {artwork.frontmatter.date}</span>
                 </div>
-              </Col>
-              <Col className="col-12 col-lg-5 artwork-info">
-                <span className="category">{collections[category]}</span>
-                <h1>{title}</h1>
-
-                <span className={`badge ${isSold ? "badge-sold" : "badge-available"}`}>
-                  {!isSold && <span className="dot"></span>}
-                  {isSold ? artwork.frontmatter.sold : "Available"}
-                </span>
-
+              </div>
+              <div className="artwork-details">
                 {!isSold && (
                   <>
                     <div className="price">Price on request</div>
                     <div className="actions">
-                      <Button variant="primary" onClick={handleAddToCart}>
-                        Add to cart
-                      </Button>
                       <Button
                         type="button"
                         onClick={() => setShowInquireForm((show) => !show)}
@@ -149,12 +143,14 @@ export default function ArtworkDetailPage({ data }) {
                   <div className="note">
                     <span aria-hidden="true">🛡</span> Certificate of authenticity included
                   </div>
-                  <div className="note">
+                  {/*
+                                    <div className="note">
                     <span aria-hidden="true">📦</span> Insured shipping, ships in 10-14 days
                   </div>
+                  */}
                 </div>
-              </Col>
-            </Row>
+              </div>
+            </div>
             <div
               className="artwork-detail-content"
               dangerouslySetInnerHTML={{ __html: artwork.html }}
@@ -200,18 +196,14 @@ export const pageQuery = graphql`
         sold
         image {
           childImageSharp {
-            gatsbyImageData(height: 700)
-            original {
-              src
-            }
+            gatsbyImageData(height: 600)
+            zoomImageData: gatsbyImageData(width: 1900, quality: 85, layout: FIXED, placeholder: NONE)
           }
         }
         otherImages {
           childImageSharp {
-            gatsbyImageData(height: 700)
-            original {
-              src
-            }
+            gatsbyImageData(height: 600)
+            zoomImageData: gatsbyImageData(width: 1900, quality: 100, layout: FIXED, placeholder: NONE)
           }
         }
       }
