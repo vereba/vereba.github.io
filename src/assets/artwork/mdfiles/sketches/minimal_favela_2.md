@@ -10,6 +10,6 @@ imagePreview: "./../../images_low_res/sketches/minimal_favela_2_a3.jpg"
 image: "./../../images_web/sketches/minimal_favela_2_a3.jpg"
 ---
 <hr>
-<p>Original sold, but prints available.</p>
+<p>Prints available.</p>
 
 

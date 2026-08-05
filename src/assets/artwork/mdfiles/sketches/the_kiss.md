@@ -7,7 +7,7 @@ material: "Pencil on Paper"
 size: "A4"
 imagePreview: "./../../images_low_res/sketches/der_kuss.png"
 image: "./../../images_web/sketches/der_kuss.png"
-sold: "Original sold"
+sold: "Original not available"
 otherImages:
 - "./../../images_web/sketches/der_kuss_mockup.png"
 ---
