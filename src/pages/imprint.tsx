@@ -41,7 +41,7 @@ const AboutPage = ({ props }) => {
                 50825 Köln
               </p>
             </Col>
-            <Col md="3" className="marginBottom d-xs-none" id="imprintImage">
+            <Col md="3" className="marginBottom d-none d-md-block" id="imprintImage">
               <StaticImage src="../assets/images/minimal_favela_1_a3.jpg" alt="Verena Barth" />
             </Col>
           </Row>
