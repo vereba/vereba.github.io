@@ -201,6 +201,7 @@
   width: 100vw !important;
   max-width: 100vw !important;
   padding: 0 !important;
+  font-size: 0.8rem;
 
   footer {
     display: flex;
@@ -214,6 +215,7 @@
 
     span {
       font-family: "OpenSans", sans-serif;
+      letter-spacing: 0.04em;
     }
 
     div {

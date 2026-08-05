@@ -16,7 +16,7 @@ html {
   height: 100%;
   margin: 0px;
   padding: 0px;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 
   body {
     background: white;
@@ -60,9 +60,11 @@ html {
 
     .imprint {
       padding-left: 3rem;
+
       h2 {
         font-size: 1.5rem;
       }
+
       #imprintImage {
         margin-top: -2rem;
       }

@@ -129,12 +129,10 @@ $navbar-light-active-color: $primary-green;
 
 @media (max-width: 992px) {
 
-  // Containing block for #basic-navbar-nav below, so the dropdown docks to
-  // this container's right edge instead of the viewport.
-  #navbar-container {
-    position: relative;
-    border-bottom: 2px solid $primary-green;
+  .home .intro-hero {
+    margin-top: 0 !important;
   }
+
 
   // Collapsed dropdown: a compact panel docked to the right edge, sized to
   // its own content rather than stretched across the viewport.
@@ -146,13 +144,15 @@ $navbar-light-active-color: $primary-green;
     width: auto;
     min-width: 220px;
     max-width: calc(100vw - 24px);
-    margin-top: -3px;
     z-index: 100;
     background: white;
     border-bottom: 2px solid $primary-green;
     // border-top: 2px solid $color-primary;
     border-left: 1px solid $border-light;
     border-right: 1px solid $border-light;
+    // margin-top: 46px;
+    margin-top: -5px;
+    border-top: 2px solid $border-light;
 
     .navbar-nav {
       align-items: flex-end;
@@ -203,7 +203,7 @@ $navbar-light-active-color: $primary-green;
 // extra dead space between the sticky bar and their content.
 @media (max-width: 640px) {
   .header {
-    height: 3rem;
+    // height: 3rem;
 
     .navbar {
       border-bottom: none;
@@ -227,9 +227,6 @@ $navbar-light-active-color: $primary-green;
     }
   }
 
-  .content {
-    margin: 4rem 0 0 0 !important;
-  }
 }
 
 // Navbar nav
