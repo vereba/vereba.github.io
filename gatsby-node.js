@@ -1,6 +1,7 @@
 const path = require("path")
 const glob = require("glob")
 const fs = require("fs")
+const matter = require("gray-matter")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const {
@@ -23,6 +24,54 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
+  }
+}
+
+// Frontmatter fields that hold a path to an image, relative to the markdown
+// file itself - the same convention gatsby-transformer-remark's own
+// automatic File-link inference relies on. A broken path here doesn't fail
+// loudly on its own: it just makes schema inference quietly fall back to a
+// plain [String] field (see the "otherImages must not have a selection"
+// GraphQL error this once produced), so this checks the filesystem directly
+// and fails the build with a clear list instead of that cryptic downstream
+// symptom.
+const ARTWORK_MD_GLOB = "./src/assets/artwork/mdfiles/**/*.md"
+const IMAGE_PATH_FIELDS = ["image", "imagePreview"]
+const IMAGE_PATH_ARRAY_FIELDS = ["otherImages"]
+
+function findBrokenArtworkImagePaths() {
+  const broken = []
+
+  glob.sync(ARTWORK_MD_GLOB).forEach((mdFile) => {
+    const { data: frontmatter } = matter(fs.readFileSync(mdFile, "utf8"))
+    const mdDir = path.dirname(mdFile)
+
+    const check = (relPath, fieldLabel) => {
+      if (!relPath) return
+      const resolved = path.resolve(mdDir, relPath)
+      if (!fs.existsSync(resolved)) {
+        broken.push(`${mdFile} -> ${fieldLabel}: "${relPath}" (not found)`)
+      }
+    }
+
+    IMAGE_PATH_FIELDS.forEach((field) => check(frontmatter[field], field))
+    IMAGE_PATH_ARRAY_FIELDS.forEach((field) => {
+      if (Array.isArray(frontmatter[field])) {
+        frontmatter[field].forEach((relPath, i) => check(relPath, `${field}[${i}]`))
+      }
+    })
+  })
+
+  return broken
+}
+
+exports.onPreBootstrap = ({ reporter }) => {
+  const broken = findBrokenArtworkImagePaths()
+  if (broken.length > 0) {
+    reporter.panicOnBuild(
+      `${broken.length} artwork image path(s) don't resolve to a real file:\n` +
+        broken.map((line) => `  - ${line}`).join("\n")
+    )
   }
 }
 
