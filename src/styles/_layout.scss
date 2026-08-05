@@ -80,9 +80,12 @@
 
 
   h2 {
-    font-family: "LibreBaskerville" !important;
+    font-family: "Libre Baskerville" !important;
+    font-weight: 500;
+    font-size: 30px;
+    margin: 0;
+    padding-bottom: 0.5rem;
     text-transform: lowercase;
-    font-weight: bold;
   }
 
   >.container-fluid {

@@ -1,9 +1,14 @@
 @import "./../variables";
 
+.heading>.container-fluid {
+  border-bottom: 1px solid $border-light;
+}
+
 .heading {
   .container-fluid {
     padding: 0;
   }
+
 
   padding-bottom: 3rem;
   display: flex;
@@ -48,25 +53,19 @@
   background-size: cover;
 }
 
+
 .title-outside,
 .title {
   margin-top: 2rem;
 
   h1 {
-    color: $text-gray;
-    font-size: 3rem;
-    font-family: "LibreBaskerville" !important;
-    text-transform: uppercase;
-    word-spacing: 2;
+    color: $text-primary;
+    font-family: "Libre Baskerville" !important;
+    font-weight: 500;
+    font-size: 2.1rem;
     text-transform: lowercase;
-  }
-
-  hr {
-    width: 50px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: block;
-    border: 2px solid $color-secondary;
+    word-spacing: 2;
+    margin: 0 0 20px;
   }
 }
 

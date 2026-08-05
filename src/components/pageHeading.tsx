@@ -25,7 +25,6 @@ const PageHeading = ({ pageTitle, pageImage, titleInline, backgroundPosition }) 
           <Container className="title-outside">
             <div className="title">
               <h1>{pageTitle}</h1>
-              <hr className="title-break-left" />
             </div>
           </Container>
         ) : null}
