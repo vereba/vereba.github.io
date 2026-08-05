@@ -16,6 +16,7 @@ import { calculateAge } from "../helper/date"
 
 import "../styles/components/home.scss"
 import PageNavbar from "../components/navBar"
+import Footer from "../components/footer"
 import ContactForm from "../components/contactForm"
 
 
@@ -269,12 +270,7 @@ export default function Home({ data }: { data: any }) {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <span>© {new Date().getFullYear()}, Verena Barth</span>
-        <span>
-          <Link to="/imprint/">Imprint</Link>
-        </span>
-      </footer>
+      <Footer />
     </div>
   )
 }

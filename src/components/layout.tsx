@@ -7,11 +7,9 @@
 
 import React from "react"
 import SEO from "../components/seo"
-import { BsInstagram } from "react-icons/bs"
-import { Container, Row, Col } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import PageNavbar from "./navBar"
-import { Link } from "gatsby"
-import { INSTAGRAM_URL } from "../constants"
+import Footer from "./footer"
 
 const Layout = ({ pageInfo, children }) => (
   <>
@@ -25,28 +23,7 @@ const Layout = ({ pageInfo, children }) => (
         <main>{children}</main>
       </Container>
     </Container>
-    {
-      <Container fluid>
-        <Row>
-          <Col className="footer-col">
-            <footer>
-              <Container>
-                <span>© {new Date().getFullYear()}, Verena Barth</span>
-                <span style={{ display: "flex" }}>
-                  <Link to="/imprint" className="link-no-style">
-                    Imprint
-                  </Link>
-                  <span style={{ width: "2rem", display: "block" }}></span>
-                  <a href={INSTAGRAM_URL}>
-                    <BsInstagram />
-                  </a>
-                </span>
-              </Container>
-            </footer>
-          </Col>
-        </Row>
-      </Container>
-    }
+    <Footer />
   </>
 )
 
