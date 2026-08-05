@@ -6,5 +6,5 @@ category:
 material: "Acryl on Canvas"
 size: "120x90"
 imagePreview: "./../../images_low_res/black-and-white/midnight_city.jpg"
-image: "./../../images_watermarked/black-and-white/midnight_city.jpg"
+image: "./../../images_web/black-and-white/midnight_city.jpg"
 ---

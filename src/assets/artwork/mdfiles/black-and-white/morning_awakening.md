@@ -6,6 +6,6 @@ category:
 material: "Acryl on Canvas"
 size: "70x100"
 imagePreview: "./../../images_low_res/black-and-white/morning_awakening.jpg"
-image: "./../../images_watermarked/black-and-white/morning_awakening.jpg"
+image: "./../../images_web/black-and-white/morning_awakening.jpg"
 sold: "not available"
 ---

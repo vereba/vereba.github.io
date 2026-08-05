@@ -6,6 +6,6 @@ category:
 material: "Acryl on Canvas"
 size: "80x100"
 imagePreview: "./../../images_low_res/black-and-white/bushwick_beauty.jpg"
-image: "./../../images_watermarked/black-and-white/bushwick_beauty.jpg"
+image: "./../../images_web/black-and-white/bushwick_beauty.jpg"
 showInCarousel: true
 ---

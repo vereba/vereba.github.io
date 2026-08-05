@@ -8,6 +8,7 @@ src/gatsby-types.d.ts
 .env.*.local
 # don't push original images
 src/assets/artwork/images/*
+src/assets/artwork/images_web/*
 src/assets/artwork/images_watermarked/*
 src/assets/artwork/images_low_res/*
 src/assets/artwork/mockups/*
@@ -18,3 +19,5 @@ helper/
 src/other/
 to_convert/
 converted/
+/images/
+/images_converted/

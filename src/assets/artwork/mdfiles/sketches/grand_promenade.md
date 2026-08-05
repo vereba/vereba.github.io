@@ -7,6 +7,6 @@ category:
 material: "Alcohol Marker on Paper"
 size: "A3"
 imagePreview: "./../../images_low_res/sketches/grand_promenade.png"
-image: "./../../images_watermarked/sketches/grand_promenade.png"
+image: "./../../images_web/sketches/grand_promenade.png"
 ---
 

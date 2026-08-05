@@ -6,7 +6,7 @@ category:
 material: "Acryl on Canvas"
 size: "80x60"
 imagePreview: "./../../images_low_res/black-and-white/federahannes.jpg"
-image: "./../../images_watermarked/black-and-white/federahannes.jpg"
+image: "./../../images_web/black-and-white/federahannes.jpg"
 ---
 <hr>
 <p>Celebrating carnival ("Fasnet") with the local traditional costumes in my hometown Rottweil.</p>

@@ -6,6 +6,6 @@ category:
 material: "Acryl on Canvas"
 size: "70x100"
 imagePreview: "./../../images_low_res/black-and-white/calles_de_antigua.jpg"
-image: "./../../images_watermarked/black-and-white/calles_de_antigua.jpg"
+image: "./../../images_web/black-and-white/calles_de_antigua.jpg"
 sold: "not available"
 ---

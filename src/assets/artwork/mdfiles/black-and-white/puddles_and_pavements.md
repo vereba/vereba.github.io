@@ -6,9 +6,9 @@ category:
 material: "Acryl on Canvas"
 size: "70 cm x 100 cm each"
 imagePreview: "./../../images_low_res/black-and-white/puddles_and_pavements.png"
-image: "./../../images_watermarked/black-and-white/puddles_and_pavements.png"
+image: "./../../images_web/black-and-white/puddles_and_pavements.png"
 otherImages:
-- "./../../images_watermarked/black-and-white/puddles_and_pavements_1.png"
-- "./../../images_watermarked/black-and-white/puddles_and_pavements_2.png"
+- "./../../images_web/black-and-white/puddles_and_pavements_1.png"
+- "./../../images_web/black-and-white/puddles_and_pavements_2.png"
 sold: "not available"
 ---

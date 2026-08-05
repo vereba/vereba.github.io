@@ -6,5 +6,5 @@ category:
 material: "Acryl on Canvas"
 size: "70x100"
 imagePreview: "./../../images_low_res/black-and-white/one_pad_thai_please.jpg"
-image: "./../../images_watermarked/black-and-white/one_pad_thai_please.jpg"
+image: "./../../images_web/black-and-white/one_pad_thai_please.jpg"
 ---

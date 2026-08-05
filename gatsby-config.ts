@@ -64,7 +64,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/assets/artwork/images_watermarked/`,
+        path: `${__dirname}/src/assets/artwork/images_web/`,
       },
       __key: "artwork_watermarked",
     },

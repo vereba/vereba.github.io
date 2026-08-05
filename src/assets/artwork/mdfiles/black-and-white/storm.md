@@ -6,5 +6,5 @@ category:
 material: "Acryl on Canvas"
 size: "80x60"
 imagePreview: "./../../images_low_res/black-and-white/storm.jpg"
-image: "./../../images_watermarked/black-and-white/storm.jpg"
+image: "./../../images_web/black-and-white/storm.jpg"
 ---

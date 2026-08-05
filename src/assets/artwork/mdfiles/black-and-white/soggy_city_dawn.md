@@ -6,5 +6,5 @@ category:
 material: "Acryl on Canvas"
 size: "50x70"
 imagePreview: "./../../images_low_res/black-and-white/soggy_city_dawn.png"
-image: "./../../images_watermarked/black-and-white/soggy_city_dawn.png"
+image: "./../../images_web/black-and-white/soggy_city_dawn.png"
 ---

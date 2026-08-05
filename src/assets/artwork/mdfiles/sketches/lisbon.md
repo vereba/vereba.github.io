@@ -7,5 +7,5 @@ category:
 material: "Alcohol Marker  on Paper"
 size: "A3"
 imagePreview: "./../../images_low_res/sketches/lisbon.png"
-image: "./../../images_watermarked/sketches/lisbon.png"
+image: "./../../images_web/sketches/lisbon.png"
 ---

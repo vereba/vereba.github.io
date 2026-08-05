@@ -6,10 +6,10 @@ category:
 material: "Pencil on Paper"
 size: "A4"
 imagePreview: "./../../images_low_res/sketches/der_kuss.png"
-image: "./../../images_watermarked/sketches/der_kuss.png"
+image: "./../../images_web/sketches/der_kuss.png"
 sold: "Original sold"
 otherImages:
-- "./../../images_watermarked/sketches/der_kuss_mockup.png"
+- "./../../images_web/sketches/der_kuss_mockup.png"
 ---
 <hr>
 One of my first color pencil drawings.

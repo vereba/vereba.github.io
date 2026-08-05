@@ -6,6 +6,6 @@ category:
 material: "Acryl on Canvas"
 size: "60x60"
 imagePreview: "./../../images_low_res/black-and-white/das_schwarze_tor.jpg"
-image: "./../../images_watermarked/black-and-white/das_schwarze_tor.jpg"
+image: "./../../images_web/black-and-white/das_schwarze_tor.jpg"
 sold: "not available"
 ---
