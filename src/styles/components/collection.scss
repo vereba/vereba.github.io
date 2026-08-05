@@ -14,7 +14,8 @@
         margin-bottom: 6px;
     }
 
-    .page-title {
+    .page-title,
+    .category-title {
         color: $text-primary;
         font-family: "Libre Baskerville" !important;
         font-weight: 500;
@@ -23,6 +24,7 @@
         word-spacing: 2;
         margin: 0 0 20px;
     }
+
 }
 
 /* ---------- Category tabs ---------- */

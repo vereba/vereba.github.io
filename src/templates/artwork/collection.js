@@ -86,13 +86,13 @@ export default function Collection({ pageContext, data }) {
   return (
     <Layout pageInfo={{ pageName: "Artwork" }}>
       <div className="page-header">
-        <div className="eyebrow">Artwork</div>
+        <div className="page-title">Artwork</div>
         <PageMenu
           menuItems={collections}
           selectedItem={pageContext.category}
           counts={pageContext.categoryCounts}
         />
-        <h1 className="page-title">{collections[pageContext.category]}</h1>
+        <h1 className="category-title">{collections[pageContext.category]}</h1>
       </div>
 
       {!filteredArtworks || filteredArtworks.length === 0 ? (
