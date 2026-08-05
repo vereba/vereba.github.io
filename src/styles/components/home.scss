@@ -184,8 +184,16 @@
     .artwork-showcase {
         display: flex;
         align-items: flex-start;
+        justify-content: center;
         gap: 24px;
         margin-bottom: 20px;
+
+        .showcase-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
     }
 
     // Horizontal room reserved outside the image so the prev/next arrows can
@@ -304,6 +312,13 @@
             opacity: 0.25;
             cursor: default;
         }
+
+        // Desktop rail is vertical (up/down paging); the <=991px block below
+        // switches the rail to a horizontal row, so it swaps these for the
+        // left/right variant instead.
+        .thumb-scroll-icon-horizontal {
+            display: none;
+        }
     }
 
     .artwork-thumb {
@@ -363,12 +378,111 @@
         padding-bottom: 2px;
     }
 
+    // Tablet + mobile: below this, the desktop showcase's fixed pixel sizes
+    // (carousel width computed from CAROUSEL_HEIGHT, 150px thumb tiles) can
+    // easily exceed the viewport before they'd exceed the section's own
+    // horizontal padding (48px >=641px, 20px <=640px via the mobile block
+    // below) so everything here switches to fluid (%/flex-basis) sizing
+    // that shrinks continuously with the viewport instead of jumping
+    // between fixed steps. That keeps the section's own padding (always
+    // well over 1rem) as the only thing touching the screen edge.
+    @media (max-width: 991px) {
+        .artwork-showcase {
+            flex-direction: column-reverse;
+            align-items: center;
+            width: 100%;
+        }
+
+        .showcase-content {
+            width: 100%;
+        }
+
+        // Same 32px-each-side gutter pattern as .artwork-carousel below:
+        // the scroll buttons are taken out of flow (position: absolute)
+        // and pinned into that gutter instead of sitting inline beside the
+        // tile track, so .artwork-thumbs is a plain width: 100% of a
+        // padded box identical in size to the carousel's own padded box.
+        // That's what makes the tile row's edges land exactly under the
+        // picture's edges (rather than shrinking the tiles by two
+        // unevenly-consumed button widths).
+        .artwork-thumbs-rail {
+            flex-direction: row;
+            position: relative;
+            width: 100%;
+            padding: 0 32px;
+        }
+
+        .artwork-thumbs {
+            flex-direction: row;
+            width: 100%;
+            height: auto;
+        }
+
+        .artwork-thumb {
+            flex: 1 1 0;
+            width: auto;
+            height: auto;
+            min-width: 0;
+            aspect-ratio: 1;
+        }
+
+        .thumb-scroll {
+            position: absolute;
+            top: 0;
+            width: 32px;
+            height: 100%;
+
+            .thumb-scroll-icon-vertical {
+                display: none;
+            }
+
+            .thumb-scroll-icon-horizontal {
+                display: block;
+            }
+        }
+
+        .thumb-scroll-up {
+            left: 0;
+        }
+
+        .thumb-scroll-down {
+            right: 0;
+        }
+
+        .artwork-carousel-wrap {
+            width: 100% !important;
+        }
+
+        .artwork-carousel {
+            padding: 0 32px;
+
+            .carousel-slide {
+                height: auto;
+                aspect-ratio: var(--active-aspect-ratio, 1);
+
+                img {
+                    padding-top: 0;
+                }
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 32px;
+            }
+        }
+    }
+
     /* ---------- Exhibitions ---------- */
 
     .exhibitions-columns {
         display: flex;
         gap: 64px;
         flex-wrap: wrap;
+
+        h2,
+        h3 {
+            padding-left: 0px;
+        }
     }
 
     .exhibitions-col {
@@ -455,7 +569,12 @@
         justify-content: center;
 
         .form-label {
-            font-weight: bold;
+            font-family: "OpenSans", sans-serif;
+        }
+
+        .form-control {
+            font-family: "OpenSans", sans-serif;
+            font-size: 0.9rem;
         }
 
         .formMessage {
@@ -485,11 +604,15 @@
         }
 
         .white-box {
-            max-width: 800px;
+            // Fluid up to 600px instead of a fixed width, so it shrinks
+            // with the viewport (matching the section's own equal
+            // left/right padding) rather than overflowing once the
+            // viewport gets narrower than 600px + that padding.
+            width: 100%;
+            max-width: 600px;
             margin: 0 auto;
             background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
             padding: 3rem;
-            width: 600px;
 
             >p,
             h2 {
@@ -561,29 +684,41 @@
 
         .intro-hero>.intro {
             height: auto;
+            min-height: 304px;
         }
 
 
-        // Hero background image is dropped on small screens; restore the
-        // intro's normal (dark-on-light) text colors that the image's
-        // dark overlay was compensating for.
-        // .intro-hero,
+
+
+        // Background photo is dropped on small screens, so the .white-box's
+        // dark overlay (needed for white text to read against the photo)
+        // no longer has anything to sit on top of - drop the overlay too
+        // and flip its text back to the normal dark-on-light colors.
         #contact {
             background: none;
             height: 100%;
+            padding-top: 0px;
 
             &::before {
                 content: none;
             }
 
-            .intro {
-                .eyebrow {
-                    color: $text-muted;
+            .white-box {
+                background: none;
+
+                .section-title {
+                    color: $primary-green;
                 }
 
-                h1 {
-                    color: $text-primary;
+                .contact-box {
+
+                    >p,
+                    h2,
+                    .form-label {
+                        color: $text-primary !important;
+                    }
                 }
+
             }
         }
 
@@ -608,47 +743,8 @@
             }
         }
 
-        .artwork-showcase {
-            flex-direction: column-reverse;
-            align-items: center;
-        }
-
-        .artwork-thumbs-rail {
-            flex-direction: row;
-        }
-
-        .artwork-thumbs {
-            flex-direction: row;
-            width: auto;
-            height: 150px;
-        }
-
-        .thumb-scroll {
-            width: 24px;
-            height: 100%;
-        }
-
-        .artwork-carousel-wrap {
-            width: 100% !important;
-        }
-
-        .artwork-carousel {
-            padding: 0 32px;
-
-            .carousel-slide {
-                height: auto;
-                aspect-ratio: var(--active-aspect-ratio, 1);
-
-                img {
-                    padding-top: 0;
-                }
-            }
-
-            .carousel-control-prev,
-            .carousel-control-next {
-                width: 32px;
-            }
-        }
+        // Showcase/carousel/thumb-strip responsiveness is handled by the
+        // shared max-width: 991px block above (covers this range too).
 
         // Collapse/expand accordion for exhibitions & live painting is
         // mobile-only; above this breakpoint entries stay always-expanded

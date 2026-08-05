@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
 import Carousel from "react-bootstrap/Carousel"
-import { BsChevronUp, BsChevronDown } from "react-icons/bs"
+import { BsChevronUp, BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import SEO from "../components/seo"
 import {
   homeCarouselIntervalMs,
@@ -160,47 +160,50 @@ export default function Home({ data }: { data: any }) {
         <h2 className="section-title">A selection of recent work</h2>
 
         <div className="artwork-showcase">
-          <div className="artwork-thumbs-rail">
-            <button
-              type="button"
-              className="thumb-scroll thumb-scroll-up"
-              onClick={() => setThumbOffset((offset) => Math.max(0, offset - 1))}
-              disabled={thumbOffset <= 0}
-              aria-label="Show earlier artworks"
-            >
-              <BsChevronUp />
-            </button>
+          <div className="showcase-content">
+            <div className="artwork-thumbs-rail">
+              <button
+                type="button"
+                className="thumb-scroll thumb-scroll-up"
+                onClick={() => setThumbOffset((offset) => Math.max(0, offset - 1))}
+                disabled={thumbOffset <= 0}
+                aria-label="Show earlier artworks"
+              >
+                <BsChevronUp className="thumb-scroll-icon-vertical" />
+                <BsChevronLeft className="thumb-scroll-icon-horizontal" />
+              </button>
 
-            <div className="artwork-thumbs">
-              {visibleThumbs.map(({ node }: any, i: number) => {
-                const index = thumbOffset + i
-                const thumbImage = getImage(
-                  node.frontmatter.imagePreview?.childImageSharp?.gatsbyImageData
-                )
-                return (
-                  <button
-                    type="button"
-                    key={node.fields.slug}
-                    className={`artwork-thumb${index === activeIndex ? " active" : ""}`}
-                    onClick={() => setActiveIndex(index)}
-                    aria-label={`Show ${node.frontmatter.title}`}
-                    aria-current={index === activeIndex}
-                  >
-                    {thumbImage && <GatsbyImage image={thumbImage} alt="" />}
-                  </button>
-                )
-              })}
+              <div className="artwork-thumbs">
+                {visibleThumbs.map(({ node }: any, i: number) => {
+                  const index = thumbOffset + i
+                  const thumbImage = getImage(
+                    node.frontmatter.imagePreview?.childImageSharp?.gatsbyImageData
+                  )
+                  return (
+                    <button
+                      type="button"
+                      key={node.fields.slug}
+                      className={`artwork-thumb${index === activeIndex ? " active" : ""}`}
+                      onClick={() => setActiveIndex(index)}
+                      aria-label={`Show ${node.frontmatter.title}`}
+                      aria-current={index === activeIndex}
+                    >
+                      {thumbImage && <GatsbyImage image={thumbImage} alt="" />}
+                    </button>
+                  )
+                })}
+              </div>
+              <button
+                type="button"
+                className="thumb-scroll thumb-scroll-down"
+                onClick={() => setThumbOffset((offset) => Math.min(maxThumbOffset, offset + 1))}
+                disabled={thumbOffset >= maxThumbOffset}
+                aria-label="Show later artworks"
+              >
+                <BsChevronDown className="thumb-scroll-icon-vertical" />
+                <BsChevronRight className="thumb-scroll-icon-horizontal" />
+              </button>
             </div>
-
-            <button
-              type="button"
-              className="thumb-scroll thumb-scroll-down"
-              onClick={() => setThumbOffset((offset) => Math.min(maxThumbOffset, offset + 1))}
-              disabled={thumbOffset >= maxThumbOffset}
-              aria-label="Show later artworks"
-            >
-              <BsChevronDown />
-            </button>
           </div>
 
           <div
