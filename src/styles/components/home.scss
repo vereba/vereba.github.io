@@ -57,7 +57,7 @@
     .intro-hero {
         position: relative;
         background: #000;
-        margin-top: 3rem;
+        // margin-top: 3rem;
 
         &::before {
             content: "";
@@ -130,6 +130,7 @@
 
     .section-title {
         font-family: "Libre Baskerville" !important;
+        padding-left: 0;
         font-weight: 500;
         font-size: 30px;
         margin: 0 0 32px;
