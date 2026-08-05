@@ -1,6 +1,7 @@
 @import "variables";
 @import "layout";
 @import "navbar";
+@import "footer";
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
@@ -114,6 +115,5 @@ html {
     p.italic {
       font-style: italic;
     }
-
   }
 }
