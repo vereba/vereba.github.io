@@ -233,7 +233,7 @@ export default function Home({ data }: { data: any }) {
                         <span className="status-badge">{node.frontmatter.sold}</span>
                       ) : null}
                     </Link>
-                    <p className="carousel-slide-title">{node.frontmatter.title}</p>
+                    <p className="carousel-slide-title">{node.frontmatter.title} ({node.frontmatter.date})</p>
                   </Carousel.Item>
                 )
               })}
@@ -292,6 +292,7 @@ export const query = graphql`
           }
           frontmatter {
             title
+            date
             sold
             imagePreview {
               childImageSharp {
