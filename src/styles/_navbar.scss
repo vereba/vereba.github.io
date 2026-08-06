@@ -179,12 +179,12 @@ $navbar-light-active-color: $primary-green;
 
         button {
           border: none;
-          margin-right: 2rem;
+          //margin-right: 2rem;
         }
 
         #brand {
           width: 60%;
-          padding-left: 2rem;
+          //padding-left: 2rem;
 
           .gatsby-image-wrapper [data-main-image] {
             height: 80px;
@@ -272,6 +272,10 @@ $navbar-light-active-color: $primary-green;
   // For always expanded or extra full navbars, ensure content aligns itself
   // properly vertically. Can be easily overridden with flex utilities.
   align-items: center;
+
+  a {
+    padding-right: 1rem;
+  }
 
 }
 
