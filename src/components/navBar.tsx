@@ -17,7 +17,7 @@ const PageNavbar = ({ pageName }: { pageName?: string }) => (
                 src="../images/logo/logo_green_long.png"
                 height={90}
                 alt="vb-art"
-                transformOptions={{ fit: "cover", cropFocus: "attention" }}
+                transformOptions={{ fit: "cover", cropFocus: "center" }}
               />
             </Nav.Link>
           </Link>
