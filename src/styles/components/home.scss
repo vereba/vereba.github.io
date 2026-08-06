@@ -187,11 +187,14 @@
         gap: 24px;
         margin-bottom: 20px;
 
+        // Column (not row): stacks the thumb rail above the "View all
+        // artwork" link so the link naturally shares the rail's own
+        // content-width instead of being centered separately from it.
         .showcase-content {
             display: flex;
+            flex-direction: column;
             align-items: flex-start;
-            gap: 24px;
-            flex-wrap: wrap;
+            gap: 16px;
         }
     }
 
@@ -409,6 +412,15 @@
             position: relative;
             width: 100%;
             padding: 0 32px;
+        }
+
+        // The rail gets its own inset via padding above (so its
+        // width: 100% tile track still lands under the picture's edges),
+        // but .view-all isn't a full-width box, so it needs that same
+        // inset applied as a margin instead to start at the same x
+        // position as the tiles.
+        .view-all {
+            margin-left: 32px;
         }
 
         .artwork-thumbs {
