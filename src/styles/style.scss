@@ -6,6 +6,17 @@
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 
+// Restore the site's existing generous gutters on every Container (navbar
+// included), so aligning page content to the navbar's width doesn't also
+// shrink the padding down to Bootstrap's tight ~12px default.
+.container {
+  --bs-gutter-x: 96px; // 48px each side, matching today's desktop padding
+
+  @media (max-width: 640px) {
+    --bs-gutter-x: 40px; // 20px each side, matching today's mobile padding
+  }
+}
+
 /*
     sass --watch scss:css
 */

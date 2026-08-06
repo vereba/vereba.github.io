@@ -3,9 +3,7 @@
 /* ---------- Page header ---------- */
 
 .page-header {
-    max-width: 1400px;
-    margin: 2.5rem auto 0;
-    padding: 0 48px;
+    margin-top: 2.5rem;
 
     .eyebrow {
         font-size: 12px;
@@ -96,9 +94,7 @@
    plain CSS multi-column layout would leave. */
 
 .artwork-masonry {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 48px 60px;
+    padding-bottom: 60px;
     display: flex;
     gap: 1rem;
 }
@@ -175,9 +171,7 @@
 /* ---------- Pagination ---------- */
 
 .content .pagination {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 48px 60px;
+    padding-bottom: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,13 +201,6 @@
    the number of columns actually rendered. */
 
 @media (max-width: 640px) {
-
-    .page-header,
-    .artwork-masonry,
-    .content .pagination {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
 
     // Tighten the dead space between the sticky logo/hamburger row and the
     // page content (see the matching .header height reduction in

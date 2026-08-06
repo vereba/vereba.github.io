@@ -85,9 +85,8 @@
     /* ---------- Intro strip ---------- */
 
     .intro {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 48px 48px 40px;
+        padding-top: 48px;
+        padding-bottom: 40px;
         text-align: center;
 
         .eyebrow {
@@ -109,9 +108,8 @@
     /* ---------- Section shell ---------- */
 
     section {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 70px 48px;
+        padding-top: 70px;
+        padding-bottom: 70px;
         scroll-margin-top: 70px;
     }
 
@@ -660,9 +658,7 @@
 
     @media (max-width: 640px) {
 
-        .site-header,
-        .intro,
-        section {
+        .site-header {
             padding-left: 20px;
             padding-right: 20px;
         }

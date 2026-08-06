@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
 import Carousel from "react-bootstrap/Carousel"
+import { Container } from "react-bootstrap"
 import { BsChevronUp, BsChevronDown, BsChevronLeft, BsChevronRight } from "react-icons/bs"
 import SEO from "../components/seo"
 import {
@@ -111,149 +112,155 @@ export default function Home({ data }: { data: any }) {
       <PageNavbar />
 
       <div className="intro-hero">
-        <div className="intro">
+        <Container className="intro">
           <div className="eyebrow">Original Artwork</div>
           <h1>Verena Barth — Paintings between Light and Shadow</h1>
-        </div>
+        </Container>
       </div>
       <section id="about">
-        <div className="section-eyebrow">About</div>
-        <div className="about-layout">
-          <StaticImage
-            src="../assets/images/about_me_desktop.jpg"
-            alt="Verena Barth"
-            className="about-image-desktop"
-          />
-          <StaticImage
-            src="../assets/images/about_me_mobile.jpg"
-            alt="Verena Barth"
-            className="about-image-mobile"
-          />
-          <div className="about-text">
-            <h3>Verena Barth</h3>
-            <p>
-              Verena Barth is a {age}-year-old artist currently living in Cologne, Germany. She has
-              been interested in art for as long as she can remember, but chose the safe career path
-              of Data Science and Artificial Intelligence and is now giving more time to her
-              passions of painting and travelling.
-            </p>
-            <p>
-              She finds joy in the act of creating and drawing without restraint, using her fingers
-              or any tool that resonates with the moment. This combination of different drawing
-              materials and the interplay of black and white, of light and shadow result in images
-              in which new details and hidden landscapes emerge with each viewing distance.
-            </p>
-            <h3>Inspiration</h3>
-            <p>
-              I love mindful walks and take a lot of inspiration out of it. During my time in the
-              vibrant embrace of New York City, I began to like the towering skyscrapers reaching
-              relentlessly towards the heavens. As a small village girl and nature enthusiast
-              navigating those bustling streets, I immersed myself in the captivating dance between
-              shadow and light, of black and white, the intricate compositions of lines and angles
-              and the recursive reflections cascading upon glass facades.
-            </p>
+        <Container>
+          <div className="section-eyebrow">About</div>
+          <div className="about-layout">
+            <StaticImage
+              src="../assets/images/about_me_desktop.jpg"
+              alt="Verena Barth"
+              className="about-image-desktop"
+            />
+            <StaticImage
+              src="../assets/images/about_me_mobile.jpg"
+              alt="Verena Barth"
+              className="about-image-mobile"
+            />
+            <div className="about-text">
+              <h3>Verena Barth</h3>
+              <p>
+                Verena Barth is a {age}-year-old artist currently living in Cologne, Germany. She has
+                been interested in art for as long as she can remember, but chose the safe career path
+                of Data Science and Artificial Intelligence and is now giving more time to her
+                passions of painting and travelling.
+              </p>
+              <p>
+                She finds joy in the act of creating and drawing without restraint, using her fingers
+                or any tool that resonates with the moment. This combination of different drawing
+                materials and the interplay of black and white, of light and shadow result in images
+                in which new details and hidden landscapes emerge with each viewing distance.
+              </p>
+              <h3>Inspiration</h3>
+              <p>
+                I love mindful walks and take a lot of inspiration out of it. During my time in the
+                vibrant embrace of New York City, I began to like the towering skyscrapers reaching
+                relentlessly towards the heavens. As a small village girl and nature enthusiast
+                navigating those bustling streets, I immersed myself in the captivating dance between
+                shadow and light, of black and white, the intricate compositions of lines and angles
+                and the recursive reflections cascading upon glass facades.
+              </p>
+            </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       <section id="artwork">
-        <div className="section-eyebrow">Artwork</div>
-        <h2 className="section-title">A selection of recent work</h2>
+        <Container>
+          <div className="section-eyebrow">Artwork</div>
+          <h2 className="section-title">A selection of recent work</h2>
 
-        <div className="artwork-showcase">
-          <div className="showcase-content">
-            <div className="artwork-thumbs-rail">
-              <button
-                type="button"
-                className="thumb-scroll thumb-scroll-up"
-                onClick={() => setThumbOffset((offset) => Math.max(0, offset - 1))}
-                disabled={thumbOffset <= 0}
-                aria-label="Show earlier artworks"
+          <div className="artwork-showcase">
+            <div className="showcase-content">
+              <div className="artwork-thumbs-rail">
+                <button
+                  type="button"
+                  className="thumb-scroll thumb-scroll-up"
+                  onClick={() => setThumbOffset((offset) => Math.max(0, offset - 1))}
+                  disabled={thumbOffset <= 0}
+                  aria-label="Show earlier artworks"
+                >
+                  <BsChevronUp className="thumb-scroll-icon-vertical" />
+                  <BsChevronLeft className="thumb-scroll-icon-horizontal" />
+                </button>
+
+                <div className="artwork-thumbs">
+                  {visibleThumbs.map(({ node }: any, i: number) => {
+                    const index = thumbOffset + i
+                    const thumbImage = getImage(
+                      node.frontmatter.imagePreview?.childImageSharp?.gatsbyImageData
+                    )
+                    return (
+                      <button
+                        type="button"
+                        key={node.fields.slug}
+                        className={`artwork-thumb${index === activeIndex ? " active" : ""}`}
+                        onClick={() => setActiveIndex(index)}
+                        aria-label={`Show ${node.frontmatter.title}`}
+                        aria-current={index === activeIndex}
+                      >
+                        {thumbImage && <GatsbyImage image={thumbImage} alt="" />}
+                      </button>
+                    )
+                  })}
+                </div>
+                <button
+                  type="button"
+                  className="thumb-scroll thumb-scroll-down"
+                  onClick={() => setThumbOffset((offset) => Math.min(maxThumbOffset, offset + 1))}
+                  disabled={thumbOffset >= maxThumbOffset}
+                  aria-label="Show later artworks"
+                >
+                  <BsChevronDown className="thumb-scroll-icon-vertical" />
+                  <BsChevronRight className="thumb-scroll-icon-horizontal" />
+                </button>
+              </div>
+
+              <Link className="view-all" to="/artwork/all/">
+                View all artwork →
+              </Link>
+            </div>
+
+            <div
+              className="artwork-carousel-wrap"
+              style={
+                {
+                  width: carouselWrapWidth,
+                  "--active-aspect-ratio": activeAspectRatio,
+                } as React.CSSProperties
+              }
+            >
+              <Carousel
+                className="artwork-carousel"
+                activeIndex={activeIndex}
+                onSelect={(index: number) => setActiveIndex(index)}
+                interval={homeCarouselIntervalMs}
+                indicators={false}
               >
-                <BsChevronUp className="thumb-scroll-icon-vertical" />
-                <BsChevronLeft className="thumb-scroll-icon-horizontal" />
-              </button>
-
-              <div className="artwork-thumbs">
-                {visibleThumbs.map(({ node }: any, i: number) => {
-                  const index = thumbOffset + i
-                  const thumbImage = getImage(
-                    node.frontmatter.imagePreview?.childImageSharp?.gatsbyImageData
-                  )
+                {artworks.map(({ node }: any, index: number) => {
+                  const heroImage = heroImages[index]
                   return (
-                    <button
-                      type="button"
-                      key={node.fields.slug}
-                      className={`artwork-thumb${index === activeIndex ? " active" : ""}`}
-                      onClick={() => setActiveIndex(index)}
-                      aria-label={`Show ${node.frontmatter.title}`}
-                      aria-current={index === activeIndex}
-                    >
-                      {thumbImage && <GatsbyImage image={thumbImage} alt="" />}
-                    </button>
+                    <Carousel.Item key={node.fields.slug}>
+                      <Link to={`/artwork${node.fields.slug}`} className="carousel-slide">
+                        {heroImage && <GatsbyImage image={heroImage} alt={node.frontmatter.title} />}
+                        {node.frontmatter.sold ? (
+                          <span className="status-badge">{node.frontmatter.sold}</span>
+                        ) : null}
+                      </Link>
+                      <p className="carousel-slide-title">{node.frontmatter.title} ({node.frontmatter.date})</p>
+                    </Carousel.Item>
                   )
                 })}
-              </div>
-              <button
-                type="button"
-                className="thumb-scroll thumb-scroll-down"
-                onClick={() => setThumbOffset((offset) => Math.min(maxThumbOffset, offset + 1))}
-                disabled={thumbOffset >= maxThumbOffset}
-                aria-label="Show later artworks"
-              >
-                <BsChevronDown className="thumb-scroll-icon-vertical" />
-                <BsChevronRight className="thumb-scroll-icon-horizontal" />
-              </button>
+              </Carousel>
             </div>
           </div>
-
-          <div
-            className="artwork-carousel-wrap"
-            style={
-              {
-                width: carouselWrapWidth,
-                "--active-aspect-ratio": activeAspectRatio,
-              } as React.CSSProperties
-            }
-          >
-            <Carousel
-              className="artwork-carousel"
-              activeIndex={activeIndex}
-              onSelect={(index: number) => setActiveIndex(index)}
-              interval={homeCarouselIntervalMs}
-              indicators={false}
-            >
-              {artworks.map(({ node }: any, index: number) => {
-                const heroImage = heroImages[index]
-                return (
-                  <Carousel.Item key={node.fields.slug}>
-                    <Link to={`/artwork${node.fields.slug}`} className="carousel-slide">
-                      {heroImage && <GatsbyImage image={heroImage} alt={node.frontmatter.title} />}
-                      {node.frontmatter.sold ? (
-                        <span className="status-badge">{node.frontmatter.sold}</span>
-                      ) : null}
-                    </Link>
-                    <p className="carousel-slide-title">{node.frontmatter.title} ({node.frontmatter.date})</p>
-                  </Carousel.Item>
-                )
-              })}
-            </Carousel>
-          </div>
-        </div>
-
-        <Link className="view-all" to="/artwork/all/">
-          View all artwork →
-        </Link>
+        </Container>
       </section>
 
       <section id="exhibitions">
-        <div className="section-eyebrow">Exhibitions</div>
-        <h2 className="section-title">exhibitions &amp; live painting</h2>
+        <Container>
+          <div className="section-eyebrow">Exhibitions</div>
+          <h2 className="section-title">exhibitions &amp; live painting</h2>
 
-        <div className="exhibitions-columns">
-          <ExhibitionColumn title="Exhibitions" groups={exhibitions} />
-          <ExhibitionColumn title="Live painting" groups={livePainting} />
-        </div>
+          <div className="exhibitions-columns">
+            <ExhibitionColumn title="Exhibitions" groups={exhibitions} />
+            <ExhibitionColumn title="Live painting" groups={livePainting} />
+          </div>
+        </Container>
       </section>
 
       <section id="contact">

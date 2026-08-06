@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react"
 import { Link, graphql } from "gatsby"
+import { Container } from "react-bootstrap"
 
 import PageMenu from "../../components/pageMenu"
 import { collections, artworksPerRow } from "../../constants"
@@ -85,7 +86,7 @@ export default function Collection({ pageContext, data }) {
 
   return (
     <Layout pageInfo={{ pageName: "Artwork" }}>
-      <div className="page-header">
+      <Container className="page-header">
         <div className="page-title">Artwork</div>
         <PageMenu
           menuItems={collections}
@@ -93,12 +94,12 @@ export default function Collection({ pageContext, data }) {
           counts={pageContext.categoryCounts}
         />
         <h1 className="category-title">{collections[pageContext.category]}</h1>
-      </div>
+      </Container>
 
       {!filteredArtworks || filteredArtworks.length === 0 ? (
         <p className="noPictures">No pictures uploaded (yet)</p>
       ) : (
-        <div className="artwork-masonry">
+        <Container className="artwork-masonry">
           {columns.map((column, columnIndex) => (
             <div className="artwork-masonry-column" key={columnIndex}>
               {column.map((node, index) => (
@@ -106,11 +107,11 @@ export default function Collection({ pageContext, data }) {
               ))}
             </div>
           ))}
-        </div>
+        </Container>
       )}
 
       {numPages > 1 && (
-        <div className="pagination">
+        <Container className="pagination">
           {Array.from({ length: numPages }, (_, i) => (
             <Link
               key={`pagination-number${i + 1}`}
@@ -125,7 +126,7 @@ export default function Collection({ pageContext, data }) {
               Next page →
             </Link>
           )}
-        </div>
+        </Container>
       )}
     </Layout>
   )
