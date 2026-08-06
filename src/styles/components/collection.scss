@@ -131,11 +131,16 @@
         width: 100% !important;
         display: block;
         box-shadow: none;
+        transition: transform 0.35s ease;
     }
 }
 
 .artwork-card:hover .artwork-thumb {
     border-color: $primary-green;
+
+    .gatsby-image-wrapper {
+        transform: scale(1.05);
+    }
 }
 
 .status-badge {
