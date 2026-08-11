@@ -89,7 +89,7 @@ const ContactForm = ({ artworkTitle }: ContactFormProps) => {
     if (!validate(values)) {
       return;
     }
-    console.log(`serviceId: ${serviceId}, templateId: ${templateId}, userId: ${userId},`)
+    // console.log(`serviceId: ${serviceId}, templateId: ${templateId}, userId: ${userId},`)
     if (!serviceId || !templateId || !userId) {
       setShowMessage(
         `Sorry, the contact form isn't set up yet. Please reach me directly at ${CONTACT_EMAIL}.`
