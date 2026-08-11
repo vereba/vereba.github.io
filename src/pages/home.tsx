@@ -147,7 +147,7 @@ export default function Home({ data }: { data: any }) {
                 materials and the interplay of black and white, of light and shadow result in images
                 in which new details and hidden landscapes emerge with each viewing distance.
               </p>
-              <h3>Inspiration</h3>
+              <h3>inspiration</h3>
               <p>
                 I love mindful walks and take a lot of inspiration out of it. During my time in the
                 vibrant embrace of New York City, I began to like the towering skyscrapers reaching
