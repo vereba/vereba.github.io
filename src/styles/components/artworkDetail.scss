@@ -237,6 +237,15 @@
                     border-color: $border-light;
                     color: $text-primary;
                 }
+
+                // Marks the button as active while its form is expanded.
+                &.inquire-open {
+                    border-color: $primary-green;
+
+                    &:hover {
+                        border-color: $primary-green;
+                    }
+                }
             }
         }
 

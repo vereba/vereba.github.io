@@ -112,6 +112,7 @@ export default function ArtworkDetailPage({ data }) {
                         type="button"
                         onClick={() => setShowInquireForm((show) => !show)}
                         variant="outline-secondary"
+                        className={showInquireForm ? "inquire-open" : ""}
                       >
                         Inquire
                       </Button>
