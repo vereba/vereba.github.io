@@ -125,11 +125,13 @@ export default function Home({ data }: { data: any }) {
               src="../assets/images/about_me_desktop.jpg"
               alt="Verena Barth"
               className="about-image-desktop"
+              transformOptions={{ cropFocus: "center" }}
             />
             <StaticImage
               src="../assets/images/about_me_mobile.jpg"
               alt="Verena Barth"
               className="about-image-mobile"
+              transformOptions={{ cropFocus: "center" }}
             />
             <div className="about-text">
               <h3>Verena Barth</h3>
@@ -303,12 +305,12 @@ export const query = graphql`
             sold
             imagePreview {
               childImageSharp {
-                gatsbyImageData(width: 400)
+                gatsbyImageData(width: 400, transformOptions: { cropFocus: CENTER })
               }
             }
             image {
               childImageSharp {
-                gatsbyImageData(width: 1000)
+                gatsbyImageData(width: 1000, transformOptions: { cropFocus: CENTER })
               }
             }
           }

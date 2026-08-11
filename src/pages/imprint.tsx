@@ -42,7 +42,11 @@ const AboutPage = ({ props }) => {
               </p>
             </Col>
             <Col md="3" className="marginBottom d-none d-md-block" id="imprintImage">
-              <StaticImage src="../assets/images/minimal_favela_1_a3.jpg" alt="Verena Barth" />
+              <StaticImage
+                src="../assets/images/minimal_favela_1_a3.jpg"
+                alt="Verena Barth"
+                transformOptions={{ cropFocus: "center" }}
+              />
             </Col>
           </Row>
         </Container>

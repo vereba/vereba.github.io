@@ -154,12 +154,12 @@ export const pageQuery = graphql`
             sold
             imagePreview {
               childImageSharp {
-                gatsbyImageData(width: 400)
+                gatsbyImageData(width: 400, transformOptions: { cropFocus: CENTER })
               }
             }
             image {
               childImageSharp {
-                gatsbyImageData(width: 800)
+                gatsbyImageData(width: 800, transformOptions: { cropFocus: CENTER })
               }
             }
           }

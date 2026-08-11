@@ -196,14 +196,14 @@ export const pageQuery = graphql`
         sold
         image {
           childImageSharp {
-            gatsbyImageData(height: 600)
-            zoomImageData: gatsbyImageData(width: 1900, quality: 85, layout: FIXED, placeholder: NONE)
+            gatsbyImageData(height: 600, transformOptions: { cropFocus: CENTER })
+            zoomImageData: gatsbyImageData(width: 1900, quality: 85, layout: FIXED, placeholder: NONE, transformOptions: { cropFocus: CENTER })
           }
         }
         otherImages {
           childImageSharp {
-            gatsbyImageData(height: 600)
-            zoomImageData: gatsbyImageData(width: 1900, quality: 100, layout: FIXED, placeholder: NONE)
+            gatsbyImageData(height: 600, transformOptions: { cropFocus: CENTER })
+            zoomImageData: gatsbyImageData(width: 1900, quality: 100, layout: FIXED, placeholder: NONE, transformOptions: { cropFocus: CENTER })
           }
         }
       }
