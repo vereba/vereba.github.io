@@ -127,6 +127,13 @@
 
     .form-label {
       margin-top: 0.8rem;
+      text-align: left;
+      width: 100%;
+      color: $primary-green;
+    }
+
+    #formGridMessage {
+      height: 85px;
     }
 
     .alert-danger {
