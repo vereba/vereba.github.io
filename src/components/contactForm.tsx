@@ -130,12 +130,6 @@ const ContactForm = ({ artworkTitle }: ContactFormProps) => {
 
   return (
     <Form id="contactForm" onSubmit={handleFormSubmit}>
-      {artworkTitle && (
-        <Form.Group controlId="formGridArtwork">
-          <Form.Label>Artwork</Form.Label>
-          <Form.Control type="text" value={artworkTitle} disabled readOnly />
-        </Form.Group>
-      )}
 
       <Form.Group as={Col} controlId="formGridName">
         <Form.Label>Name</Form.Label>
