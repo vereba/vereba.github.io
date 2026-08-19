@@ -75,6 +75,17 @@ exports.onPreBootstrap = ({ reporter }) => {
   }
 }
 
+// Pure helpers used by createPages, kept in a separate module (and
+// unit-tested there via gatsby-node.test.js) because gatsby-node.js's own
+// exports are validated against Gatsby's known Node API list.
+const {
+  groupNodesByCategory,
+  computeCategoryCounts,
+  getPrimaryCategory,
+  computePrevNextSlugs,
+  computePaginationPages,
+} = require("./gatsby-node-helpers")
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
@@ -109,42 +120,19 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   // detail page matches gallery browsing order. A piece can list more than
   // one category (e.g. a sketch that's also sold as a postcard), so it's
   // grouped under every category it declares, not just the first.
-  const categoryGroups = {}
-  let allCount = 0
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    const hasTitle = node.frontmatter.title && node.frontmatter.title.length > 0
-    if (!hasTitle) {
-      return
-    }
-    const nodeCategories = (
-      Array.isArray(node.frontmatter.category)
-        ? node.frontmatter.category
-        : [node.frontmatter.category]
-    ).filter((category) => Object.keys(collections).includes(category))
-    if (nodeCategories.length === 0) {
-      return
-    }
-    allCount += 1
-    nodeCategories.forEach((category) => {
-      if (!categoryGroups[category]) {
-        categoryGroups[category] = []
-      }
-      categoryGroups[category].push(node.fields.slug)
-    })
-  })
+  const { categoryGroups, allCount } = groupNodesByCategory(
+    result.data.allMarkdownRemark.edges,
+    Object.keys(collections)
+  )
 
   // Counts shown in the category tabs on the gallery pages, kept in sync
   // with the same title-filtered set actually rendered in each grid. "all"
   // is the unique file count, not a sum, so multi-category pieces aren't
   // double-counted.
-  const categoryCounts = { all: allCount }
-  Object.keys(collections).forEach((key) => {
-    if (key === "all") return
-    categoryCounts[key] = (categoryGroups[key] || []).length
-  })
+  const categoryCounts = computeCategoryCounts(categoryGroups, allCount, Object.keys(collections))
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    const category = node.frontmatter.category?.[0]
+    const category = getPrimaryCategory(node.frontmatter.category)
     if (!Object.keys(collections).includes(category)) {
       // No template renders non-artwork content (legacy "news" pages are
       // gone), so nodes outside the known categories are skipped.
@@ -152,10 +140,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     }
     const slug = node.fields.slug
     const pagePath = `artwork${slug}`
-    const siblings = categoryGroups[category] || []
-    const index = siblings.indexOf(slug)
-    const prevSlug = index > 0 ? siblings[index - 1] : null
-    const nextSlug = index >= 0 && index < siblings.length - 1 ? siblings[index + 1] : null
+    const { prevSlug, nextSlug } = computePrevNextSlugs(categoryGroups, category, slug)
     createPage({
       path: pagePath,
       component: artworkDetailTemplate,
@@ -169,15 +154,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   })
 
   function createCollection(key, numArtworks) {
-    const paginate = activatePagination
-    const artworksPerPage = paginate
-      ? artworkRowsPerPage * artworksPerRow
-      : Math.max(numArtworks, 1)
-    const numPages = paginate
-      ? Math.ceil(numArtworks / artworksPerPage) > 0
-        ? Math.ceil(numArtworks / artworksPerPage)
-        : 1
-      : 1
+    const { artworksPerPage, numPages } = computePaginationPages(numArtworks, {
+      activatePagination,
+      artworksPerRow,
+      artworkRowsPerPage,
+    })
     reporter.info(`Creating collection '${key}': ${numArtworks} artwork(s), ${numPages} page(s)`)
 
     Array.from({ length: numPages }).forEach((_, i) => {
