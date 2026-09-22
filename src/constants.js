@@ -51,12 +51,12 @@ module.exports = {
       entries: [
         {
           name: "Großstadt Dschungel (solo)",
-          place: "Bunker K101, Köln (Germany)",
+          place: "Galerie Eyegenart, Köln (Germany)",
           date: "01.05. – 12.05.2026",
         },
         {
           name: "Kunstroute Ehrenfeld",
-          place: "Galerie Eyegenart, Köln (Germany)",
+          place: "Bunker K101, Köln (Germany)",
           date: "27.09. – 22.10.2026",
         },
       ],
