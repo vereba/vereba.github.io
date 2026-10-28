@@ -15,7 +15,8 @@ src/assets/artwork/mockups/*
 __pycache__
 
 # local image-prep scratch (not part of the deployed site)
-helper/
+#helper/
+image_helper/
 src/other/
 /images_to_convert/
 converted/
